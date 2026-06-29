@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Test Creation — local AI build loop</title>
+  <meta name="description" content="Become an early Creation tester. Send feedback on Creation runs." />
+  <link rel="canonical" href="https://creation.dev/testers" />
+  <meta name="theme-color" content="rgb(251,251,248)" />
+  <link rel="stylesheet" href="assets/css/datafruit.css?v=14" />
+  <link rel="icon" href="/favicon.ico" sizes="any" />
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+
+  <style>
+    .tester-page {
+      position: relative;
+      z-index: 1;
+      padding: 72px 0 96px;
+    }
+
+    .tester-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.2fr) minmax(280px, 0.8fr);
+      gap: 32px;
+      align-items: start;
+    }
+
+    .tester-title {
+      max-width: 820px;
+      font-family: var(--serif);
+      font-size: clamp(40px, 7vw, 86px);
+      font-weight: 400;
+      line-height: 0.95;
+      letter-spacing: -0.04em;
+      color: var(--text);
+    }
+
+    .tester-lead {
+      max-width: 620px;
+      margin-top: 22px;
+      font-size: 17px;
+      line-height: 1.55;
+      color: var(--text-secondary);
+    }
+
+    .tester-actions {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 12px;
+      margin-top: 28px;
+    }
+
+    .tester-card,
+    .tester-form,
+    .tester-proof {
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      background: rgba(255, 255, 255, 0.52);
+      box-shadow: var(--shadow-frame);
+    }
+
+    .tester-card {
+      padding: 26px;
+    }
+
+    .tester-card h2,
+    .tester-proof h2,
+    .tester-form h2 {
+      font-family: var(--serif);
+      font-size: 32px;
+      font-weight: 400;
+      line-height: 1.05;
+      letter-spacing: -0.02em;
+    }
+
+    .tester-card ul {
+      display: grid;
+      gap: 12px;
+      margin-top: 18px;
+      padding-left: 18px;
+      color: var(--text-secondary);
+      font-size: 15px;
+    }
+
+    .tester-panel {
+      margin-top: 48px;
+    }
+
+    .tester-panel-grid {
+      display: grid;
+      grid-template-columns: minmax(320px, 0.9fr) minmax(0, 1.1fr);
+      gap: 24px;
+      align-items: start;
+    }
+
+    .tester-form {
+      display: grid;
+      gap: 18px;
+      padding: 28px;
+    }
+
+    .tester-form label {
+      display: grid;
+      gap: 8px;
+      font-size: 14px;
+      color: var(--text-secondary);
+    }
+
+    .tester-form input,
+    .tester-form textarea {
+      width: 100%;
+      border: 1px solid var(--line-strong);
+      border-radius: 12px;
+      background: rgba(251, 251, 248, 0.9);
+      padding: 13px 14px;
+      font: inherit;
+      color: var(--text);
+      outline: none;
+    }
+
+    .tester-form input:focus,
+    .tester-form textarea:focus {
+      border-color: var(--accent-dark);
+      box-shadow: 0 0 0 4px rgba(240, 168, 200, 0.22);
+    }
+
+    .tester-form textarea {
+      resize: vertical;
+      min-height: 150px;
+    }
+
+    .tester-form-actions {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 12px;
+      margin-top: 4px;
+    }
+
+    .tester-status {
+      min-height: 22px;
+      font-size: 14px;
+      color: var(--accent-dark);
+    }
+
+    .tester-proof {
+      padding: 28px;
+    }
+
+    .tester-proof-list {
+      display: grid;
+      gap: 12px;
+      margin-top: 20px;
+    }
+
+    .tester-proof-list article {
+      display: grid;
+      gap: 4px;
+      padding: 16px;
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      background: rgba(251, 251, 248, 0.7);
+    }
+
+    .tester-proof-list span {
+      color: var(--text-secondary);
+      font-size: 14px;
+    }
+
+    .tester-command {
+      margin-top: 20px;
+      padding: 18px;
+      overflow-x: auto;
+      border-radius: 14px;
+      background: #111;
+      color: #fff;
+      font-family: var(--mono);
+      font-size: 13px;
+      line-height: 1.5;
+    }
+
+    @media (max-width: 860px) {
+      .tester-grid,
+      .tester-panel-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .tester-page {
+        padding-top: 40px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="bg-top" aria-hidden="true"></div>
+
+  <header class="site-header">
+    <div class="header-blur" aria-hidden="true"></div>
+    <div class="container header-inner">
+      <a href="/" class="logo">
+        <svg class="logo-mark" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M6 12a6 6 0 0 1 12 0" fill="none" stroke="#c9789e" stroke-width="2" stroke-linecap="round"/>
+          <path d="M18 12a6 6 0 0 1-12 0" fill="none" stroke="#f0a8c8" stroke-width="2" stroke-linecap="round"/>
+        </svg>
+        <span class="logo-word">creation</span>
+      </a>
+
+      <div class="header-end">
+        <nav class="nav-pill" aria-label="Main">
+          <a href="/">Home</a>
+          <a href="/#quickstart">Install</a>
+          <a href="https://github.com/arjunkshah/creation">GitHub</a>
+        </nav>
+      </div>
+    </div>
+  </header>
+
+  <div class="header-spacer" aria-hidden="true"></div>
+
+  <main class="tester-page">
+    <section class="tester-hero">
+      <div class="container tester-grid">
+        <div class="tester-copy">
+          <p class="section-eyebrow">Early tester program</p>
+          <h1 class="tester-title">Help test the build loop that keeps going after agents stop.</h1>
+          <p class="tester-lead">
+            Creation is for indie devs and solo founders with real repos. Give it a task,
+            let it build, run tests, open the app in a browser, patch failures, and leave
+            proof of what happened.
+          </p>
+
+          <div class="tester-actions">
+            <button type="button" class="btn-accent install-btn" data-cmd="curl -fsSL creation.dev/install | bash">
+              Copy install command
+            </button>
+            <a class="btn-link" href="https://github.com/arjunkshah/creation">View GitHub →</a>
+          </div>
+        </div>
+
+        <aside class="tester-card">
+          <h2>What we need</h2>
+          <ul>
+            <li>Try Creation on an existing repo or a new throwaway product.</li>
+            <li>Tell us where the loop stopped, repeated itself, or failed to verify the app.</li>
+            <li>Share terminal output, screenshots, or a run receipt if you have them.</li>
+          </ul>
+        </aside>
+      </div>
+    </section>
+
+    <section class="tester-panel">
+      <div class="container tester-panel-grid">
+        <form id="tester-feedback-form" class="tester-form">
+          <p class="section-eyebrow">Feedback portal</p>
+          <h2>Join as a tester or send a run report</h2>
+
+          <label>
+            <span>Name</span>
+            <input name="name" autocomplete="name" placeholder="Your name" required />
+          </label>
+
+          <label>
+            <span>Email</span>
+            <input name="email" type="email" autocomplete="email" placeholder="you@example.com" required />
+          </label>
+
+          <label>
+            <span>What are you building?</span>
+            <input name="project" placeholder="Next.js SaaS, CLI tool, Chrome extension..." />
+          </label>
+
+          <label>
+            <span>Feedback</span>
+            <textarea name="feedback" rows="7" placeholder="What worked? Where did the loop stop? What should Creation have handled?" required></textarea>
+          </label>
+
+          <div class="tester-form-actions">
+            <button type="submit" class="btn-accent">Send feedback</button>
+            <button type="button" id="tester-email-btn" class="btn-link">Email fallback →</button>
+          </div>
+
+          <p id="tester-feedback-status" class="tester-status" aria-live="polite"></p>
+        </form>
+
+        <div class="tester-proof">
+          <h2>What makes a useful test</h2>
+
+          <div class="tester-proof-list">
+            <article>
+              <strong>Existing repo</strong>
+              <span>Run it where you already have tests, scripts, routes, and weird setup.</span>
+            </article>
+
+            <article>
+              <strong>Broken path</strong>
+              <span>Ask Creation to fix something that currently fails instead of a blank demo.</span>
+            </article>
+
+            <article>
+              <strong>Browser route</strong>
+              <span>Tell us the URL or user flow it should verify in the browser.</span>
+            </article>
+
+            <article>
+              <strong>Stop point</strong>
+              <span>The best report is where Creation stopped, looped badly, or missed an obvious patch.</span>
+            </article>
+          </div>
+
+          <pre class="tester-command">creation run --workdir . --idea "Fix the failing signup flow and verify it in the browser"</pre>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <a href="/" class="footer-brand">creation</a>
+      <a href="https://github.com/arjunkshah/creation" class="footer-email">github.com/arjunkshah/creation</a>
+    </div>
+  </footer>
+
+  <script src="assets/js/datafruit.js?v=8"></script>
+  <script src="assets/js/testers.js?v=3"></script>
+</body>
+</html>
