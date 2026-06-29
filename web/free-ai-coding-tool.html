@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Free AI Coding Tool — Open Source & Local | Creation</title>
+  <meta name="description" content="Creation is a free, open-source AI coding tool. There's no Creation subscription — it's an agentic coding tool that runs on your machine with your own keys and works with free local coding-agent CLIs. Here's exactly what 'free' means." />
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1" />
+  <link rel="canonical" href="https://creation.dev/free-ai-coding-tool" />
+
+  <meta property="og:site_name" content="Creation" />
+  <meta property="og:type" content="article" />
+  <meta property="og:url" content="https://creation.dev/free-ai-coding-tool" />
+  <meta property="og:title" content="Free AI coding tool — open source & local" />
+  <meta property="og:description" content="Creation is a free, open-source agentic coding tool: no subscription, runs on your keys, works with free local coding-agent CLIs." />
+  <meta property="og:image" content="https://creation.dev/assets/og-image.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Free AI coding tool — open source & local" />
+  <meta name="twitter:description" content="A free, open-source agentic coding tool: no subscription, runs on your keys." />
+  <meta name="twitter:image" content="https://creation.dev/assets/og-image.png" />
+
+  <meta name="theme-color" content="rgb(251,251,248)" />
+  <link rel="stylesheet" href="assets/css/datafruit.css?v=12" />
+  <link rel="icon" href="/favicon.ico" sizes="any" />
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <link rel="icon" type="image/png" sizes="48x48" href="/assets/favicon-48.png" />
+  <link rel="icon" type="image/png" sizes="96x96" href="/assets/favicon-96.png" />
+  <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png" />
+  <link rel="manifest" href="/site.webmanifest" />
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "TechArticle",
+        "headline": "Free AI coding tool — open source & local",
+        "description": "Creation is a free, open-source agentic coding tool that runs on your machine with your own keys and works with free local coding-agent CLIs.",
+        "image": "https://creation.dev/assets/og-image.png",
+        "author": { "@type": "Organization", "name": "Creation", "url": "https://creation.dev/" },
+        "publisher": { "@type": "Organization", "name": "Creation", "logo": { "@type": "ImageObject", "url": "https://creation.dev/assets/logo-512.png" } },
+        "mainEntityOfPage": "https://creation.dev/free-ai-coding-tool"
+      },
+      {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://creation.dev/" },
+          { "@type": "ListItem", "position": 2, "name": "Free AI coding tool", "item": "https://creation.dev/free-ai-coding-tool" }
+        ]
+      },
+      {
+        "@type": "FAQPage",
+        "mainEntity": [
+          { "@type": "Question", "name": "Is Creation a free AI coding tool?", "acceptedAnswer": { "@type": "Answer", "text": "Yes. Creation is free and open-source under the MIT license. There is no Creation subscription or seat fee — you only pay for whatever model or API usage you choose to connect, and you can run entirely on free local coding-agent CLIs." } },
+          { "@type": "Question", "name": "Are there hidden costs?", "acceptedAnswer": { "@type": "Answer", "text": "No. Creation runs on your machine with your own keys. Costs, if any, come only from third-party providers you opt into (your coding agent, model, or research APIs) — billed by them, not by Creation." } },
+          { "@type": "Question", "name": "Can I use it completely free?", "acceptedAnswer": { "@type": "Answer", "text": "Yes — pair Creation with coding-agent CLIs that use your existing login (no extra API key) and run creation run --demo to try the full pipeline at no cost." } }
+        ]
+      }
+    ]
+  }
+  </script>
+</head>
+<body>
+  <div class="bg-top" aria-hidden="true"></div>
+
+  <header class="site-header">
+    <div class="header-blur" aria-hidden="true"></div>
+    <div class="container header-inner">
+      <a href="/" class="logo">
+        <svg class="logo-mark" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M6 12a6 6 0 0 1 12 0" fill="none" stroke="#c9789e" stroke-width="2" stroke-linecap="round"/>
+          <path d="M18 12a6 6 0 0 1-12 0" fill="none" stroke="#f0a8c8" stroke-width="2" stroke-linecap="round"/>
+        </svg>
+        <span class="logo-word">creation</span>
+      </a>
+      <div class="header-end">
+        <nav class="nav-pill" aria-label="Main">
+          <a href="/#workflow">Workflow</a>
+          <a href="/agent-operating-system">Agent OS</a>
+          <a href="/coding-agents">Coding agents</a>
+          <a href="/#quickstart">Quickstart</a>
+          <a href="/#faq">FAQ</a>
+        </nav>
+        <div class="cta-pill">
+          <a href="https://github.com/arjunkshah/creation">GitHub</a>
+        </div>
+      </div>
+    </div>
+  </header>
+  <div class="header-spacer" aria-hidden="true"></div>
+
+  <div class="shell">
+    <main class="container">
+      <article class="doc">
+        <nav class="doc-breadcrumb" aria-label="Breadcrumb">
+          <a href="/">Home</a> / Free AI coding tool
+        </nav>
+        <p class="doc-eyebrow">Pricing</p>
+        <h1 class="doc-title">A free, open-source AI coding tool</h1>
+        <p class="doc-lead">
+          Creation is a <strong>free AI coding tool</strong> — open-source under the MIT license, with no subscription and no seat fee. It's an <a href="/agent-operating-system">agentic coding tool</a> that runs on your own machine, so the only costs are the third-party services you choose to plug in.
+        </p>
+
+        <div class="doc-body">
+          <h2>Is it really free?</h2>
+          <p>
+            Yes. There is no Creation plan to buy and nothing to upgrade. You <a href="/#quickstart">install it</a> with one command and run it locally. Because Creation orchestrates coding agents rather than reselling a model, you bring your own — and many of the <a href="/coding-agents">43 supported coding-agent CLIs</a> run on a login you already have, with no extra API key.
+          </p>
+
+          <h2>What "free" actually means here</h2>
+          <ul>
+            <li><strong>No Creation fee</strong> — the tool itself is free and open-source.</li>
+            <li><strong>Your keys, your bill</strong> — if you connect a paid model or API, that provider bills you directly. Creation never marks it up.</li>
+            <li><strong>Free path exists</strong> — pair it with coding agents that use your existing CLI login and you can run an agentic coding loop at no added cost.</li>
+            <li><strong>Try free</strong> — <code>creation run --demo</code> runs the full pipeline in demo mode.</li>
+          </ul>
+
+          <h2>Free vs paid AI coding tools</h2>
+          <table class="doc-table">
+            <thead><tr><th></th><th>Typical paid tool</th><th>Creation</th></tr></thead>
+            <tbody>
+              <tr><td>License</td><td>Proprietary</td><td>Open source (MIT)</td></tr>
+              <tr><td>Subscription</td><td>Monthly seat fee</td><td>None</td></tr>
+              <tr><td>Where it runs</td><td>Vendor cloud</td><td>Your machine</td></tr>
+              <tr><td>Model</td><td>Locked to vendor</td><td>Bring your own / free local CLIs</td></tr>
+              <tr><td>Lock-in</td><td>High</td><td>None — swap agents anytime</td></tr>
+            </tbody>
+          </table>
+
+          <div class="doc-callout">
+            <strong>Bottom line:</strong> Creation is a free, open-source agentic coding tool. Pay nothing for Creation; pay only for the optional services you choose to connect — and you can stay entirely free by using local coding-agent CLIs.
+          </div>
+
+          <h2>Start free in one command</h2>
+          <p>It's also a <a href="/local-first-coding-tool">local-first coding tool</a>, so everything stays on your machine.</p>
+        </div>
+
+        <div class="doc-cta">
+          <h2>Get the free AI coding tool</h2>
+          <p>Open source, local-first, on your keys. A team of agents that never stop working.</p>
+          <div class="cta-actions">
+            <button type="button" class="btn-accent install-btn" data-cmd="curl -fsSL creation.dev/install | bash">Copy install command</button>
+            <a href="https://github.com/arjunkshah/creation" class="btn-link">View source on GitHub →</a>
+          </div>
+        </div>
+      </article>
+    </main>
+
+    <footer class="site-footer">
+      <div class="footer-inner">
+        <div class="footer-grid">
+          <div>
+            <p class="footer-brand-label">Creation</p>
+            <p class="footer-tagline">A team of agents that never stop working.</p>
+            <a href="https://github.com/arjunkshah/creation" class="footer-email">github.com/arjunkshah/creation</a>
+          </div>
+          <div class="footer-links">
+            <section>
+              <p class="footer-heading">Learn</p>
+              <ul>
+                <li><a href="/agent-operating-system">Agent operating system</a></li>
+                <li><a href="/coding-agents">Supported coding agents</a></li>
+                <li><a href="/free-ai-coding-tool">Free AI coding tool</a></li>
+                <li><a href="/local-first-coding-tool">Local-first coding tool</a></li>
+              </ul>
+            </section>
+            <section>
+              <p class="footer-heading">Links</p>
+              <ul>
+                <li><a href="https://github.com/arjunkshah/creation">GitHub</a></li>
+                <li><a href="https://creation.dev">Website</a></li>
+              </ul>
+            </section>
+          </div>
+        </div>
+        <p class="footer-copy">© 2026 Creation · MIT</p>
+      </div>
+    </footer>
+  </div>
+
+  <script>
+    document.querySelectorAll(".install-btn").forEach(function (btn) {
+      var label = btn.textContent;
+      btn.addEventListener("click", function () {
+        var cmd = btn.getAttribute("data-cmd") || "";
+        var done = function () {
+          btn.textContent = "Copied — paste in your terminal";
+          btn.classList.add("copied");
+          setTimeout(function () { btn.textContent = label; btn.classList.remove("copied"); }, 2000);
+        };
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+          navigator.clipboard.writeText(cmd).then(done).catch(done);
+        } else {
+          var ta = document.createElement("textarea");
+          ta.value = cmd; document.body.appendChild(ta); ta.select();
+          try { document.execCommand("copy"); } catch (e) {}
+          document.body.removeChild(ta); done();
+        }
+      });
+    });
+  </script>
+  <script defer src="/_vercel/insights/script.js"></script>
+</body>
+</html>
