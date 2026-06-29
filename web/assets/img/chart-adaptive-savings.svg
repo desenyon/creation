@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 920 320" role="img" aria-label="Adaptive KV savings on long-context presets">
+<rect width="920" height="320" rx="16" fill="#fafafa" stroke="#e5e7eb"/>
+<text x="60" y="32" font-family="system-ui,sans-serif" font-size="16" font-weight="600" fill="#0f172a">Adaptive KV savings on long-context presets</text>
+<line x1="60" y1="264.0" x2="896" y2="264.0" stroke="#e5e7eb"/>
+<text x="52" y="268.0" text-anchor="end" font-size="10" fill="#64748b">0%</text>
+<line x1="60" y1="210.0" x2="896" y2="210.0" stroke="#e5e7eb"/>
+<text x="52" y="214.0" text-anchor="end" font-size="10" fill="#64748b">26%</text>
+<line x1="60" y1="156.0" x2="896" y2="156.0" stroke="#e5e7eb"/>
+<text x="52" y="160.0" text-anchor="end" font-size="10" fill="#64748b">53%</text>
+<line x1="60" y1="102.0" x2="896" y2="102.0" stroke="#e5e7eb"/>
+<text x="52" y="106.0" text-anchor="end" font-size="10" fill="#64748b">79%</text>
+<line x1="60" y1="48.0" x2="896" y2="48.0" stroke="#e5e7eb"/>
+<text x="52" y="52.0" text-anchor="end" font-size="10" fill="#64748b">106%</text>
+<rect x="107.0" y="83.1" width="115.0" height="180.9" rx="6" fill="#2563eb"/>
+<text x="164.5" y="292" text-anchor="middle" font-size="11" fill="#334155">To Kill a Mockingbird</text>
+<text x="164.5" y="77.1" text-anchor="middle" font-size="10" fill="#1e40af">88.6%</text>
+<rect x="316.0" y="74.8" width="115.0" height="189.2" rx="6" fill="#2563eb"/>
+<text x="373.5" y="292" text-anchor="middle" font-size="11" fill="#334155">Coding session</text>
+<text x="373.5" y="68.8" text-anchor="middle" font-size="10" fill="#1e40af">92.7%</text>
+<rect x="525.0" y="67.6" width="115.0" height="196.4" rx="6" fill="#2563eb"/>
+<text x="582.5" y="292" text-anchor="middle" font-size="11" fill="#334155">Sample markdown</text>
+<text x="582.5" y="61.6" text-anchor="middle" font-size="10" fill="#1e40af">96.2%</text>
+<rect x="734.0" y="78.0" width="115.0" height="186.0" rx="6" fill="#2563eb"/>
+<text x="791.5" y="292" text-anchor="middle" font-size="11" fill="#334155">Agent incident log</text>
+<text x="791.5" y="72.0" text-anchor="middle" font-size="10" fill="#1e40af">91.1%</text>
+</svg>
