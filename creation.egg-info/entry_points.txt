@@ -1,0 +1,2 @@
+[console_scripts]
+creation = creation.completion_cli:main
