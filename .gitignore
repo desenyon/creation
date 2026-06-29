@@ -1,0 +1,5 @@
+# Ad-hoc training output (bundled policy lives in creation/checkpoints/)
+checkpoints/
+!creation/checkpoints/
+creation/checkpoints/*
+!creation/checkpoints/default.pt
