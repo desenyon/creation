@@ -1,0 +1,1145 @@
+{
+  "generated": true,
+  "budget_ratio": 0.35,
+  "seeds": 8,
+  "assumptions": {
+    "tokens_per_gpu_second": 2500.0,
+    "gpu_watts": 150.0,
+    "grid_kg_co2_per_kwh": 0.417,
+    "kv_share_of_prefill": 0.55
+  },
+  "summary": {
+    "FIFO": {
+      "avg_kv_savings_pct": 65.06,
+      "avg_entity_recall": 0.7292,
+      "avg_oracle_recall": 0.2484,
+      "avg_answer_quality": 0.5979,
+      "avg_latency_ms": 45.8272,
+      "runs": 8
+    },
+    "Truncation": {
+      "avg_kv_savings_pct": 65.06,
+      "avg_entity_recall": 0.7292,
+      "avg_oracle_recall": 0.2484,
+      "avg_answer_quality": 0.5979,
+      "avg_latency_ms": 41.8094,
+      "runs": 8
+    },
+    "Summarization": {
+      "avg_kv_savings_pct": 65.06,
+      "avg_entity_recall": 0.6458,
+      "avg_oracle_recall": 0.6053,
+      "avg_answer_quality": 0.534,
+      "avg_latency_ms": 48.4565,
+      "runs": 8
+    },
+    "H2O": {
+      "avg_kv_savings_pct": 65.06,
+      "avg_entity_recall": 0.7292,
+      "avg_oracle_recall": 0.9791,
+      "avg_answer_quality": 0.5979,
+      "avg_latency_ms": 42.1791,
+      "runs": 8
+    },
+    "SuperCompress": {
+      "avg_kv_savings_pct": 65.06,
+      "avg_entity_recall": 0.7292,
+      "avg_oracle_recall": 1.0,
+      "avg_answer_quality": 0.5979,
+      "avg_latency_ms": 46.6614,
+      "runs": 8
+    }
+  },
+  "runs": [
+    {
+      "seed": 0,
+      "question": "What does User.fetch return when the row is missing?",
+      "policy": "FIFO",
+      "original_tokens": 1248,
+      "kept_tokens": 436,
+      "kv_savings_pct": 65.06,
+      "entity_recall": 0.75,
+      "oracle_recall": 0.3953,
+      "answer_quality": 0.6333,
+      "latency_ms": 71.716,
+      "sustainability": {
+        "tokens_saved": 812,
+        "gpu_seconds_avoided": 0.1786,
+        "watt_hours_saved": 0.007443,
+        "co2_kg_avoided": 3.1e-06,
+        "assumptions": {
+          "tokens_per_gpu_second": 2500.0,
+          "gpu_watts": 150.0,
+          "grid_kg_co2_per_kwh": 0.417,
+          "kv_share_of_prefill": 0.55
+        }
+      }
+    },
+    {
+      "seed": 0,
+      "question": "What does User.fetch return when the row is missing?",
+      "policy": "Truncation",
+      "original_tokens": 1248,
+      "kept_tokens": 436,
+      "kv_savings_pct": 65.06,
+      "entity_recall": 0.75,
+      "oracle_recall": 0.3953,
+      "answer_quality": 0.6333,
+      "latency_ms": 42.828,
+      "sustainability": {
+        "tokens_saved": 812,
+        "gpu_seconds_avoided": 0.1786,
+        "watt_hours_saved": 0.007443,
+        "co2_kg_avoided": 3.1e-06,
+        "assumptions": {
+          "tokens_per_gpu_second": 2500.0,
+          "gpu_watts": 150.0,
+          "grid_kg_co2_per_kwh": 0.417,
+          "kv_share_of_prefill": 0.55
+        }
+      }
+    },
+    {
+      "seed": 0,
+      "question": "What does User.fetch return when the row is missing?",
+      "policy": "Summarization",
+      "original_tokens": 1248,
+      "kept_tokens": 436,
+      "kv_savings_pct": 65.06,
+      "entity_recall": 0.75,
+      "oracle_recall": 0.5349,
+      "answer_quality": 0.6333,
+      "latency_ms": 48.022,
+      "sustainability": {
+        "tokens_saved": 812,
+        "gpu_seconds_avoided": 0.1786,
+        "watt_hours_saved": 0.007443,
+        "co2_kg_avoided": 3.1e-06,
+        "assumptions": {
+          "tokens_per_gpu_second": 2500.0,
+          "gpu_watts": 150.0,
+          "grid_kg_co2_per_kwh": 0.417,
+          "kv_share_of_prefill": 0.55
+        }
+      }
+    },
+    {
+      "seed": 0,
+      "question": "What does User.fetch return when the row is missing?",
+      "policy": "H2O",
+      "original_tokens": 1248,
+      "kept_tokens": 436,
+      "kv_savings_pct": 65.06,
+      "entity_recall": 0.75,
+      "oracle_recall": 1.0,
+      "answer_quality": 0.6333,
+      "latency_ms": 42.849,
+      "sustainability": {
+        "tokens_saved": 812,
+        "gpu_seconds_avoided": 0.1786,
+        "watt_hours_saved": 0.007443,
+        "co2_kg_avoided": 3.1e-06,
+        "assumptions": {
+          "tokens_per_gpu_second": 2500.0,
+          "gpu_watts": 150.0,
+          "grid_kg_co2_per_kwh": 0.417,
+          "kv_share_of_prefill": 0.55
+        }
+      }
+    },
+    {
+      "seed": 0,
+      "question": "What does User.fetch return when the row is missing?",
+      "policy": "SuperCompress",
+      "original_tokens": 1248,
+      "kept_tokens": 436,
+      "kv_savings_pct": 65.06,
+      "entity_recall": 0.75,
+      "oracle_recall": 1.0,
+      "answer_quality": 0.6333,
+      "latency_ms": 61.145,
+      "sustainability": {
+        "tokens_saved": 812,
+        "gpu_seconds_avoided": 0.1786,
+        "watt_hours_saved": 0.007443,
+        "co2_kg_avoided": 3.1e-06,
+        "assumptions": {
+          "tokens_per_gpu_second": 2500.0,
+          "gpu_watts": 150.0,
+          "grid_kg_co2_per_kwh": 0.417,
+          "kv_share_of_prefill": 0.55
+        }
+      }
+    },
+    {
+      "seed": 1,
+      "question": "How does get_user interact with kv_store?",
+      "policy": "FIFO",
+      "original_tokens": 1248,
+      "kept_tokens": 436,
+      "kv_savings_pct": 65.06,
+      "entity_recall": 0.75,
+      "oracle_recall": 0.2083,
+      "answer_quality": 0.6042,
+      "latency_ms": 41.91,
+      "sustainability": {
+        "tokens_saved": 812,
+        "gpu_seconds_avoided": 0.1786,
+        "watt_hours_saved": 0.007443,
+        "co2_kg_avoided": 3.1e-06,
+        "assumptions": {
+          "tokens_per_gpu_second": 2500.0,
+          "gpu_watts": 150.0,
+          "grid_kg_co2_per_kwh": 0.417,
+          "kv_share_of_prefill": 0.55
+        }
+      }
+    },
+    {
+      "seed": 1,
+      "question": "How does get_user interact with kv_store?",
+      "policy": "Truncation",
+      "original_tokens": 1248,
+      "kept_tokens": 436,
+      "kv_savings_pct": 65.06,
+      "entity_recall": 0.75,
+      "oracle_recall": 0.2083,
+      "answer_quality": 0.6042,
+      "latency_ms": 41.276,
+      "sustainability": {
+        "tokens_saved": 812,
+        "gpu_seconds_avoided": 0.1786,
+        "watt_hours_saved": 0.007443,
+        "co2_kg_avoided": 3.1e-06,
+        "assumptions": {
+          "tokens_per_gpu_second": 2500.0,
+          "gpu_watts": 150.0,
+          "grid_kg_co2_per_kwh": 0.417,
+          "kv_share_of_prefill": 0.55
+        }
+      }
+    },
+    {
+      "seed": 1,
+      "question": "How does get_user interact with kv_store?",
+      "policy": "Summarization",
+      "original_tokens": 1248,
+      "kept_tokens": 436,
+      "kv_savings_pct": 65.06,
+      "entity_recall": 0.75,
+      "oracle_recall": 0.625,
+      "answer_quality": 0.6042,
+      "latency_ms": 48.49,
+      "sustainability": {
+        "tokens_saved": 812,
+        "gpu_seconds_avoided": 0.1786,
+        "watt_hours_saved": 0.007443,
+        "co2_kg_avoided": 3.1e-06,
+        "assumptions": {
+          "tokens_per_gpu_second": 2500.0,
+          "gpu_watts": 150.0,
+          "grid_kg_co2_per_kwh": 0.417,
+          "kv_share_of_prefill": 0.55
+        }
+      }
+    },
+    {
+      "seed": 1,
+      "question": "How does get_user interact with kv_store?",
+      "policy": "H2O",
+      "original_tokens": 1248,
+      "kept_tokens": 436,
+      "kv_savings_pct": 65.06,
+      "entity_recall": 0.75,
+      "oracle_recall": 0.9583,
+      "answer_quality": 0.6042,
+      "latency_ms": 41.686,
+      "sustainability": {
+        "tokens_saved": 812,
+        "gpu_seconds_avoided": 0.1786,
+        "watt_hours_saved": 0.007443,
+        "co2_kg_avoided": 3.1e-06,
+        "assumptions": {
+          "tokens_per_gpu_second": 2500.0,
+          "gpu_watts": 150.0,
+          "grid_kg_co2_per_kwh": 0.417,
+          "kv_share_of_prefill": 0.55
+        }
+      }
+    },
+    {
+      "seed": 1,
+      "question": "How does get_user interact with kv_store?",
+      "policy": "SuperCompress",
+      "original_tokens": 1248,
+      "kept_tokens": 436,
+      "kv_savings_pct": 65.06,
+      "entity_recall": 0.75,
+      "oracle_recall": 1.0,
+      "answer_quality": 0.6042,
+      "latency_ms": 44.162,
+      "sustainability": {
+        "tokens_saved": 812,
+        "gpu_seconds_avoided": 0.1786,
+        "watt_hours_saved": 0.007443,
+        "co2_kg_avoided": 3.1e-06,
+        "assumptions": {
+          "tokens_per_gpu_second": 2500.0,
+          "gpu_watts": 150.0,
+          "grid_kg_co2_per_kwh": 0.417,
+          "kv_share_of_prefill": 0.55
+        }
+      }
+    },
+    {
+      "seed": 2,
+      "question": "How does get_user interact with kv_store?",
+      "policy": "FIFO",
+      "original_tokens": 1248,
+      "kept_tokens": 436,
+      "kv_savings_pct": 65.06,
+      "entity_recall": 0.75,
+      "oracle_recall": 0.2083,
+      "answer_quality": 0.6042,
+      "latency_ms": 42.1,
+      "sustainability": {
+        "tokens_saved": 812,
+        "gpu_seconds_avoided": 0.1786,
+        "watt_hours_saved": 0.007443,
+        "co2_kg_avoided": 3.1e-06,
+        "assumptions": {
+          "tokens_per_gpu_second": 2500.0,
+          "gpu_watts": 150.0,
+          "grid_kg_co2_per_kwh": 0.417,
+          "kv_share_of_prefill": 0.55
+        }
+      }
+    },
+    {
+      "seed": 2,
+      "question": "How does get_user interact with kv_store?",
+      "policy": "Truncation",
+      "original_tokens": 1248,
+      "kept_tokens": 436,
+      "kv_savings_pct": 65.06,
+      "entity_recall": 0.75,
+      "oracle_recall": 0.2083,
+      "answer_quality": 0.6042,
+      "latency_ms": 41.899,
+      "sustainability": {
+        "tokens_saved": 812,
+        "gpu_seconds_avoided": 0.1786,
+        "watt_hours_saved": 0.007443,
+        "co2_kg_avoided": 3.1e-06,
+        "assumptions": {
+          "tokens_per_gpu_second": 2500.0,
+          "gpu_watts": 150.0,
+          "grid_kg_co2_per_kwh": 0.417,
+          "kv_share_of_prefill": 0.55
+        }
+      }
+    },
+    {
+      "seed": 2,
+      "question": "How does get_user interact with kv_store?",
+      "policy": "Summarization",
+      "original_tokens": 1248,
+      "kept_tokens": 436,
+      "kv_savings_pct": 65.06,
+      "entity_recall": 0.75,
+      "oracle_recall": 0.625,
+      "answer_quality": 0.6042,
+      "latency_ms": 49.214,
+      "sustainability": {
+        "tokens_saved": 812,
+        "gpu_seconds_avoided": 0.1786,
+        "watt_hours_saved": 0.007443,
+        "co2_kg_avoided": 3.1e-06,
+        "assumptions": {
+          "tokens_per_gpu_second": 2500.0,
+          "gpu_watts": 150.0,
+          "grid_kg_co2_per_kwh": 0.417,
+          "kv_share_of_prefill": 0.55
+        }
+      }
+    },
+    {
+      "seed": 2,
+      "question": "How does get_user interact with kv_store?",
+      "policy": "H2O",
+      "original_tokens": 1248,
+      "kept_tokens": 436,
+      "kv_savings_pct": 65.06,
+      "entity_recall": 0.75,
+      "oracle_recall": 0.9583,
+      "answer_quality": 0.6042,
+      "latency_ms": 42.116,
+      "sustainability": {
+        "tokens_saved": 812,
+        "gpu_seconds_avoided": 0.1786,
+        "watt_hours_saved": 0.007443,
+        "co2_kg_avoided": 3.1e-06,
+        "assumptions": {
+          "tokens_per_gpu_second": 2500.0,
+          "gpu_watts": 150.0,
+          "grid_kg_co2_per_kwh": 0.417,
+          "kv_share_of_prefill": 0.55
+        }
+      }
+    },
+    {
+      "seed": 2,
+      "question": "How does get_user interact with kv_store?",
+      "policy": "SuperCompress",
+      "original_tokens": 1248,
+      "kept_tokens": 436,
+      "kv_savings_pct": 65.06,
+      "entity_recall": 0.75,
+      "oracle_recall": 1.0,
+      "answer_quality": 0.6042,
+      "latency_ms": 44.744,
+      "sustainability": {
+        "tokens_saved": 812,
+        "gpu_seconds_avoided": 0.1786,
+        "watt_hours_saved": 0.007443,
+        "co2_kg_avoided": 3.1e-06,
+        "assumptions": {
+          "tokens_per_gpu_second": 2500.0,
+          "gpu_watts": 150.0,
+          "grid_kg_co2_per_kwh": 0.417,
+          "kv_share_of_prefill": 0.55
+        }
+      }
+    },
+    {
+      "seed": 3,
+      "question": "How does get_user interact with kv_store?",
+      "policy": "FIFO",
+      "original_tokens": 1248,
+      "kept_tokens": 436,
+      "kv_savings_pct": 65.06,
+      "entity_recall": 0.75,
+      "oracle_recall": 0.2083,
+      "answer_quality": 0.6042,
+      "latency_ms": 42.318,
+      "sustainability": {
+        "tokens_saved": 812,
+        "gpu_seconds_avoided": 0.1786,
+        "watt_hours_saved": 0.007443,
+        "co2_kg_avoided": 3.1e-06,
+        "assumptions": {
+          "tokens_per_gpu_second": 2500.0,
+          "gpu_watts": 150.0,
+          "grid_kg_co2_per_kwh": 0.417,
+          "kv_share_of_prefill": 0.55
+        }
+      }
+    },
+    {
+      "seed": 3,
+      "question": "How does get_user interact with kv_store?",
+      "policy": "Truncation",
+      "original_tokens": 1248,
+      "kept_tokens": 436,
+      "kv_savings_pct": 65.06,
+      "entity_recall": 0.75,
+      "oracle_recall": 0.2083,
+      "answer_quality": 0.6042,
+      "latency_ms": 41.857,
+      "sustainability": {
+        "tokens_saved": 812,
+        "gpu_seconds_avoided": 0.1786,
+        "watt_hours_saved": 0.007443,
+        "co2_kg_avoided": 3.1e-06,
+        "assumptions": {
+          "tokens_per_gpu_second": 2500.0,
+          "gpu_watts": 150.0,
+          "grid_kg_co2_per_kwh": 0.417,
+          "kv_share_of_prefill": 0.55
+        }
+      }
+    },
+    {
+      "seed": 3,
+      "question": "How does get_user interact with kv_store?",
+      "policy": "Summarization",
+      "original_tokens": 1248,
+      "kept_tokens": 436,
+      "kv_savings_pct": 65.06,
+      "entity_recall": 0.75,
+      "oracle_recall": 0.625,
+      "answer_quality": 0.6042,
+      "latency_ms": 49.153,
+      "sustainability": {
+        "tokens_saved": 812,
+        "gpu_seconds_avoided": 0.1786,
+        "watt_hours_saved": 0.007443,
+        "co2_kg_avoided": 3.1e-06,
+        "assumptions": {
+          "tokens_per_gpu_second": 2500.0,
+          "gpu_watts": 150.0,
+          "grid_kg_co2_per_kwh": 0.417,
+          "kv_share_of_prefill": 0.55
+        }
+      }
+    },
+    {
+      "seed": 3,
+      "question": "How does get_user interact with kv_store?",
+      "policy": "H2O",
+      "original_tokens": 1248,
+      "kept_tokens": 436,
+      "kv_savings_pct": 65.06,
+      "entity_recall": 0.75,
+      "oracle_recall": 0.9583,
+      "answer_quality": 0.6042,
+      "latency_ms": 42.196,
+      "sustainability": {
+        "tokens_saved": 812,
+        "gpu_seconds_avoided": 0.1786,
+        "watt_hours_saved": 0.007443,
+        "co2_kg_avoided": 3.1e-06,
+        "assumptions": {
+          "tokens_per_gpu_second": 2500.0,
+          "gpu_watts": 150.0,
+          "grid_kg_co2_per_kwh": 0.417,
+          "kv_share_of_prefill": 0.55
+        }
+      }
+    },
+    {
+      "seed": 3,
+      "question": "How does get_user interact with kv_store?",
+      "policy": "SuperCompress",
+      "original_tokens": 1248,
+      "kept_tokens": 436,
+      "kv_savings_pct": 65.06,
+      "entity_recall": 0.75,
+      "oracle_recall": 1.0,
+      "answer_quality": 0.6042,
+      "latency_ms": 44.67,
+      "sustainability": {
+        "tokens_saved": 812,
+        "gpu_seconds_avoided": 0.1786,
+        "watt_hours_saved": 0.007443,
+        "co2_kg_avoided": 3.1e-06,
+        "assumptions": {
+          "tokens_per_gpu_second": 2500.0,
+          "gpu_watts": 150.0,
+          "grid_kg_co2_per_kwh": 0.417,
+          "kv_share_of_prefill": 0.55
+        }
+      }
+    },
+    {
+      "seed": 4,
+      "question": "How does get_user interact with kv_store?",
+      "policy": "FIFO",
+      "original_tokens": 1248,
+      "kept_tokens": 436,
+      "kv_savings_pct": 65.06,
+      "entity_recall": 0.75,
+      "oracle_recall": 0.2083,
+      "answer_quality": 0.6042,
+      "latency_ms": 42.382,
+      "sustainability": {
+        "tokens_saved": 812,
+        "gpu_seconds_avoided": 0.1786,
+        "watt_hours_saved": 0.007443,
+        "co2_kg_avoided": 3.1e-06,
+        "assumptions": {
+          "tokens_per_gpu_second": 2500.0,
+          "gpu_watts": 150.0,
+          "grid_kg_co2_per_kwh": 0.417,
+          "kv_share_of_prefill": 0.55
+        }
+      }
+    },
+    {
+      "seed": 4,
+      "question": "How does get_user interact with kv_store?",
+      "policy": "Truncation",
+      "original_tokens": 1248,
+      "kept_tokens": 436,
+      "kv_savings_pct": 65.06,
+      "entity_recall": 0.75,
+      "oracle_recall": 0.2083,
+      "answer_quality": 0.6042,
+      "latency_ms": 41.761,
+      "sustainability": {
+        "tokens_saved": 812,
+        "gpu_seconds_avoided": 0.1786,
+        "watt_hours_saved": 0.007443,
+        "co2_kg_avoided": 3.1e-06,
+        "assumptions": {
+          "tokens_per_gpu_second": 2500.0,
+          "gpu_watts": 150.0,
+          "grid_kg_co2_per_kwh": 0.417,
+          "kv_share_of_prefill": 0.55
+        }
+      }
+    },
+    {
+      "seed": 4,
+      "question": "How does get_user interact with kv_store?",
+      "policy": "Summarization",
+      "original_tokens": 1248,
+      "kept_tokens": 436,
+      "kv_savings_pct": 65.06,
+      "entity_recall": 0.75,
+      "oracle_recall": 0.625,
+      "answer_quality": 0.6042,
+      "latency_ms": 49.656,
+      "sustainability": {
+        "tokens_saved": 812,
+        "gpu_seconds_avoided": 0.1786,
+        "watt_hours_saved": 0.007443,
+        "co2_kg_avoided": 3.1e-06,
+        "assumptions": {
+          "tokens_per_gpu_second": 2500.0,
+          "gpu_watts": 150.0,
+          "grid_kg_co2_per_kwh": 0.417,
+          "kv_share_of_prefill": 0.55
+        }
+      }
+    },
+    {
+      "seed": 4,
+      "question": "How does get_user interact with kv_store?",
+      "policy": "H2O",
+      "original_tokens": 1248,
+      "kept_tokens": 436,
+      "kv_savings_pct": 65.06,
+      "entity_recall": 0.75,
+      "oracle_recall": 0.9583,
+      "answer_quality": 0.6042,
+      "latency_ms": 42.888,
+      "sustainability": {
+        "tokens_saved": 812,
+        "gpu_seconds_avoided": 0.1786,
+        "watt_hours_saved": 0.007443,
+        "co2_kg_avoided": 3.1e-06,
+        "assumptions": {
+          "tokens_per_gpu_second": 2500.0,
+          "gpu_watts": 150.0,
+          "grid_kg_co2_per_kwh": 0.417,
+          "kv_share_of_prefill": 0.55
+        }
+      }
+    },
+    {
+      "seed": 4,
+      "question": "How does get_user interact with kv_store?",
+      "policy": "SuperCompress",
+      "original_tokens": 1248,
+      "kept_tokens": 436,
+      "kv_savings_pct": 65.06,
+      "entity_recall": 0.75,
+      "oracle_recall": 1.0,
+      "answer_quality": 0.6042,
+      "latency_ms": 45.052,
+      "sustainability": {
+        "tokens_saved": 812,
+        "gpu_seconds_avoided": 0.1786,
+        "watt_hours_saved": 0.007443,
+        "co2_kg_avoided": 3.1e-06,
+        "assumptions": {
+          "tokens_per_gpu_second": 2500.0,
+          "gpu_watts": 150.0,
+          "grid_kg_co2_per_kwh": 0.417,
+          "kv_share_of_prefill": 0.55
+        }
+      }
+    },
+    {
+      "seed": 5,
+      "question": "Explain normalize_path in helpers.",
+      "policy": "FIFO",
+      "original_tokens": 1248,
+      "kept_tokens": 436,
+      "kv_savings_pct": 65.06,
+      "entity_recall": 0.6667,
+      "oracle_recall": 0.1818,
+      "answer_quality": 0.55,
+      "latency_ms": 41.703,
+      "sustainability": {
+        "tokens_saved": 812,
+        "gpu_seconds_avoided": 0.1786,
+        "watt_hours_saved": 0.007443,
+        "co2_kg_avoided": 3.1e-06,
+        "assumptions": {
+          "tokens_per_gpu_second": 2500.0,
+          "gpu_watts": 150.0,
+          "grid_kg_co2_per_kwh": 0.417,
+          "kv_share_of_prefill": 0.55
+        }
+      }
+    },
+    {
+      "seed": 5,
+      "question": "Explain normalize_path in helpers.",
+      "policy": "Truncation",
+      "original_tokens": 1248,
+      "kept_tokens": 436,
+      "kv_savings_pct": 65.06,
+      "entity_recall": 0.6667,
+      "oracle_recall": 0.1818,
+      "answer_quality": 0.55,
+      "latency_ms": 41.528,
+      "sustainability": {
+        "tokens_saved": 812,
+        "gpu_seconds_avoided": 0.1786,
+        "watt_hours_saved": 0.007443,
+        "co2_kg_avoided": 3.1e-06,
+        "assumptions": {
+          "tokens_per_gpu_second": 2500.0,
+          "gpu_watts": 150.0,
+          "grid_kg_co2_per_kwh": 0.417,
+          "kv_share_of_prefill": 0.55
+        }
+      }
+    },
+    {
+      "seed": 5,
+      "question": "Explain normalize_path in helpers.",
+      "policy": "Summarization",
+      "original_tokens": 1248,
+      "kept_tokens": 436,
+      "kv_savings_pct": 65.06,
+      "entity_recall": 0.3333,
+      "oracle_recall": 0.6364,
+      "answer_quality": 0.2944,
+      "latency_ms": 47.604,
+      "sustainability": {
+        "tokens_saved": 812,
+        "gpu_seconds_avoided": 0.1786,
+        "watt_hours_saved": 0.007443,
+        "co2_kg_avoided": 3.1e-06,
+        "assumptions": {
+          "tokens_per_gpu_second": 2500.0,
+          "gpu_watts": 150.0,
+          "grid_kg_co2_per_kwh": 0.417,
+          "kv_share_of_prefill": 0.55
+        }
+      }
+    },
+    {
+      "seed": 5,
+      "question": "Explain normalize_path in helpers.",
+      "policy": "H2O",
+      "original_tokens": 1248,
+      "kept_tokens": 436,
+      "kv_savings_pct": 65.06,
+      "entity_recall": 0.6667,
+      "oracle_recall": 1.0,
+      "answer_quality": 0.55,
+      "latency_ms": 41.736,
+      "sustainability": {
+        "tokens_saved": 812,
+        "gpu_seconds_avoided": 0.1786,
+        "watt_hours_saved": 0.007443,
+        "co2_kg_avoided": 3.1e-06,
+        "assumptions": {
+          "tokens_per_gpu_second": 2500.0,
+          "gpu_watts": 150.0,
+          "grid_kg_co2_per_kwh": 0.417,
+          "kv_share_of_prefill": 0.55
+        }
+      }
+    },
+    {
+      "seed": 5,
+      "question": "Explain normalize_path in helpers.",
+      "policy": "SuperCompress",
+      "original_tokens": 1248,
+      "kept_tokens": 436,
+      "kv_savings_pct": 65.06,
+      "entity_recall": 0.6667,
+      "oracle_recall": 1.0,
+      "answer_quality": 0.55,
+      "latency_ms": 44.216,
+      "sustainability": {
+        "tokens_saved": 812,
+        "gpu_seconds_avoided": 0.1786,
+        "watt_hours_saved": 0.007443,
+        "co2_kg_avoided": 3.1e-06,
+        "assumptions": {
+          "tokens_per_gpu_second": 2500.0,
+          "gpu_watts": 150.0,
+          "grid_kg_co2_per_kwh": 0.417,
+          "kv_share_of_prefill": 0.55
+        }
+      }
+    },
+    {
+      "seed": 6,
+      "question": "Explain normalize_path in helpers.",
+      "policy": "FIFO",
+      "original_tokens": 1248,
+      "kept_tokens": 436,
+      "kv_savings_pct": 65.06,
+      "entity_recall": 0.6667,
+      "oracle_recall": 0.1818,
+      "answer_quality": 0.55,
+      "latency_ms": 42.195,
+      "sustainability": {
+        "tokens_saved": 812,
+        "gpu_seconds_avoided": 0.1786,
+        "watt_hours_saved": 0.007443,
+        "co2_kg_avoided": 3.1e-06,
+        "assumptions": {
+          "tokens_per_gpu_second": 2500.0,
+          "gpu_watts": 150.0,
+          "grid_kg_co2_per_kwh": 0.417,
+          "kv_share_of_prefill": 0.55
+        }
+      }
+    },
+    {
+      "seed": 6,
+      "question": "Explain normalize_path in helpers.",
+      "policy": "Truncation",
+      "original_tokens": 1248,
+      "kept_tokens": 436,
+      "kv_savings_pct": 65.06,
+      "entity_recall": 0.6667,
+      "oracle_recall": 0.1818,
+      "answer_quality": 0.55,
+      "latency_ms": 41.915,
+      "sustainability": {
+        "tokens_saved": 812,
+        "gpu_seconds_avoided": 0.1786,
+        "watt_hours_saved": 0.007443,
+        "co2_kg_avoided": 3.1e-06,
+        "assumptions": {
+          "tokens_per_gpu_second": 2500.0,
+          "gpu_watts": 150.0,
+          "grid_kg_co2_per_kwh": 0.417,
+          "kv_share_of_prefill": 0.55
+        }
+      }
+    },
+    {
+      "seed": 6,
+      "question": "Explain normalize_path in helpers.",
+      "policy": "Summarization",
+      "original_tokens": 1248,
+      "kept_tokens": 436,
+      "kv_savings_pct": 65.06,
+      "entity_recall": 0.3333,
+      "oracle_recall": 0.6364,
+      "answer_quality": 0.2944,
+      "latency_ms": 48.534,
+      "sustainability": {
+        "tokens_saved": 812,
+        "gpu_seconds_avoided": 0.1786,
+        "watt_hours_saved": 0.007443,
+        "co2_kg_avoided": 3.1e-06,
+        "assumptions": {
+          "tokens_per_gpu_second": 2500.0,
+          "gpu_watts": 150.0,
+          "grid_kg_co2_per_kwh": 0.417,
+          "kv_share_of_prefill": 0.55
+        }
+      }
+    },
+    {
+      "seed": 6,
+      "question": "Explain normalize_path in helpers.",
+      "policy": "H2O",
+      "original_tokens": 1248,
+      "kept_tokens": 436,
+      "kv_savings_pct": 65.06,
+      "entity_recall": 0.6667,
+      "oracle_recall": 1.0,
+      "answer_quality": 0.55,
+      "latency_ms": 42.344,
+      "sustainability": {
+        "tokens_saved": 812,
+        "gpu_seconds_avoided": 0.1786,
+        "watt_hours_saved": 0.007443,
+        "co2_kg_avoided": 3.1e-06,
+        "assumptions": {
+          "tokens_per_gpu_second": 2500.0,
+          "gpu_watts": 150.0,
+          "grid_kg_co2_per_kwh": 0.417,
+          "kv_share_of_prefill": 0.55
+        }
+      }
+    },
+    {
+      "seed": 6,
+      "question": "Explain normalize_path in helpers.",
+      "policy": "SuperCompress",
+      "original_tokens": 1248,
+      "kept_tokens": 436,
+      "kv_savings_pct": 65.06,
+      "entity_recall": 0.6667,
+      "oracle_recall": 1.0,
+      "answer_quality": 0.55,
+      "latency_ms": 44.721,
+      "sustainability": {
+        "tokens_saved": 812,
+        "gpu_seconds_avoided": 0.1786,
+        "watt_hours_saved": 0.007443,
+        "co2_kg_avoided": 3.1e-06,
+        "assumptions": {
+          "tokens_per_gpu_second": 2500.0,
+          "gpu_watts": 150.0,
+          "grid_kg_co2_per_kwh": 0.417,
+          "kv_share_of_prefill": 0.55
+        }
+      }
+    },
+    {
+      "seed": 7,
+      "question": "What does User.fetch return when the row is missing?",
+      "policy": "FIFO",
+      "original_tokens": 1248,
+      "kept_tokens": 436,
+      "kv_savings_pct": 65.06,
+      "entity_recall": 0.75,
+      "oracle_recall": 0.3953,
+      "answer_quality": 0.6333,
+      "latency_ms": 42.294,
+      "sustainability": {
+        "tokens_saved": 812,
+        "gpu_seconds_avoided": 0.1786,
+        "watt_hours_saved": 0.007443,
+        "co2_kg_avoided": 3.1e-06,
+        "assumptions": {
+          "tokens_per_gpu_second": 2500.0,
+          "gpu_watts": 150.0,
+          "grid_kg_co2_per_kwh": 0.417,
+          "kv_share_of_prefill": 0.55
+        }
+      }
+    },
+    {
+      "seed": 7,
+      "question": "What does User.fetch return when the row is missing?",
+      "policy": "Truncation",
+      "original_tokens": 1248,
+      "kept_tokens": 436,
+      "kv_savings_pct": 65.06,
+      "entity_recall": 0.75,
+      "oracle_recall": 0.3953,
+      "answer_quality": 0.6333,
+      "latency_ms": 41.411,
+      "sustainability": {
+        "tokens_saved": 812,
+        "gpu_seconds_avoided": 0.1786,
+        "watt_hours_saved": 0.007443,
+        "co2_kg_avoided": 3.1e-06,
+        "assumptions": {
+          "tokens_per_gpu_second": 2500.0,
+          "gpu_watts": 150.0,
+          "grid_kg_co2_per_kwh": 0.417,
+          "kv_share_of_prefill": 0.55
+        }
+      }
+    },
+    {
+      "seed": 7,
+      "question": "What does User.fetch return when the row is missing?",
+      "policy": "Summarization",
+      "original_tokens": 1248,
+      "kept_tokens": 436,
+      "kv_savings_pct": 65.06,
+      "entity_recall": 0.75,
+      "oracle_recall": 0.5349,
+      "answer_quality": 0.6333,
+      "latency_ms": 46.979,
+      "sustainability": {
+        "tokens_saved": 812,
+        "gpu_seconds_avoided": 0.1786,
+        "watt_hours_saved": 0.007443,
+        "co2_kg_avoided": 3.1e-06,
+        "assumptions": {
+          "tokens_per_gpu_second": 2500.0,
+          "gpu_watts": 150.0,
+          "grid_kg_co2_per_kwh": 0.417,
+          "kv_share_of_prefill": 0.55
+        }
+      }
+    },
+    {
+      "seed": 7,
+      "question": "What does User.fetch return when the row is missing?",
+      "policy": "H2O",
+      "original_tokens": 1248,
+      "kept_tokens": 436,
+      "kv_savings_pct": 65.06,
+      "entity_recall": 0.75,
+      "oracle_recall": 1.0,
+      "answer_quality": 0.6333,
+      "latency_ms": 41.618,
+      "sustainability": {
+        "tokens_saved": 812,
+        "gpu_seconds_avoided": 0.1786,
+        "watt_hours_saved": 0.007443,
+        "co2_kg_avoided": 3.1e-06,
+        "assumptions": {
+          "tokens_per_gpu_second": 2500.0,
+          "gpu_watts": 150.0,
+          "grid_kg_co2_per_kwh": 0.417,
+          "kv_share_of_prefill": 0.55
+        }
+      }
+    },
+    {
+      "seed": 7,
+      "question": "What does User.fetch return when the row is missing?",
+      "policy": "SuperCompress",
+      "original_tokens": 1248,
+      "kept_tokens": 436,
+      "kv_savings_pct": 65.06,
+      "entity_recall": 0.75,
+      "oracle_recall": 1.0,
+      "answer_quality": 0.6333,
+      "latency_ms": 44.581,
+      "sustainability": {
+        "tokens_saved": 812,
+        "gpu_seconds_avoided": 0.1786,
+        "watt_hours_saved": 0.007443,
+        "co2_kg_avoided": 3.1e-06,
+        "assumptions": {
+          "tokens_per_gpu_second": 2500.0,
+          "gpu_watts": 150.0,
+          "grid_kg_co2_per_kwh": 0.417,
+          "kv_share_of_prefill": 0.55
+        }
+      }
+    }
+  ],
+  "headline": {
+    "supercompress_kv_savings_pct": 65.06,
+    "supercompress_answer_quality": 0.5979,
+    "fifo_answer_quality": 0.5979,
+    "truncation_answer_quality": 0.5979
+  },
+  "model": {
+    "params": "~5,200",
+    "feature_dim": 12,
+    "hidden_dim": 64,
+    "train_time_sec": 60,
+    "features": "position_encoding, ngram_similarity, line_length, indent_depth",
+    "inference": "CPU \u00b7 browser + Python",
+    "checkpoint": "checkpoints/default.pt"
+  },
+  "turn_table": [
+    {
+      "turn": 1,
+      "without": "2K tokens",
+      "with_sc": "~700 tokens"
+    },
+    {
+      "turn": 3,
+      "without": "8K tokens",
+      "with_sc": "~2.8K tokens"
+    },
+    {
+      "turn": "4+",
+      "without": "OOM / collapse",
+      "with_sc": "Stable 35\u201365% savings"
+    }
+  ],
+  "failure_case": {
+    "question": "What does User.fetch return when the row is missing?",
+    "compare": {
+      "FIFO": {
+        "kept_tokens": 281,
+        "kv_savings_pct": 90.0,
+        "answer_quality": 0.0,
+        "has_answer": false
+      },
+      "Truncation": {
+        "kept_tokens": 281,
+        "kv_savings_pct": 90.0,
+        "answer_quality": 0.0,
+        "has_answer": false
+      },
+      "Summarization": {
+        "kept_tokens": 281,
+        "kv_savings_pct": 90.0,
+        "answer_quality": 0.7667,
+        "has_answer": true
+      },
+      "H2O": {
+        "kept_tokens": 281,
+        "kv_savings_pct": 90.0,
+        "answer_quality": 0.7667,
+        "has_answer": true
+      },
+      "SuperCompress": {
+        "kept_tokens": 281,
+        "kv_savings_pct": 90.0,
+        "answer_quality": 0.7667,
+        "has_answer": true
+      }
+    }
+  },
+  "demo": {
+    "query": "How does the ApiClient fetch method work?",
+    "original_tokens": 136,
+    "kept_tokens": 47,
+    "kv_savings_pct": 65.4,
+    "policy": "SuperCompress",
+    "input_preview": "## Notes\n- Context block 1: padding and metadata\n- Context block 2: padding and metadata\n- Context block 3: padding and metadata\n- Context block 4: padding and metadata\n- Context block 5: padding and metadata\n- Context block 6: padding and metadata\n- Context block 7: padding and metadata\n- Context block 8: padding and metadata\n- Context block 9: padding and metadata\n- Context block 10: padding and metadata\n- Context block 11: padding and metadata\n\n---\n\n## Code\nclass ApiClient:\n    def fetch(self, id): ...\n\n---\n\n## Summary\n1. Trim context\n2. Keep entities\n3. Send to LLM",
+    "compressed_text": "## Notes\n- Context block 1: padding and metadata\n- Context block 7: padding and metadata\n- Context block 8: padding and metadata\n- Context block 9: padding and metadata\n- Context block 11: padding and metadata\n## Code\nclass ApiClient:\n    def fetch(self, id): ...\n\n---\n\n## Summary\n1. Trim context\n2. Keep entities\n3. Send to LLM"
+  },
+  "tests": {
+    "passed": false,
+    "count": 0,
+    "summary": "no tests ran in 0.00s"
+  },
+  "adaptive": {
+    "summary": {
+      "avg_kv_savings_pct": 92,
+      "avg_tokens_removed": 1091,
+      "presets": 4
+    },
+    "presets": {
+      "mockingbird": {
+        "label": "To Kill a Mockingbird",
+        "query": "What lesson does Atticus teach Scout about empathy?",
+        "original_tokens": 1454,
+        "kept_tokens": 166,
+        "tokens_removed": 1288,
+        "kv_savings_pct": 88.6,
+        "answer_quality": 0.75,
+        "kept_line_ratio": 0.067
+      },
+      "coding": {
+        "label": "Coding session",
+        "query": "What does fetch_user return when the row is missing?",
+        "original_tokens": 1020,
+        "kept_tokens": 74,
+        "tokens_removed": 946,
+        "kv_savings_pct": 92.7,
+        "answer_quality": 0.75,
+        "kept_line_ratio": 0.07
+      },
+      "markdown": {
+        "label": "Sample markdown",
+        "query": "What is the API contract for compression?",
+        "original_tokens": 1195,
+        "kept_tokens": 45,
+        "tokens_removed": 1150,
+        "kv_savings_pct": 96.2,
+        "answer_quality": 0.75,
+        "kept_line_ratio": 0.042
+      },
+      "agent_log": {
+        "label": "Agent incident log",
+        "query": "What was the root cause of the checkout outage?",
+        "original_tokens": 1074,
+        "kept_tokens": 96,
+        "tokens_removed": 978,
+        "kv_savings_pct": 91.1,
+        "answer_quality": 0.75,
+        "kept_line_ratio": 0.091
+      }
+    }
+  }
+}
