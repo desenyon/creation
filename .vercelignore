@@ -1,0 +1,7 @@
+node_modules
+website/node_modules
+website/.next
+.next
+.venv
+__pycache__
+*.pyc

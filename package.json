@@ -1,0 +1,17 @@
+{
+  "name": "creation",
+  "private": true,
+  "workspaces": ["website"],
+  "scripts": {
+    "build": "npm run build --workspace=creation-website",
+    "vercel-build": "npm run build --workspace=creation-website"
+  },
+  "devDependencies": {
+    "next": "^15.1.0",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}

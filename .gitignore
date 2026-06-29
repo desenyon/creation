@@ -3,3 +3,5 @@ checkpoints/
 !creation/checkpoints/
 creation/checkpoints/*
 !creation/checkpoints/default.pt
+.vercel
+node_modules/
