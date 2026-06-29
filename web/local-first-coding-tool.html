@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Local-First AI Coding Tool — Runs on Your Machine | Creation</title>
+  <meta name="description" content="Creation is a local-first AI coding tool: it runs on your machine with your own API keys, stores work in local SQLite, and pushes code only to repos you connect. A private, agentic coding workflow that never uploads to a hosted service." />
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1" />
+  <link rel="canonical" href="https://creation.dev/local-first-coding-tool" />
+
+  <meta property="og:site_name" content="Creation" />
+  <meta property="og:type" content="article" />
+  <meta property="og:url" content="https://creation.dev/local-first-coding-tool" />
+  <meta property="og:title" content="Local-first AI coding tool — runs on your machine" />
+  <meta property="og:description" content="A private, local-first agentic coding tool: your machine, your keys, local data. Never uploaded to a hosted service." />
+  <meta property="og:image" content="https://creation.dev/assets/og-image.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Local-first AI coding tool — runs on your machine" />
+  <meta name="twitter:description" content="A private, local-first agentic coding tool: your machine, your keys, local data." />
+  <meta name="twitter:image" content="https://creation.dev/assets/og-image.png" />
+
+  <meta name="theme-color" content="rgb(251,251,248)" />
+  <link rel="stylesheet" href="assets/css/datafruit.css?v=12" />
+  <link rel="icon" href="/favicon.ico" sizes="any" />
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <link rel="icon" type="image/png" sizes="48x48" href="/assets/favicon-48.png" />
+  <link rel="icon" type="image/png" sizes="96x96" href="/assets/favicon-96.png" />
+  <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png" />
+  <link rel="manifest" href="/site.webmanifest" />
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "TechArticle",
+        "headline": "Local-first AI coding tool — runs on your machine",
+        "description": "Creation is a local-first AI coding tool that runs on your machine with your own API keys and stores its work graph in local SQLite.",
+        "image": "https://creation.dev/assets/og-image.png",
+        "author": { "@type": "Organization", "name": "Creation", "url": "https://creation.dev/" },
+        "publisher": { "@type": "Organization", "name": "Creation", "logo": { "@type": "ImageObject", "url": "https://creation.dev/assets/logo-512.png" } },
+        "mainEntityOfPage": "https://creation.dev/local-first-coding-tool"
+      },
+      {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://creation.dev/" },
+          { "@type": "ListItem", "position": 2, "name": "Local-first coding tool", "item": "https://creation.dev/local-first-coding-tool" }
+        ]
+      },
+      {
+        "@type": "FAQPage",
+        "mainEntity": [
+          { "@type": "Question", "name": "What does local-first mean for a coding tool?", "acceptedAnswer": { "@type": "Answer", "text": "Local-first means the tool runs on your own machine and your data lives there by default, rather than in a vendor cloud. Creation stores its work graph in local SQLite and pushes code only to the repositories you explicitly connect." } },
+          { "@type": "Question", "name": "Where do my API keys and data go?", "acceptedAnswer": { "@type": "Answer", "text": "Secrets live in ~/.creation/config.json on your machine and are never uploaded to a hosted Creation service. Third-party calls go directly from your machine to the providers you configure." } },
+          { "@type": "Question", "name": "Can it run offline?", "acceptedAnswer": { "@type": "Answer", "text": "The Creation server, dashboard, and work graph run locally without an internet connection. Network is only needed for the external services you opt into, such as your coding agent or model provider." } }
+        ]
+      }
+    ]
+  }
+  </script>
+</head>
+<body>
+  <div class="bg-top" aria-hidden="true"></div>
+
+  <header class="site-header">
+    <div class="header-blur" aria-hidden="true"></div>
+    <div class="container header-inner">
+      <a href="/" class="logo">
+        <svg class="logo-mark" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M6 12a6 6 0 0 1 12 0" fill="none" stroke="#c9789e" stroke-width="2" stroke-linecap="round"/>
+          <path d="M18 12a6 6 0 0 1-12 0" fill="none" stroke="#f0a8c8" stroke-width="2" stroke-linecap="round"/>
+        </svg>
+        <span class="logo-word">creation</span>
+      </a>
+      <div class="header-end">
+        <nav class="nav-pill" aria-label="Main">
+          <a href="/#workflow">Workflow</a>
+          <a href="/agent-operating-system">Agent OS</a>
+          <a href="/coding-agents">Coding agents</a>
+          <a href="/#quickstart">Quickstart</a>
+          <a href="/#faq">FAQ</a>
+        </nav>
+        <div class="cta-pill">
+          <a href="https://github.com/arjunkshah/creation">GitHub</a>
+        </div>
+      </div>
+    </div>
+  </header>
+  <div class="header-spacer" aria-hidden="true"></div>
+
+  <div class="shell">
+    <main class="container">
+      <article class="doc">
+        <nav class="doc-breadcrumb" aria-label="Breadcrumb">
+          <a href="/">Home</a> / Local-first coding tool
+        </nav>
+        <p class="doc-eyebrow">Privacy</p>
+        <h1 class="doc-title">A local-first AI coding tool</h1>
+        <p class="doc-lead">
+          Creation is a <strong>local-first coding tool</strong>: the server, dashboard, and entire work graph run on your machine with your own keys. It's an <a href="/agent-operating-system">agentic coding tool</a> that pushes code only to the repositories you connect — nothing is uploaded to a hosted Creation service.
+        </p>
+
+        <div class="doc-body">
+          <h2>What "local-first" means</h2>
+          <p>
+            Most AI coding tools route your prompts, code, and context through a vendor's cloud. Local-first inverts that: the application runs on your hardware and your data stays local by default. With Creation, you <a href="/#quickstart">install</a> and run it yourself, and it drives <a href="/coding-agents">coding-agent CLIs</a> already on your machine.
+          </p>
+
+          <h2>Where your data lives</h2>
+          <ul>
+            <li><strong>Secrets</strong> — stored in <code>~/.creation/config.json</code>, never uploaded anywhere.</li>
+            <li><strong>Work graph</strong> — tickets, agents, runs, and evidence live in a local SQLite database.</li>
+            <li><strong>Code</strong> — builds happen in a local working directory; commits go only to the repo you connect.</li>
+            <li><strong>Third-party calls</strong> — go straight from your machine to the providers you choose, not through Creation.</li>
+          </ul>
+
+          <h2>Runs offline, on your terms</h2>
+          <p>
+            The Creation server, dashboard, and workflow work without a connection. You only reach the network for the external services you opt into — your coding agent, model provider, or research APIs. That makes it a strong fit for private codebases and regulated environments.
+          </p>
+
+          <h2>Local-first vs cloud AI coding tools</h2>
+          <table class="doc-table">
+            <thead><tr><th></th><th>Cloud tool</th><th>Creation (local-first)</th></tr></thead>
+            <tbody>
+              <tr><td>Where it runs</td><td>Vendor servers</td><td>Your machine</td></tr>
+              <tr><td>Your code</td><td>Sent to vendor</td><td>Stays local</td></tr>
+              <tr><td>Keys</td><td>Held by vendor</td><td>In <code>~/.creation</code></td></tr>
+              <tr><td>Offline</td><td>No</td><td>Core features work offline</td></tr>
+              <tr><td>Data control</td><td>Vendor policy</td><td>Yours</td></tr>
+            </tbody>
+          </table>
+
+          <div class="doc-callout">
+            <strong>Bottom line:</strong> Creation gives you an agentic coding workflow without handing your code to someone else's cloud. It's local-first, <a href="/free-ai-coding-tool">free and open-source</a>, and runs on your keys.
+          </div>
+        </div>
+
+        <div class="doc-cta">
+          <h2>Run a local-first coding agent</h2>
+          <p>Your machine, your keys, your data. A team of agents that never stop working.</p>
+          <div class="cta-actions">
+            <button type="button" class="btn-accent install-btn" data-cmd="curl -fsSL creation.dev/install | bash">Copy install command</button>
+            <a href="/#quickstart" class="btn-link">See the quickstart →</a>
+          </div>
+        </div>
+      </article>
+    </main>
+
+    <footer class="site-footer">
+      <div class="footer-inner">
+        <div class="footer-grid">
+          <div>
+            <p class="footer-brand-label">Creation</p>
+            <p class="footer-tagline">A team of agents that never stop working.</p>
+            <a href="https://github.com/arjunkshah/creation" class="footer-email">github.com/arjunkshah/creation</a>
+          </div>
+          <div class="footer-links">
+            <section>
+              <p class="footer-heading">Learn</p>
+              <ul>
+                <li><a href="/agent-operating-system">Agent operating system</a></li>
+                <li><a href="/coding-agents">Supported coding agents</a></li>
+                <li><a href="/free-ai-coding-tool">Free AI coding tool</a></li>
+                <li><a href="/local-first-coding-tool">Local-first coding tool</a></li>
+              </ul>
+            </section>
+            <section>
+              <p class="footer-heading">Links</p>
+              <ul>
+                <li><a href="https://github.com/arjunkshah/creation">GitHub</a></li>
+                <li><a href="https://creation.dev">Website</a></li>
+              </ul>
+            </section>
+          </div>
+        </div>
+        <p class="footer-copy">© 2026 Creation · MIT</p>
+      </div>
+    </footer>
+  </div>
+
+  <script>
+    document.querySelectorAll(".install-btn").forEach(function (btn) {
+      var label = btn.textContent;
+      btn.addEventListener("click", function () {
+        var cmd = btn.getAttribute("data-cmd") || "";
+        var done = function () {
+          btn.textContent = "Copied — paste in your terminal";
+          btn.classList.add("copied");
+          setTimeout(function () { btn.textContent = label; btn.classList.remove("copied"); }, 2000);
+        };
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+          navigator.clipboard.writeText(cmd).then(done).catch(done);
+        } else {
+          var ta = document.createElement("textarea");
+          ta.value = cmd; document.body.appendChild(ta); ta.select();
+          try { document.execCommand("copy"); } catch (e) {}
+          document.body.removeChild(ta); done();
+        }
+      });
+    });
+  </script>
+  <script defer src="/_vercel/insights/script.js"></script>
+</body>
+</html>
