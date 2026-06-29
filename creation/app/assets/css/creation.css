@@ -1,0 +1,79 @@
+/* Creation marketing site */
+:root {
+  --creation-accent: #4a90a4;
+  --creation-accent-soft: #e8f0fa;
+}
+.df-logo-word em { color: var(--creation-accent); font-style: normal; }
+.hero-df-title {
+  max-width: none;
+  text-wrap: balance;
+  letter-spacing: -0.02em;
+}
+.quickstart-block {
+  background: var(--bg-soft);
+  border: 0.5px solid var(--line);
+  border-radius: var(--radius);
+  padding: 24px;
+  margin-top: 24px;
+}
+.quickstart-block pre {
+  margin: 16px 0 0;
+  padding: 16px;
+  background: #1a1a1a;
+  color: #e8e8e8;
+  border-radius: 8px;
+  font-family: var(--mono);
+  font-size: 13px;
+  line-height: 1.55;
+  overflow-x: auto;
+}
+.quickstart-block .kw { color: #c9a0dc; }
+.quickstart-block .str { color: #98c379; }
+.quickstart-block .cm { color: #6a737d; }
+.agent-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+  margin-top: 32px;
+}
+@media (max-width: 900px) { .agent-grid { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 480px) { .agent-grid { grid-template-columns: 1fr; } }
+.agent-card {
+  border: 0.5px solid var(--line);
+  border-radius: var(--radius-sm);
+  padding: 20px;
+  background: var(--bg-soft);
+}
+.agent-card h3 { font-size: 15px; margin: 0 0 8px; }
+.agent-card p { font-size: 13px; color: var(--text-secondary); margin: 0; line-height: 1.45; }
+.pipeline-flow {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  align-items: center;
+  margin-top: 24px;
+  font-family: var(--mono);
+  font-size: 12px;
+}
+.pipeline-flow span {
+  padding: 6px 12px;
+  border-radius: 999px;
+  border: 0.5px solid var(--line);
+  background: var(--bg-soft);
+}
+.pipeline-flow .arrow { border: none; background: none; color: var(--text-muted); padding: 0 4px; }
+.sponsor-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 20px;
+}
+.sponsor-pill {
+  font-size: 13px;
+  font-weight: 500;
+  padding: 8px 16px;
+  border-radius: 999px;
+  background: var(--creation-accent-soft);
+  color: #3d6a9e;
+  border: 0.5px solid rgba(107, 155, 209, 0.3);
+}
