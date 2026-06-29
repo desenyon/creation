@@ -1,0 +1,24 @@
+---
+description: Creation agent OS — first-party Forge, Lens, Prism, Relay, Pulse, Account
+globs:
+  - creation/**
+  - tests/**
+alwaysApply: false
+---
+
+# Creation
+
+Local-first agent operating system. All pillars are first-party:
+
+- **Account** — `creation/account/` — auth, credits, API keys
+- **Forge** — `creation/services/forge/` — planning LLM
+- **Lens** — `creation/services/lens/` — search + scrape
+- **Prism** — `creation/services/prism/` — memory + compression
+- **Relay** — `creation/services/relay/` — GitHub + Linear
+- **Pulse** — `creation/services/pulse/` — notifications
+
+Do not add Composio, Tavily, Nebius, Mem0, or similar external service dependencies.
+
+UI lives in `creation/app/` (Creation Studio — dark terminal aesthetic).
+
+Run `pytest tests -q` before PRs.
