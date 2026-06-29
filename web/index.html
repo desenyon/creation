@@ -4,7 +4,8 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Creation — Agent OS</title>
-  <meta name="description" content="Creation is a local-first agent operating system with Forge, Lens, Prism, Relay, and Pulse — one account, no third-party bundles." />
+  <meta name="description" content="Creation is a local-first agent operating system. Turn an idea into shipped software with your own coding agents." />
+  <link rel="icon" href="favicon.svg" type="image/svg+xml" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;600&family=Inter:wght@400;600&display=swap" rel="stylesheet" />
   <style>
@@ -12,9 +13,10 @@
     *{box-sizing:border-box;margin:0;padding:0}
     body{min-height:100vh;background:var(--bg);color:var(--text);font-family:var(--sans)}
     .wrap{max-width:960px;margin:0 auto;padding:48px 24px 80px}
-    .logo{font-family:var(--mono);color:var(--accent);letter-spacing:.12em;text-transform:uppercase;margin-bottom:32px}
+    .logo{font-family:var(--mono);color:var(--accent);letter-spacing:.12em;text-transform:uppercase;margin-bottom:32px;display:flex;align-items:center;gap:10px}
+    .logo img{width:28px;height:28px}
     h1{font-size:clamp(2rem,5vw,3rem);line-height:1.1;margin-bottom:16px}
-    .lead{color:var(--muted);font-size:1.1rem;line-height:1.6;max-width:52ch;margin-bottom:40px}
+    .lead{color:var(--muted);font-size:1.1rem;line-height:1.6;max-width:56ch;margin-bottom:40px}
     .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:14px;margin:32px 0}
     .card{background:#121214;border:1px solid #2a2a32;border-radius:12px;padding:18px}
     .card h3{font-family:var(--mono);font-size:.9rem;color:var(--accent);margin-bottom:8px}
@@ -23,27 +25,39 @@
     .cta{display:inline-block;background:var(--accent);color:#111;font-weight:600;padding:12px 20px;border-radius:8px;text-decoration:none;margin-right:12px}
     .cta.ghost{background:transparent;color:var(--text);border:1px solid #2a2a32}
     footer{margin-top:48px;color:var(--muted);font-size:.85rem}
+    .stack{margin-top:48px;padding-top:32px;border-top:1px solid #2a2a32}
+    .stack h2{font-size:1rem;font-family:var(--mono);color:var(--muted);margin-bottom:16px;text-transform:uppercase;letter-spacing:.08em}
   </style>
 </head>
 <body>
   <div class="wrap">
-    <div class="logo">Creation</div>
-    <h1>One account.<br/>Your entire agent stack.</h1>
-    <p class="lead">Forge plans builds. Lens researches the web. Prism compresses context. Relay ships to GitHub and Linear. Pulse notifies you. No Composio. No Tavily. No Nebius bundles.</p>
+    <div class="logo"><img src="assets/img/icon.svg" alt="" />Creation</div>
+    <h1>Turn ideas into<br/>shipped software.</h1>
+    <p class="lead">Creation is a local-first agent operating system. Describe what you want built — Creation researches, plans, codes with your terminal agents, tests, and ships to GitHub and Linear. Everything runs on your machine.</p>
     <a class="cta" href="http://127.0.0.1:8787/dashboard">Open Studio</a>
-    <a class="cta ghost" href="https://github.com/arjunkshah/creation">GitHub</a>
+    <a class="cta ghost" href="https://github.com/desenyon/creation">GitHub</a>
     <div class="grid">
-      <div class="card"><h3>Forge</h3><p>Planning brain billed to your Creation credits.</p></div>
-      <div class="card"><h3>Lens</h3><p>Built-in search and scrape — zero API keys.</p></div>
-      <div class="card"><h3>Prism</h3><p>Local memory + neural context compression.</p></div>
-      <div class="card"><h3>Relay</h3><p>Native GitHub & Linear integrations.</p></div>
-      <div class="card"><h3>Pulse</h3><p>Inbox + SMTP notifications on ship.</p></div>
-      <div class="card"><h3>43 agents</h3><p>Codex, Claude, Cursor, Gemini — your PATH.</p></div>
+      <div class="card"><h3>Autonomous loop</h3><p>Research once, then code → QA → ship until the build is done.</p></div>
+      <div class="card"><h3>Your agents</h3><p>Codex, Claude, Cursor, Gemini — whatever is on your PATH.</p></div>
+      <div class="card"><h3>Existing repos</h3><p>Point at a workdir; Creation edits in place.</p></div>
+      <div class="card"><h3>Honest receipts</h3><p>Ship proof that only claims what actually happened.</p></div>
+      <div class="card"><h3>Studio + TUI</h3><p>Browser dashboard or full shell control.</p></div>
+      <div class="card"><h3>One account</h3><p>Single sign-in, credits, and credential store.</p></div>
     </div>
     <pre>pip install creation
 creation login
 creation build "A CLI that syncs notes to markdown"
 creation          # terminal UI</pre>
+    <div class="stack">
+      <h2>Built-in stack</h2>
+      <div class="grid">
+        <div class="card"><h3>Forge</h3><p>Planning and turn routing.</p></div>
+        <div class="card"><h3>Lens</h3><p>Research and page extraction.</p></div>
+        <div class="card"><h3>Prism</h3><p>Memory and context compression.</p></div>
+        <div class="card"><h3>Relay</h3><p>GitHub and Linear shipping.</p></div>
+        <div class="card"><h3>Pulse</h3><p>Notifications on ship.</p></div>
+      </div>
+    </div>
     <footer>MIT · Local-first · ~/.creation</footer>
   </div>
 </body>

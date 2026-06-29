@@ -1,4 +1,4 @@
-"""Relay — native GitHub, Linear, and ship integrations (replaces Composio)."""
+"""Relay — native GitHub, Linear, and ship integrations."""
 
 from __future__ import annotations
 

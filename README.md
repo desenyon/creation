@@ -5,8 +5,7 @@
 <h1 align="center">Creation</h1>
 
 <p align="center">
-  <strong>The local-first agent operating system.</strong><br/>
-  One account. Five first-party services. Forty-three coding agents on your machine.
+  <strong>Turn an idea into shipped software — on your machine, with your agents.</strong>
 </p>
 
 <p align="center">
@@ -19,80 +18,48 @@
 
 ---
 
-Creation is a **local-first agent operating system** for builders who want autonomous software delivery without stitching together a dozen third-party APIs. You sign in once, get a single API key and credit balance, and run an entire stack — research, planning, memory, shipping, and notifications — built and maintained by Creation.
+**Creation** is a local-first agent operating system. You describe what you want built — a new product, a feature in an existing repo, a fix, a launch — and Creation runs a full autonomous loop: research the problem, plan the work, write code with the terminal agent you already use, test it, sync to GitHub and Linear, and notify you when it ships.
 
-Give Creation an idea. It researches with **Lens**, plans with **Forge**, compresses context with **Prism**, codes with your agent of choice (Codex, Claude Code, Cursor, Gemini, …), tests in a loop, and ships through **Relay** to GitHub and Linear. **Pulse** handles notifications. Everything runs on your machine. Your coding agents stay on your PATH. Your ship credentials stay in your account.
+Everything runs on your hardware. Your Codex, Claude Code, Cursor, or Gemini CLI stays on your PATH. Your credentials live in `~/.creation/`. No hosted dashboard required. No patchwork of third-party API keys.
 
-<p align="center">
-  <img src="creation/app/assets/img/logo.svg" alt="Creation mark" width="48" height="48" />
-</p>
-
-## Why Creation exists
-
-Most “agent OS” products are thin wrappers around Composio, Tavily, Nebius, Mem0, and a hosted dashboard. Creation takes the opposite approach: **every pillar is first-party**. One login. One bill. One design language. No vendor patchwork.
-
-| Problem | Creation's answer |
-|--------|-------------------|
-| Scattered API keys | **Account** — `creation login`, `crt_live_…` key, credits |
-| Weak research deps | **Lens** — DuckDuckGo search + local scrape, no API key |
-| Expensive planning APIs | **Forge** — OpenAI-compatible brain on your account credits |
-| Memory vendor lock-in | **Prism** — SQLite episodic memory + neural compression |
-| Composio for GitHub/Linear | **Relay** — native REST + GraphQL |
-| Resend/Ayrshare/Gmail glue | **Pulse** — local inbox + optional SMTP |
+Open **Creation Studio** in the browser, or drive everything from the terminal UI. One account covers planning, research, memory, and metering — so you can focus on the product, not the plumbing.
 
 ---
 
-## The Creation stack
+## What you get
+
+| Capability | What Creation does |
+|------------|-------------------|
+| **Autonomous builds** | Multi-turn loop — research once, then code → test → ship → repeat until done |
+| **Existing repos** | Point at a workdir; Creation edits in place and respects your stack |
+| **43 coding agents** | Orchestrates whatever CLIs you have installed — Codex, Claude, Cursor, Gemini, Copilot, and more |
+| **Honest ship receipts** | Proof bundles that only claim what actually happened (commits, issues, tests) |
+| **Studio + TUI** | Dark terminal aesthetic in the browser; full control from `creation` in the shell |
+| **Demo mode** | `creation build --demo` exercises the entire loop without live credentials |
+
+---
+
+## How it works
 
 ```
-┌─────────────────────────────────────────────────────────────┐
-│                     Creation Account                        │
-│          login · API key · credits · Relay creds            │
-└──────────────────────────┬──────────────────────────────────┘
-                           │
-     ┌─────────────────────┼─────────────────────┐
-     ▼                     ▼                     ▼
-  ┌──────┐   ┌──────┐   ┌──────┐   ┌──────┐   ┌──────┐
-  │ Forge│   │ Lens │   │ Prism│   │ Relay│   │ Pulse│
-  │ plan │   │search│   │memory│   │ ship │   │notify│
-  └──┬───┘   └──┬───┘   └──┬───┘   └──┬───┘   └──┬───┘
-     │          │          │          │          │
-     └──────────┴──────────┴────┬─────┴──────────┘
-                                ▼
-                    ┌───────────────────────┐
-                    │   Coding agent CLIs   │
-                    │ Codex · Claude · Cursor│
-                    │ Gemini · Copilot · …  │
-                    └───────────────────────┘
+  Your idea
+      │
+      ▼
+┌─────────────┐     ┌──────────────┐     ┌─────────────┐
+│  Research   │ ──▶ │ Plan & brand │ ──▶ │ Agent loop  │
+│  (once)     │     │              │     │ code·QA·ship│
+└─────────────┘     └──────────────┘     └──────┬──────┘
+                                                │
+                    ┌───────────────────────────┘
+                    ▼
+            GitHub · Linear · notify
 ```
 
-### Forge — planning brain
+1. **Kickoff** — Creation researches your idea and drafts a build plan and product name.
+2. **Loop** — Each turn: recall memory, compress context, invoke your coding agent, run pytest and browser QA, sync through Relay.
+3. **Ship** — Progress lands on GitHub and Linear; Pulse can queue launch comms when you're ready.
 
-Forge is Creation's orchestration LLM. It writes build plans, brands products, routes turns, syncs Linear boards, and drafts progress updates. Calls go through `/api/forge/v1` and deduct **Account credits**. Optional: set `OPENAI_API_KEY` for stronger completions while still metering through Creation.
-
-### Lens — research
-
-Lens replaces external search and scrape APIs. It uses DuckDuckGo for ideation research and HTTP extraction for competitor pages. No API keys. Works offline in `--demo` mode.
-
-### Prism — memory and compression
-
-Prism stores episodic facts in local SQLite (`~/.creation/prism.db`) and runs a learned **context compression policy** before each agent turn — keeping answer-critical lines, evicting noise. Typical savings: ~35–65% tokens per turn depending on budget.
-
-### Relay — ship integrations
-
-Relay talks directly to GitHub (REST) and Linear (GraphQL). Connect tokens once in Account settings. Supports repo creation, file sync, issue tracking, kanban updates, and PR bodies — no middleware.
-
-### Pulse — notifications
-
-Pulse writes notifications to `~/.creation/pulse/` and can send via SMTP when configured. Launch marketing queues email + social drafts on ship — no Resend or Ayrshare required.
-
-### Account — single sign-on
-
-```bash
-creation login
-```
-
-Creates a local account at `~/.creation/account.db` with email, password, `crt_live_…` API key, and 500,000 starter credits. Relay credentials and usage history live on the same profile.
+The loop is built for long runs (up to 200 turns) with token-aware context compression so agents stay within budget without losing critical detail.
 
 ---
 
@@ -113,7 +80,7 @@ creation login
 creation serve
 ```
 
-Open **http://127.0.0.1:8787/dashboard** — the Creation Studio (dark terminal UI).
+Open **http://127.0.0.1:8787/dashboard** — Creation Studio.
 
 ### Build from the terminal
 
@@ -137,12 +104,29 @@ creation          # or: creation tui — in another tab
 | Command | Description |
 |---------|-------------|
 | `creation` | Open terminal UI (default) |
-| `creation serve` | Start Creation Studio web UI |
+| `creation serve` | Start Creation Studio |
 | `creation login` | Sign in / create account |
 | `creation build "…"` | Run full autonomous build loop |
 | `creation status` | List local projects |
-| `creation doctor` | Check account, Prism, agents, Relay |
+| `creation doctor` | Check account, agents, and integrations |
 | `creation tui` | Terminal UI (requires `serve`) |
+
+---
+
+## Built-in stack
+
+Creation ships with a complete first-party stack — no external SaaS bundles required. One login, one credit balance, one design language.
+
+| Service | Role |
+|---------|------|
+| **Account** | Sign-in, API key (`crt_live_…`), credits, credential storage |
+| **Forge** | Planning brain — build plans, branding, turn routing |
+| **Lens** | Web research and page extraction — works without API keys |
+| **Prism** | Episodic memory + context compression before each agent turn |
+| **Relay** | Native GitHub and Linear — repos, issues, kanban, PRs |
+| **Pulse** | Local notification inbox + optional SMTP on ship |
+
+These are selling points, not dependencies you wire up yourself. They are maintained as part of Creation and exposed through Studio, the CLI, and `/api/*`.
 
 ---
 
@@ -154,71 +138,40 @@ All state lives under `~/.creation/`:
 |------|---------|
 | `config.json` | Agent defaults, Relay tokens, Forge settings |
 | `account.db` | Users, credits, usage |
-| `prism.db` | Prism episodic memory |
+| `prism.db` | Episodic memory |
 | `pulse/` | Notification inbox |
 | `projects/` | Managed project workdirs |
-| `creation.db` | Build history (SQLite) |
-
-Environment variables:
+| `creation.db` | Build history |
 
 | Variable | Purpose |
 |----------|---------|
 | `CREATION_DEMO=1` | Demo mode — no live Relay/Forge calls |
-| `OPENAI_API_KEY` | Optional Forge backend for stronger planning |
-| `CREATION_FORGE_URL` | Override Forge endpoint (default: local server) |
+| `OPENAI_API_KEY` | Optional stronger Forge backend |
+| `CREATION_FORGE_URL` | Override Forge endpoint |
 
 ---
 
-## Architecture
+## Relay setup (optional)
 
-```
-creation/
-├── account/           # Auth, credits, usage
-├── services/
-│   ├── forge/         # Planning LLM client + API
-│   ├── lens/          # Search + scrape
-│   ├── prism/         # Memory + compression
-│   ├── relay/         # GitHub + Linear
-│   └── pulse/         # Notifications
-├── agents/            # 43 coding CLI adapters
-├── orchestrator.py    # Multi-turn build loop
-├── server.py          # FastAPI + Studio
-├── tui.py             # Textual terminal UI
-└── app/               # Studio static assets
-```
+For live ships, connect in Studio → **Relay**:
 
-### Build loop (simplified)
+- **GitHub** — personal access token with `repo` scope
+- **Linear** — API key from Linear settings
+- **Notify email** — where Pulse sends progress
 
-1. **Lens** — one-time web research + scrape  
-2. **Relay** — verify ship targets  
-3. **Forge** — plan + brand  
-4. **Loop** (up to 200 turns): Prism compress → agent code → pytest + browser QA → Relay sync → Forge route  
-5. **Pulse** — optional launch comms on ship  
-6. **Ship receipt** — proof bundle (GitHub, Linear, stats)
+Demo mode skips live Relay and still exercises the full loop.
 
 ---
 
 ## Coding agents
 
-Creation orchestrates **43 terminal-native coding CLIs**. Run `creation doctor` to see what's on your PATH. Set default in Studio or `config.json`:
+Run `creation doctor` to see what's on your PATH. Set default in Studio or `config.json`:
 
 ```json
 { "default_agent": "codex" }
 ```
 
-Supported agents include Codex, Claude Code, Cursor Agent, Gemini CLI, GitHub Copilot CLI, OpenClaw, Freebuff, Kimi, OpenCode, and more — see `creation/agents/registry.py`.
-
----
-
-## Relay setup (optional for live ships)
-
-In Studio → **Relay**, or via API:
-
-- **GitHub** — personal access token with `repo` scope  
-- **Linear** — API key from Linear settings  
-- **Notify email** — where Pulse sends progress  
-
-Demo mode (`creation build --demo`) skips live Relay and still exercises the full loop.
+See `creation/agents/registry.py` for the full list of supported CLIs.
 
 ---
 
@@ -229,35 +182,27 @@ git clone https://github.com/desenyon/creation.git
 cd creation
 ./bootstrap.sh
 source .venv/bin/activate
-pytest tests -q          # 241 tests
+pytest tests -q
 creation doctor
 creation serve
 ```
 
-### Project layout
-
-| Directory | Contents |
-|-----------|----------|
-| `tests/` | Pytest suite |
-| `web/` | Marketing site |
-| `creation/app/` | Bundled Studio UI |
-| `.github/workflows/` | CI |
-
----
-
-## Testing
-
-```bash
-pytest tests -q
 ```
-
-Covers Prism compression, Relay ops, Forge client, Lens research, Account store, orchestrator paths, and API endpoints.
+creation/
+├── account/           # Auth, credits, usage
+├── services/          # Forge, Lens, Prism, Relay, Pulse
+├── agents/            # Coding CLI adapters
+├── orchestrator.py    # Multi-turn build loop
+├── server.py          # FastAPI + Studio
+├── tui.py             # Textual terminal UI
+└── app/               # Studio static assets
+```
 
 ---
 
 ## Contributing
 
-See [CONTRIBUTING.md](CONTRIBUTING.md). We welcome issues and PRs for Forge heuristics, Lens extractors, Prism policies, Relay integrations, and Studio UX.
+See [CONTRIBUTING.md](CONTRIBUTING.md). Issues and PRs welcome — especially Studio UX, agent adapters, Relay targets, and Prism policies.
 
 ---
 
@@ -274,5 +219,5 @@ MIT — see [LICENSE](LICENSE).
 ---
 
 <p align="center">
-  <sub>Built with Creation · Local-first · Your machine · Your agents</sub>
+  <sub>Creation · Local-first · Your machine · Your agents</sub>
 </p>

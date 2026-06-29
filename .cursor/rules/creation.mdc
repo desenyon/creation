@@ -17,7 +17,7 @@ Local-first agent operating system. All pillars are first-party:
 - **Relay** — `creation/services/relay/` — GitHub + Linear
 - **Pulse** — `creation/services/pulse/` — notifications
 
-Do not add Composio, Tavily, Nebius, Mem0, or similar external service dependencies.
+Do not add third-party agent-platform bundles as hard dependencies.
 
 UI lives in `creation/app/` (Creation Studio — dark terminal aesthetic).
 

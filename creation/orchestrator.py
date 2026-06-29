@@ -109,7 +109,7 @@ def _pick_best_idea(tavily: TavilyBundle, seed: str) -> str:
 
 
 def _integration_block(tracking: TrackState) -> str:
-    lines = ["## GitHub & Composio (sponsor stack)"]
+    lines = ["## GitHub & Linear (Relay)"]
     if tracking.github_url:
         lines.append(
             f"- **GitHub repo:** {tracking.github_url}\n"
@@ -123,7 +123,7 @@ def _integration_block(tracking: TrackState) -> str:
 def _brand_block(brand: ProductBrand) -> str:
     if not brand.product_name and not brand.repo_slug:
         return ""
-    return f"""## Brand (Nebius)
+    return f"""## Brand (Forge)
 - **Product:** {brand.product_name}
 - **Tagline:** {brand.tagline}
 - Use in README, CLI, and user-facing copy.
@@ -145,14 +145,14 @@ def _initial_agent_prompt(
 - Modify the codebase in place to deliver the task above. Do NOT scaffold a new project or overwrite unrelated files.
 - Add or extend tests and update the README where it makes sense.
 - Push all changed source code to GitHub — not just markdown.
-- Nebius routes later turns — research will not repeat unless explicitly refreshed.
+- Forge routes later turns — research will not repeat unless explicitly refreshed.
 
 Make the change now."""
     else:
         instructions = """## Instructions
 - Scaffold MVP. Include README + tests.
 - Push all source code to GitHub — not just markdown.
-- Nebius routes later turns — research will not repeat unless explicitly refreshed.
+- Forge routes later turns — research will not repeat unless explicitly refreshed.
 
 Build now."""
     heading = "task / change request" if existing_repo else "Product idea"
@@ -322,7 +322,7 @@ def _maybe_refresh_research(
     research_blocks: List[str],
     workdir: Path,
 ) -> List[str]:
-    ctx.start_phase("research-refresh", "Tavily", f"Targeted refresh: {query[:80]}…", stage="loop")
+    ctx.start_phase("research-refresh", "Lens", f"Targeted refresh: {query[:80]}…", stage="loop")
     bundle = TavilyResearch(secrets, demo=demo).search_ideas(query or idea)
     urls = [h.url for h in bundle.hits[:3] if h.url.startswith("http")]
     crawl = FirecrawlResearch(secrets, composio=composio, demo=demo).scrape_urls(urls)
@@ -330,7 +330,7 @@ def _maybe_refresh_research(
     research_blocks.append(block)
     (workdir / "RESEARCH.md").write_text("\n\n---\n\n".join(research_blocks))
     ctx.finish_phase("research-refresh", f"+{len(crawl.pages)} pages", stage="loop")
-    ctx.emit({"type": "play_by_play", "message": "Research refresh (targeted)", "kind": "tavily"})
+    ctx.emit({"type": "play_by_play", "message": "Research refresh (targeted)", "kind": "lens"})
     return research_blocks
 
 
@@ -519,7 +519,7 @@ def run_factory(
                 seed = f"{seed}\n\nUser answers:\n{answers}".strip() if seed else answers
                 user_task = f"{user_task}\n\n{answers}".strip()
 
-        ctx.start_phase("tavily", "Tavily", "Web research (one-time)…", stage="setup")
+        ctx.start_phase("tavily", "Lens", "Web research (one-time)…", stage="setup")
         if existing_repo and user_task:
             bundle = TavilyResearch(secrets, demo=demo).search_ideas(user_task)
             idea = user_task
@@ -529,11 +529,11 @@ def run_factory(
             idea = _pick_best_idea(bundle, seed or project.idea)
             ctx.finish_phase("tavily", f"Idea: {idea[:120]}", sources=len(bundle.hits), stage="setup")
 
-        ctx.start_phase("composio", "Composio", "Checking integrations…", stage="setup")
+        ctx.start_phase("composio", "Relay", "Checking integrations…", stage="setup")
         app_blocks = composio.gather_context()
         ctx.finish_phase("composio", f"{len(app_blocks)} toolkits ready", stage="setup")
 
-        ctx.start_phase("firecrawl", "Firecrawl", "Deep scrape (one-time)…", stage="setup")
+        ctx.start_phase("firecrawl", "Lens", "Deep scrape (one-time)…", stage="setup")
         urls = [h.url for h in bundle.hits[:5] if h.url.startswith("http")]
         crawl = FirecrawlResearch(secrets, composio=composio, demo=demo).scrape_urls(urls)
         ctx.finish_phase("firecrawl", f"{len(crawl.pages)} pages scraped", stage="setup")
@@ -544,7 +544,7 @@ def run_factory(
         (workdir / "RESEARCH.md").write_text("\n\n---\n\n".join(research_blocks))
         update_project(project.id, idea=idea, name=idea[:80] or project.name, status="researching")
 
-        ctx.start_phase("plan", "Nebius", "Build plan…", stage="setup")
+        ctx.start_phase("plan", "Forge", "Build plan…", stage="setup")
         if demo:
             plan = (
                 f"1. Read existing codebase\n2. {idea}\n3. Add/adjust tests\n4. Verify"
@@ -558,7 +558,7 @@ def run_factory(
         (workdir / "BUILD_PLAN.md").write_text(plan)
         ctx.finish_phase("plan", "Plan ready", stage="setup")
 
-        ctx.start_phase("brand", "Nebius", "Naming & brand…", stage="setup")
+        ctx.start_phase("brand", "Forge", "Naming & brand…", stage="setup")
         if existing_repo:
             gh_owner, gh_repo, _ = resolve_github_from_workdir(workdir)
             slug = gh_repo or workdir.name
@@ -578,7 +578,7 @@ def run_factory(
             product_md = generate_product_md(secrets, idea, plan, brand)
             (workdir / "PRODUCT.md").write_text(product_md, encoding="utf-8")
 
-        ctx.start_phase("composio-setup", "Composio", "Linear · GitHub · kickoff email…", stage="setup")
+        ctx.start_phase("composio-setup", "Relay", "Linear · GitHub · kickoff email…", stage="setup")
         tracker.bootstrap(
             idea,
             plan,
@@ -722,7 +722,7 @@ def run_factory(
                     },
                     stage="loop",
                 )
-                ctx.start_phase(f"compress-{turn}", "SuperCompress", "Compressing turn context…", stage="loop")
+                ctx.start_phase(f"compress-{turn}", "Prism", "Compressing turn context…", stage="loop")
                 compressed, mem, mem_stack = _compress_blocks(
                     turn=turn,
                     query=query,
@@ -746,7 +746,7 @@ def run_factory(
                     "mem0_recalled": mem_stack.get("mem0_recalled", 0),
                     "mem0_enabled": mem_stack.get("mem0_enabled", False),
                     "provider": memory.name,
-                    "stack": f"{memory.name}+supercompress",
+                    "stack": f"{memory.name}+prism",
                 }
                 memory_totals["original_tokens"] += int(mem.original_tokens or 0)
                 memory_totals["kept_tokens"] += int(mem.kept_tokens or 0)
@@ -963,7 +963,7 @@ def run_factory(
                 )
 
             if agent_result is not None or qa_bundle.tests.ran or qa_bundle.browser.checked_urls:
-                ctx.start_phase(f"ops-{turn}", "Composio", "Linear · GitHub · email", stage="loop")
+                ctx.start_phase(f"ops-{turn}", "Relay", "Linear · GitHub · email", stage="loop")
                 tracker.after_turn(
                     turn,
                     idea,
@@ -977,8 +977,8 @@ def run_factory(
                 ctx.finish_phase(f"ops-{turn}", "Synced", stage="loop")
                 ctx.emit_tracking(tracker, f"Turn {turn}")
 
-            # Nebius routes the next turn (one call — no research unless refresh_research)
-            ctx.start_phase(f"route-{turn}", "Nebius", "Routing next turn…", stage="loop")
+            # Forge routes the next turn (one call — no research unless refresh_research)
+            ctx.start_phase(f"route-{turn}", "Forge", "Routing next turn…", stage="loop")
             tracking_ctx = tracker.refresh_linear_status()
             if demo:
                 pending_plan = TurnPlan(
@@ -1060,7 +1060,7 @@ def run_factory(
             {
                 "type": "play_by_play",
                 "message": "Shipping — final push + status email…" if not build_complete else "Sending completion email…",
-                "kind": "composio",
+                "kind": "relay",
             }
         )
         completion = tracker.complete(

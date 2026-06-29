@@ -2,8 +2,8 @@
 
 Everything below is copy-paste ready. Links are the backlink targets:
 - Site: https://creation.dev
-- Repo: https://github.com/arjunkshah/creation
-- Release: https://github.com/arjunkshah/creation/releases/tag/v0.5.0
+- Repo: https://github.com/desenyon/creation
+- Release: https://github.com/desenyon/creation/releases/tag/v0.5.0
 
 ---
 
@@ -34,7 +34,7 @@ Everything below is copy-paste ready. Links are the backlink targets:
 > https://creation.dev
 
 Follow-up reply (thread):
-> It's open source and runs on your own keys — no data leaves your machine. Big tasks spawn dedicated named agents (Ada, Turing, Hopper…); small ones get appended to an existing loop. Honest ship receipts show what actually shipped. https://github.com/arjunkshah/creation
+> It's open source and runs on your own keys — no data leaves your machine. Big tasks spawn dedicated named agents (Ada, Turing, Hopper…); small ones get appended to an existing loop. Honest ship receipts show what actually shipped. https://github.com/desenyon/creation
 
 ---
 
@@ -43,7 +43,7 @@ Follow-up reply (thread):
 **Title:**
 `Show HN: Creation – a local-first agent OS that runs 43 coding-agent CLIs`
 
-**URL:** `https://github.com/arjunkshah/creation`
+**URL:** `https://github.com/desenyon/creation`
 
 **First comment (post immediately after submitting):**
 > Hi HN, I built Creation because I kept juggling Codex, Claude Code, Cursor and Gemini in separate terminals with no shared state.
@@ -76,7 +76,7 @@ Follow-up reply (thread):
 > Hey hunters! I made Creation so a team of coding agents could run continuously instead of me babysitting one chat window. It routes work by complexity, spawns named subagents you can watch live, and produces "honest ship receipts" that show what really shipped (no fake green checkmarks). Local-first, MIT-licensed, runs on your keys. Feedback very welcome 🙏
 
 **Topics:** Developer Tools, Artificial Intelligence, Open Source
-**Links:** Website https://creation.dev · GitHub https://github.com/arjunkshah/creation
+**Links:** Website https://creation.dev · GitHub https://github.com/desenyon/creation
 
 ---
 
@@ -87,7 +87,7 @@ Follow-up reply (thread):
 **Body:**
 > I open-sourced Creation — a local-first orchestrator for coding-agent CLIs. You drop tickets on a board and it routes them to agents (spawning a dedicated one for big tasks, appending small ones to an existing loop). Everything runs on your machine and your own keys. It also gives "honest receipts" — real integration/test status instead of a blanket success message.
 >
-> Repo: https://github.com/arjunkshah/creation · Site: https://creation.dev
+> Repo: https://github.com/desenyon/creation · Site: https://creation.dev
 > Curious what this community thinks about running multiple agent CLIs under one local controller.
 
 ### r/ChatGPTCoding / r/programming / r/devtools

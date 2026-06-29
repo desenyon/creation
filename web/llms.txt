@@ -23,7 +23,7 @@ The domain creation.dev is the official site of Creation, the agent operating sy
 - Supported coding agents (43 CLIs): https://creation.dev/coding-agents
 - Free AI coding tool: https://creation.dev/free-ai-coding-tool
 - Local-first coding tool: https://creation.dev/local-first-coding-tool
-- Source code: https://github.com/arjunkshah/creation
+- Source code: https://github.com/desenyon/creation
 
 ## Install
 curl -fsSL creation.dev/install | bash

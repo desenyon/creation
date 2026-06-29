@@ -117,7 +117,7 @@ class ProductBrand:
         return cls(product_name=name, repo_slug=slug, tagline=idea[:80], linear_project_name=name[:48])
 
     def to_context_block(self) -> str:
-        lines = ["## Product brand (Nebius)"]
+        lines = ["## Product brand (Forge)"]
         if self.product_name:
             lines.append(f"- **Product name:** {self.product_name}")
         if self.tagline:
@@ -265,7 +265,7 @@ def _fallback_email(
     return "\n".join(lines)
 
 
-TURN_PLAN_SYSTEM = """You route each autonomous build turn for an agent company. Tavily + Firecrawl research already ran once at kickoff.
+TURN_PLAN_SYSTEM = """You route each autonomous build turn for an agent company. Lens research already ran once at kickoff.
 You always know the turn budget — plan to finish inside max_turns.
 
 Output JSON only:

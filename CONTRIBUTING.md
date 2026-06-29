@@ -37,7 +37,7 @@ Thank you for helping build Creation — the local-first agent operating system 
 
 ## First-party services only
 
-Creation does not accept new dependencies on Composio, Tavily, Nebius, Mem0, or similar bundled SaaS. Extend **Forge**, **Lens**, **Prism**, **Relay**, or **Pulse** instead.
+Creation ships with a complete first-party stack. Extend **Forge**, **Lens**, **Prism**, **Relay**, or **Pulse** in `creation/services/` — do not add third-party agent-platform bundles as hard dependencies.
 
 ## Code of Conduct
 

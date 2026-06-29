@@ -292,11 +292,11 @@ def health() -> Dict[str, Any]:
     s = get_settings()
     sec = load_secrets()
     auth_configs = {
-        "github": bool(sec.composio_github_auth_config_id),
-        "linear": bool(sec.composio_linear_auth_config_id),
-        "gmail": bool(sec.composio_gmail_auth_config_id),
-        "firecrawl": bool(sec.composio_firecrawl_auth_config_id),
+        "github": bool(sec.github_token or sec.composio_github_auth_config_id),
+        "linear": bool(sec.linear_api_key or sec.composio_linear_auth_config_id),
+        "notify_email": bool(sec.notify_email),
     }
+    mem = _memory_status(sec, demo=s.creation_demo)
     return {
         "ok": True,
         "demo": s.creation_demo,
@@ -311,8 +311,8 @@ def health() -> Dict[str, Any]:
             "auth_config_connections",
             "autosuggest",
             "skills_memory",
-            "mem0_memory",
-            "supercompress",
+            "prism_memory",
+            "prism_compress",
             "ship_receipt",
             "launch_marketing",
             "existing_repo_edits",
@@ -323,31 +323,30 @@ def health() -> Dict[str, Any]:
             "smart_router",
             "mission_control",
             "pr_ship",
-            "firecrawl",
+            "lens_scrape",
             "webhooks",
             "templates",
             "portfolio",
             "schedule",
         ],
         "pillars": {
-            "composio": bool(sec.composio_api_key and sec.composio_user_id and all(auth_configs.values())),
-            "tavily": bool(sec.tavily_api_key),
-            "nebius": bool(sec.nebius_api_key),
-            "mem0": bool(sec.mem0_enabled and (s.creation_demo or sec.mem0_api_key)),
-            "memory": bool(_memory_status(sec, demo=s.creation_demo)["enabled"]),
+            "account": True,
+            "forge": bool(sec.forge_api_key or sec.nebius_api_key),
+            "lens": True,
+            "relay": bool(sec.github_token or sec.linear_api_key or sec.composio_api_key),
+            "prism": bool(mem.get("enabled")),
+            "pulse": True,
             "agent": _agent_ready(sec),
         },
         "keys_configured": {
-            "composio": bool(sec.composio_api_key),
-            "composio_user_id": bool(sec.composio_user_id),
+            "forge": bool(sec.forge_api_key or sec.nebius_api_key),
+            "relay_github": bool(sec.github_token or sec.composio_github_auth_config_id),
+            "relay_linear": bool(sec.linear_api_key or sec.composio_linear_auth_config_id),
             **auth_configs,
-            "tavily": bool(sec.tavily_api_key),
-            "nebius": bool(sec.nebius_api_key),
-            "mem0": bool(sec.mem0_api_key),
         },
         "memory_stack": {
-            **_memory_status(sec, demo=s.creation_demo),
-            "supercompress": "in-turn token eviction before agent calls",
+            **mem,
+            "prism_compress": "in-turn token eviction before agent calls",
         },
     }
 
@@ -356,8 +355,7 @@ def health() -> Dict[str, Any]:
 def api_memory_status() -> Dict[str, Any]:
     """Live memory-stack detection for onboarding/settings (read-only).
 
-    Returns the global ``memory_provider`` setting, the resolved provider, and
-    which backends (mem0/supermemory) are detected on this machine.
+    Returns the global ``memory_provider`` setting and the resolved Prism provider.
     """
     s = get_settings()
     return _memory_status(load_secrets(), demo=s.creation_demo)
@@ -499,7 +497,7 @@ def api_delete_project_post(pid: str) -> Dict[str, str]:
 
 @app.post("/api/suggest")
 def api_suggest(body: SuggestRequest) -> Dict[str, Any]:
-    """Autosuggest ranked product ideas (Tavily + Nebius)."""
+    """Autosuggest ranked product ideas (Lens + Forge)."""
     from creation.suggest import suggest_products
 
     secrets = load_secrets()

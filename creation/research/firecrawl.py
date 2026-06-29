@@ -1,4 +1,4 @@
-"""Firecrawl shim — use Creation Lens scrape instead."""
+"""Lens scrape — deep page extraction via Creation Lens."""
 
 from __future__ import annotations
 

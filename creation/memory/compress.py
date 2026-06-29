@@ -1,4 +1,4 @@
-"""SuperCompress memory layer — compress agent context before Nebius inference."""
+"""Prism context compression — compress agent context before Forge inference."""
 
 from __future__ import annotations
 

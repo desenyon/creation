@@ -1,4 +1,4 @@
-"""Nebius shim — use Creation Forge."""
+"""Forge client — Creation planning brain."""
 
 from creation.services.forge.client import (  # noqa: F401
     LinearBoardSync,

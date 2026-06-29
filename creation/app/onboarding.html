@@ -4,162 +4,81 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Welcome — Creation</title>
-  <meta name="theme-color" content="rgb(251,251,248)" />
-  <link rel="stylesheet" href="/assets/css/style.css?v=2" />
-  <link rel="stylesheet" href="/assets/css/creation.css?v=1" />
-  <link rel="stylesheet" href="/assets/css/onboarding.css?v=6" />
+  <link rel="icon" href="/assets/img/icon.svg" type="image/svg+xml" />
+  <link rel="stylesheet" href="/assets/css/studio.css?v=2" />
+  <style>
+    .ob-wrap { max-width: 560px; margin: 48px auto; padding: 0 20px 80px; }
+    .ob-step { display: none; }
+    .ob-step.active { display: block; }
+    .ob-dots { display: flex; gap: 8px; margin-bottom: 32px; }
+    .ob-dots span { width: 8px; height: 8px; border-radius: 50%; background: #2a2a32; }
+    .ob-dots span.active { background: #f97316; }
+    .ob-dots span.done { background: #52525b; }
+    .ob-actions { display: flex; gap: 12px; margin-top: 24px; flex-wrap: wrap; }
+    .hidden { display: none !important; }
+  </style>
 </head>
-<body class="ob-page">
-  <div class="ob-bg" aria-hidden="true"></div>
-  <main class="ob-shell ob-shell-wide">
-    <header class="ob-header">
-      <div class="ob-logo"><span>creation</span></div>
-      <div class="ob-steps" id="ob-steps" aria-label="Progress"></div>
-    </header>
+<body>
+  <div class="ob-wrap">
+    <div class="studio-brand" style="margin-bottom:24px"><img src="/assets/img/icon.svg" alt="" width="22" height="22" style="vertical-align:middle;margin-right:8px"/>Creation</div>
+    <div class="ob-dots" id="dots"></div>
 
-    <section class="ob-panel" data-step="0">
-      <p class="ob-eyebrow">Welcome</p>
-      <h1>Your loop runs locally.</h1>
-      <p class="ob-lead">Creation researches, builds, tests, and ships through GitHub, Linear, Firecrawl, and Gmail — all on your machine.</p>
-      <ul class="ob-flow">
-        <li><strong>Tavily</strong> researches the opportunity</li>
-        <li><strong>Mem0</strong> remembers context across runs</li>
-        <li><strong>SuperCompress</strong> trims tokens each turn</li>
-        <li><strong>Nebius</strong> plans and routes each turn</li>
-        <li><strong>Codex / Claude / Cursor</strong> build locally</li>
-        <li><strong>Composio</strong> connects and ships</li>
+    <section class="ob-step active" data-step="0">
+      <h1 class="studio-h1">Welcome to Creation</h1>
+      <p class="studio-lead">Turn ideas into shipped software — on your machine, with your coding agents. Creation researches, plans, builds, tests, and ships through GitHub and Linear.</p>
+      <ul class="studio-list" style="margin:20px 0;color:#a1a1aa;line-height:1.7">
+        <li>Autonomous multi-turn build loop</li>
+        <li>43 terminal agents on your PATH</li>
+        <li>One account — planning, research, and memory included</li>
       </ul>
-      <button type="button" class="btn btn-pear ob-next">Get started</button>
+      <button type="button" class="studio-btn" data-next>Get started</button>
     </section>
 
-    <section class="ob-panel hidden" data-step="1">
-      <p class="ob-eyebrow">Core services</p>
-      <h1>Add your API keys.</h1>
-      <p class="ob-lead">Stored only in <code>~/.creation/config.json</code>. Creation never uploads your credentials.</p>
-      <form id="ob-keys-form" class="ob-form">
-        <fieldset class="ob-fieldset">
-          <legend>Required APIs</legend>
-          <div class="ob-form-grid ob-form-grid-2">
-            <label><span>Tavily API key</span><input name="tavily_api_key" type="password" autocomplete="off" required /></label>
-            <label><span>Nebius Token Factory key</span><input name="nebius_api_key" type="password" autocomplete="off" required placeholder="auto-loaded in IDE · tokenfactory.nebius.com" /></label>
-            <label><span>Composio API key</span><input name="composio_api_key" type="password" autocomplete="off" required placeholder="from dashboard.composio.dev" /></label>
-            <label><span>Composio user ID</span><input name="composio_user_id" type="text" required placeholder="your stable user ID" /></label>
-          </div>
-        </fieldset>
-        <fieldset class="ob-fieldset">
-          <legend>Mem0 · persistent memory</legend>
-          <p class="ob-fieldset-hint">Mem0 recalls facts from past runs before SuperCompress trims each turn. Get a key at <a href="https://app.mem0.ai" target="_blank" rel="noopener">app.mem0.ai</a> — optional but recommended for multi-turn builds.</p>
-          <div class="ob-form-grid ob-form-grid-2">
-            <label class="ob-span-2"><span>Mem0 API key</span><input name="mem0_api_key" type="password" autocomplete="off" placeholder="m0-…" /></label>
-            <label class="ob-span-2 ob-check"><input name="mem0_enabled" type="checkbox" checked /><span>Enable Mem0 recall on every build turn</span></label>
-          </div>
-        </fieldset>
-        <fieldset class="ob-fieldset">
-          <legend>Coding agent</legend>
-          <p class="ob-fieldset-hint">Most agents authenticate through their local CLI — you don't add API keys here unless the agent requires them.</p>
-          <label><span>Default agent</span>
-            <select name="default_agent" id="ob-default-agent">
-              <option value="codex">Loading agents…</option>
-            </select>
-          </label>
-        </fieldset>
-        <p id="ob-keys-status" class="ob-status"></p>
+    <section class="ob-step" data-step="1">
+      <h1 class="studio-h1">Your account</h1>
+      <p class="studio-lead">Sign in or create a Creation account. Credentials stay in <code>~/.creation/</code>.</p>
+      <div class="studio-card" id="acct-out">
+        <label class="studio-label">Email</label>
+        <input id="ob-email" class="studio-input" type="email" />
+        <label class="studio-label">Password</label>
+        <input id="ob-password" class="studio-input" type="password" />
         <div class="ob-actions">
-          <button type="button" class="btn btn-ghost ob-back">Back</button>
-          <button type="submit" class="btn btn-pear">Save &amp; connect tools</button>
+          <button type="button" class="studio-btn" id="ob-login">Sign in</button>
+          <button type="button" class="studio-btn ghost" id="ob-register">Create account</button>
         </div>
-      </form>
-    </section>
-
-    <section class="ob-panel hidden" data-step="2">
-      <p class="ob-eyebrow">Composio</p>
-      <h1>Connect your tools.</h1>
-      <p class="ob-lead">Create one Auth Config for each toolkit in <a href="https://dashboard.composio.dev" target="_blank" rel="noopener">Composio</a>. Paste its <code>ac_...</code> ID, then connect the account Creation should use.</p>
-      <form id="ob-connections-form" class="ob-form">
-        <div class="ob-connections">
-          <div class="ob-connection" data-toolkit="github">
-            <label><span>GitHub Auth Config ID</span><input name="composio_github_auth_config_id" required placeholder="ac_..." /></label>
-            <button type="button" class="btn btn-ghost ob-connect" data-composio-connect="github">Connect GitHub</button>
-            <span class="ob-connection-status" data-composio-status="github">Not connected</span>
-          </div>
-          <div class="ob-connection" data-toolkit="linear">
-            <label><span>Linear Auth Config ID</span><input name="composio_linear_auth_config_id" required placeholder="ac_..." /></label>
-            <button type="button" class="btn btn-ghost ob-connect" data-composio-connect="linear">Connect Linear</button>
-            <span class="ob-connection-status" data-composio-status="linear">Not connected</span>
-          </div>
-          <div class="ob-connection" data-toolkit="gmail">
-            <label><span>Gmail Auth Config ID</span><input name="composio_gmail_auth_config_id" required placeholder="ac_..." /></label>
-            <button type="button" class="btn btn-ghost ob-connect" data-composio-connect="gmail">Connect Gmail</button>
-            <span class="ob-connection-status" data-composio-status="gmail">Not connected</span>
-          </div>
-          <div class="ob-connection" data-toolkit="firecrawl">
-            <label><span>Firecrawl Auth Config ID</span><input name="composio_firecrawl_auth_config_id" required placeholder="ac_..." /></label>
-            <button type="button" class="btn btn-ghost ob-connect" data-composio-connect="firecrawl">Connect Firecrawl</button>
-            <span class="ob-connection-status" data-composio-status="firecrawl">Not connected</span>
-          </div>
-        </div>
-        <p id="ob-connections-status" class="ob-status"></p>
-        <div class="ob-actions">
-          <button type="button" class="btn btn-ghost ob-back">Back</button>
-          <button type="submit" class="btn btn-pear">Verify &amp; continue</button>
-        </div>
-      </form>
-    </section>
-
-    <section class="ob-panel hidden" data-step="3">
-      <p class="ob-eyebrow">How it works</p>
-      <h1>Prompt, folder, loop.</h1>
-      <p class="ob-lead">Enter an optional prompt, choose a local folder, and send. Mission control shows the exact step the agent is running.</p>
-      <ol class="ob-how">
-        <li><span>1</span><div><strong>Prompt</strong> — describe what to build or leave it blank for market research.</div></li>
-        <li><span>2</span><div><strong>Folder</strong> — choose where the project should live locally.</div></li>
-        <li><span>3</span><div><strong>Send</strong> — Creation researches, Mem0 recalls, SuperCompress compresses, agents build, QA runs, and Composio syncs Linear, GitHub, and Gmail.</div></li>
-      </ol>
-      <div class="ob-actions">
-        <button type="button" class="btn btn-ghost ob-back">Back</button>
-        <button type="button" class="btn btn-pear ob-next">Continue</button>
+        <p class="studio-lead" id="acct-status" style="margin-top:12px"></p>
+      </div>
+      <div class="studio-card hidden" id="acct-in">
+        <p>Signed in as <strong id="acct-email"></strong></p>
+        <p class="studio-stat">Credits: <strong id="acct-credits"></strong></p>
+        <button type="button" class="studio-btn" data-next>Continue</button>
       </div>
     </section>
 
-    <section class="ob-panel hidden" data-step="4">
-      <p class="ob-eyebrow">Memory stack</p>
-      <h1>Pick how Creation remembers.</h1>
-      <p class="ob-lead">Persistent memory recalls context from past runs before SuperCompress trims each turn. Set it once here — it carries forward to every run. <code>Auto</code> is a safe default and this step is optional.</p>
-      <form id="ob-memory-form" class="ob-form">
-        <fieldset class="ob-fieldset">
-          <legend>Provider</legend>
-          <p id="ob-memory-detected" class="ob-fieldset-hint">Detecting your memory stack…</p>
-          <div class="ob-form-grid ob-form-grid-2">
-            <label class="ob-span-2"><span>Memory provider</span>
-              <select name="memory_provider" id="ob-memory-provider">
-                <option value="auto">Auto-detect (use my existing stack)</option>
-                <option value="mem0">Mem0</option>
-                <option value="supermemory">Supermemory</option>
-                <option value="off">Off</option>
-              </select>
-            </label>
-            <label><span>Mem0 API key</span><input name="mem0_api_key" type="password" autocomplete="off" placeholder="m0-… · app.mem0.ai" /></label>
-            <label><span>Supermemory API key</span><input name="supermemory_api_key" type="password" autocomplete="off" placeholder="api.supermemory.ai" /></label>
-          </div>
-        </fieldset>
-        <p id="ob-memory-status" class="ob-status"></p>
+    <section class="ob-step" data-step="2">
+      <h1 class="studio-h1">Relay (optional)</h1>
+      <p class="studio-lead">Connect GitHub and Linear for live ships. Skip to use demo mode.</p>
+      <form id="relay-form" class="studio-card">
+        <label class="studio-label">GitHub token</label>
+        <input name="github_token" class="studio-input" type="password" autocomplete="off" />
+        <label class="studio-label">Linear API key</label>
+        <input name="linear_api_key" class="studio-input" type="password" autocomplete="off" />
+        <label class="studio-label">Default coding agent</label>
+        <select name="default_agent" id="ob-agent" class="studio-select"></select>
         <div class="ob-actions">
-          <button type="button" class="btn btn-ghost ob-back">Back</button>
-          <button type="button" class="btn btn-ghost ob-next" id="ob-memory-skip">Skip — use auto</button>
-          <button type="submit" class="btn btn-pear">Save memory choice</button>
+          <button type="button" class="studio-btn ghost" data-back>Back</button>
+          <button type="submit" class="studio-btn">Save &amp; continue</button>
+          <button type="button" class="studio-btn ghost" id="ob-skip-relay">Skip</button>
         </div>
       </form>
     </section>
 
-    <section class="ob-panel hidden" data-step="5">
-      <p class="ob-eyebrow">Ready</p>
-      <h1>Let’s Build.</h1>
-      <p class="ob-lead">Your APIs, memory stack, and core Composio integrations are connected. Build a project from an idea or point Creation at an existing repo.</p>
-      <div class="ob-finish-actions">
-        <a href="/dashboard" class="btn btn-pear ob-finish" id="ob-finish" onclick="localStorage.setItem('creation-onboarded','1')">Build a project</a>
-      </div>
+    <section class="ob-step" data-step="3">
+      <h1 class="studio-h1">Ready to build</h1>
+      <p class="studio-lead">Open Creation Studio and start your first build — or run <code>creation build "your idea"</code> from the terminal.</p>
+      <a href="/dashboard" class="studio-btn" id="ob-finish" onclick="localStorage.setItem('creation-onboarded','1')">Open Studio</a>
     </section>
-  </main>
-  <script src="/assets/js/onboarding.js?v=7"></script>
+  </div>
+  <script src="/assets/js/onboarding.js?v=8"></script>
 </body>
 </html>
