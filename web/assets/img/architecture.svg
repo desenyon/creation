@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 320" role="img" aria-label="SuperCompress pipeline architecture">
+  <defs>
+    <linearGradient id="g" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#93c5fd"/>
+      <stop offset="100%" stop-color="#2563eb"/>
+    </linearGradient>
+  </defs>
+  <rect width="960" height="320" rx="16" fill="#f8fbff" stroke="#dbeafe"/>
+  <text x="32" y="40" font-family="system-ui,sans-serif" font-size="14" fill="#64748b">SuperCompress API pipeline</text>
+  <g font-family="system-ui,sans-serif" font-size="13" fill="#0f172a">
+    <rect x="32" y="72" width="140" height="56" rx="8" fill="#fff" stroke="#cbd5e1"/>
+    <text x="102" y="104" text-anchor="middle">Long context</text>
+    <rect x="200" y="72" width="140" height="56" rx="8" fill="#fff" stroke="#cbd5e1"/>
+    <text x="270" y="104" text-anchor="middle">Question</text>
+    <path d="M172 100 H200 M340 100 H368" stroke="#94a3b8" stroke-width="2"/>
+    <rect x="368" y="56" width="180" height="88" rx="10" fill="url(#g)" stroke="#1d4ed8"/>
+    <text x="458" y="96" text-anchor="middle" fill="#fff" font-weight="600">SuperCompress</text>
+    <text x="458" y="118" text-anchor="middle" fill="#eff6ff" font-size="11">learned eviction  -  CPU</text>
+    <path d="M548 100 H576" stroke="#94a3b8" stroke-width="2"/>
+    <rect x="576" y="72" width="160" height="56" rx="8" fill="#fff" stroke="#cbd5e1"/>
+    <text x="656" y="104" text-anchor="middle">Compressed prompt</text>
+    <path d="M736 100 H764" stroke="#94a3b8" stroke-width="2"/>
+    <rect x="764" y="72" width="120" height="56" rx="8" fill="#fff" stroke="#cbd5e1"/>
+    <text x="824" y="104" text-anchor="middle">Your LLM</text>
+  </g>
+  <g font-family="ui-monospace,monospace" font-size="11" fill="#475569">
+    <text x="32" y="200">Tokenize ? 9-dim features ? EvictionPolicyNetwork ? keep top budget</text>
+    <text x="32" y="224">Always retain attention sinks + recent lines</text>
+    <text x="32" y="268" fill="#1d4ed8" font-size="13">Output: CompressResult  -  compressed_text  -  kv_savings_pct</text>
+  </g>
+</svg>
