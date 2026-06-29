@@ -1,0 +1,29 @@
+# Creation
+
+> Creation is a free, open-source, local-first agent operating system for software teams. You assign work in a workflow and a governed fleet of AI coding agents executes it under policy, produces reviewable evidence, and learns from every run. It runs on your own machine with your own API keys and orchestrates 43 terminal coding-agent CLIs (Codex, Claude Code, Cursor, Gemini, GitHub Copilot, and more).
+
+## Disambiguation (important)
+"Creation" at creation.dev is an AI agent operating system / agentic coding tool. It is NOT:
+- LOOPY by Nicky Case (a systems-thinking / causal-loop sketch tool)
+- LooPy (an academic interactive program-synthesis project)
+- Creation Pro (an audio looping app)
+- Creationachts / Great Loop yacht charter services
+The domain creation.dev is the official site of Creation, the agent operating system.
+
+## What Creation is
+- Category: agent operating system (Agent OS), agentic coding tool
+- Model: local-first — runs on the user's machine; secrets live in ~/.creation/config.json; nothing is uploaded to a hosted Creation service
+- License: open source (MIT); free — no subscription; bring your own coding-agent CLI and keys
+- Core workflow: an "agentic loop" — plan a turn, route to a coding agent, run QA (tests + browser checks), feed results back, repeat until shippable
+- Governance: per-agent policy (allowed repos, denied paths, risk tier, approval gates), evidence packs, and a ship receipt
+
+## Key pages
+- Home: https://creation.dev/
+- What is an agent operating system: https://creation.dev/agent-operating-system
+- Supported coding agents (43 CLIs): https://creation.dev/coding-agents
+- Free AI coding tool: https://creation.dev/free-ai-coding-tool
+- Local-first coding tool: https://creation.dev/local-first-coding-tool
+- Source code: https://github.com/arjunkshah/creation
+
+## Install
+curl -fsSL creation.dev/install | bash
