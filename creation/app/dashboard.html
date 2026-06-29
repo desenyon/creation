@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Creation Studio</title>
+  <meta name="theme-color" content="#09090b" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;600&family=Inter:wght@400;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/assets/css/studio.css?v=1" />
+  <link rel="icon" href="/assets/img/icon.svg" type="image/svg+xml" />
+  <link rel="apple-touch-icon" href="/assets/img/logo.svg" />
+</head>
+<body>
+  <div class="studio-shell">
+    <aside class="studio-sidebar">
+      <div class="studio-brand"><img src="/assets/img/icon.svg" alt="" width="22" height="22" style="vertical-align:middle;margin-right:8px"/>Creation</div>
+      <nav class="studio-nav" id="nav">
+        <button type="button" data-panel="build" class="active">Build</button>
+        <button type="button" data-panel="runs">Runs</button>
+        <button type="button" data-panel="account">Account</button>
+        <button type="button" data-panel="relay">Relay</button>
+        <button type="button" data-panel="services">Services</button>
+      </nav>
+      <div class="studio-stat" id="credits">Credits —</div>
+    </aside>
+    <main class="studio-main">
+      <section class="studio-panel active" id="panel-build">
+        <h1 class="studio-h1">Build something</h1>
+        <p class="studio-lead">Forge plans. Lens researches. Prism compresses memory. Relay ships to GitHub and Linear. One account runs it all.</p>
+        <div class="studio-card">
+          <label class="studio-label">Idea</label>
+          <textarea id="idea" class="studio-textarea" placeholder="What should Creation build or change?"></textarea>
+          <label class="studio-label">Workdir (optional)</label>
+          <input id="workdir" class="studio-input" placeholder="Existing repo path — leave empty for new project" />
+          <button type="button" class="studio-btn" id="start-build">Start build</button>
+        </div>
+      </section>
+
+      <section class="studio-panel" id="panel-runs">
+        <h1 class="studio-h1">Runs</h1>
+        <div class="studio-grid">
+          <div class="studio-card">
+            <p class="studio-label">Projects</p>
+            <ul class="studio-list" id="project-list"></ul>
+          </div>
+          <div class="studio-card">
+            <p class="studio-label">Live stream</p>
+            <pre class="studio-log" id="event-log"></pre>
+          </div>
+        </div>
+      </section>
+
+      <section class="studio-panel" id="panel-account">
+        <h1 class="studio-h1">Account</h1>
+        <p class="studio-lead">One login. One API key. Forge and Lens bill against your Creation credits.</p>
+        <div class="studio-card" id="account-signed-out">
+          <label class="studio-label">Email</label>
+          <input id="login-email" class="studio-input" type="email" />
+          <label class="studio-label">Password</label>
+          <input id="login-password" class="studio-input" type="password" />
+          <button type="button" class="studio-btn" id="btn-login">Sign in</button>
+          <button type="button" class="studio-btn ghost" id="btn-register">Create account</button>
+        </div>
+        <div class="studio-card hidden" id="account-signed-in">
+          <p id="account-email"></p>
+          <p class="studio-stat">API key: <code id="account-key"></code></p>
+          <p class="studio-stat">Credits: <strong id="account-credits"></strong></p>
+        </div>
+      </section>
+
+      <section class="studio-panel" id="panel-relay">
+        <h1 class="studio-h1">Relay</h1>
+        <p class="studio-lead">Native GitHub and Linear — no Composio. Pulse handles notifications.</p>
+        <form id="relay-form" class="studio-card">
+          <label class="studio-label">GitHub token</label>
+          <input name="github_token" class="studio-input" type="password" autocomplete="off" />
+          <label class="studio-label">Linear API key</label>
+          <input name="linear_api_key" class="studio-input" type="password" autocomplete="off" />
+          <label class="studio-label">Linear team ID</label>
+          <input name="linear_team_id" class="studio-input" />
+          <label class="studio-label">Notify email</label>
+          <input name="notify_email" class="studio-input" type="email" />
+          <button type="submit" class="studio-btn">Save Relay credentials</button>
+        </form>
+      </section>
+
+      <section class="studio-panel" id="panel-services">
+        <h1 class="studio-h1">First-party stack</h1>
+        <div class="studio-grid">
+          <div class="studio-card"><strong>Forge</strong><p class="studio-lead">Planning & routing LLM</p></div>
+          <div class="studio-card"><strong>Lens</strong><p class="studio-lead">Search + scrape research</p></div>
+          <div class="studio-card"><strong>Prism</strong><p class="studio-lead">Memory + context compression</p></div>
+          <div class="studio-card"><strong>Relay</strong><p class="studio-lead">GitHub + Linear ship</p></div>
+          <div class="studio-card"><strong>Pulse</strong><p class="studio-lead">Notifications + launch comms</p></div>
+        </div>
+        <div class="studio-card">
+          <p class="studio-label">Default coding agent</p>
+          <select id="default-agent" class="studio-select"></select>
+          <button type="button" class="studio-btn ghost" id="save-agent">Save agent</button>
+        </div>
+      </section>
+    </main>
+  </div>
+  <div class="studio-status" id="status">Studio ready</div>
+  <script src="/assets/js/studio.js?v=1"></script>
+</body>
+</html>
