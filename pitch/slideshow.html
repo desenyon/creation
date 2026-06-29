@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>sam vs creation</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html, body {
+      height: 100%; overflow: hidden;
+      font-family: "Comic Sans MS", "Chalkboard SE", cursive, sans-serif;
+      background: #fff; color: #111;
+    }
+    .deck { height: 100vh; position: relative; }
+    .slide {
+      position: absolute; inset: 0;
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      padding: 2rem 3rem; text-align: center;
+      opacity: 0; pointer-events: none; transition: opacity 0.35s;
+    }
+    .slide.active { opacity: 1; pointer-events: auto; }
+    .slide.split { flex-direction: row; gap: 2rem; text-align: left; }
+    .slide.split .half { flex: 1; display: flex; flex-direction: column; justify-content: center; align-items: center; }
+    .slide.wide { padding: 2rem 4rem; }
+
+    h1 { font-size: clamp(2.5rem, 7vw, 4.5rem); line-height: 1; margin-bottom: 0.5rem; }
+    h2 { font-size: clamp(1.4rem, 3.5vw, 2.2rem); margin-bottom: 0.75rem; }
+    .sub { font-size: 1.2rem; opacity: 0.65; max-width: 34rem; }
+    .big-img { max-height: 52vh; max-width: 90%; object-fit: contain; }
+    .square { border: 5px solid #e890b8; border-radius: 4px; }
+    .full-bleed { padding: 0; }
+    .full-bleed img { width: 100%; height: 100%; object-fit: cover; }
+
+    ul {
+      list-style: "→ "; text-align: left;
+      font-size: 1.2rem; line-height: 1.85; max-width: 30rem;
+    }
+    ul.chaos { font-size: 1.4rem; }
+    ul.creation li::marker { color: #e890b8; }
+
+    .logo { max-height: 110px; max-width: 260px; }
+    .logo-sm { max-height: 44px; }
+    .arrow { font-size: 2.5rem; margin: 0 0.5rem; }
+
+    .sponsor-grid {
+      display: flex; flex-direction: column; gap: 0.85rem;
+      width: 100%; max-width: 44rem; margin-top: 0.75rem;
+    }
+    .sponsor-row {
+      display: grid; grid-template-columns: 110px 1fr;
+      align-items: center; gap: 1.5rem;
+      text-align: left; padding: 0.55rem 0;
+      border-bottom: 2px dashed #eee;
+    }
+    .sponsor-row:last-child { border: none; }
+    .sponsor-row .logo-col {
+      display: flex; align-items: center; justify-content: flex-start;
+    }
+    .sponsor-row img { height: 34px; width: auto; max-width: 100px; }
+    .sponsor-row p { font-size: 1.05rem; line-height: 1.45; margin: 0; }
+
+    .links a {
+      display: inline-block; margin: 0.4rem; padding: 0.5rem 1rem;
+      background: #e890b8; color: #fff; text-decoration: none;
+      font-size: 1.05rem; border-radius: 4px;
+    }
+    .two-routes {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem;
+      width: 100%; max-width: 52rem; margin-top: 0.5rem; text-align: left;
+    }
+    .route-box {
+      border: 3px solid #111; padding: 1.25rem 1.35rem;
+      border-radius: 8px; background: #fafafa;
+    }
+    .route-box.b { border-color: #e890b8; }
+    .route-box h3 { font-size: 1.25rem; margin-bottom: 0.35rem; }
+    .route-box .tag { font-size: 0.95rem; opacity: 0.55; margin-bottom: 0.75rem; }
+    .route-box ul { font-size: 1rem; line-height: 1.7; max-width: none; }
+    .route-arrow { font-size: 1.5rem; margin: 0.75rem 0 0.25rem; opacity: 0.5; }
+
+    .footer { position: fixed; bottom: 0.75rem; right: 1rem; font-size: 0.85rem; opacity: 0.4; }
+    .green { color: #16a34a; }
+    .pink { color: #e890b8; }
+  </style>
+</head>
+<body>
+  <div class="deck">
+
+    <!-- SAM STORY 1-8 -->
+    <section class="slide active">
+      <img class="big-img square" src="assets/sam-warped.png" alt="sam" />
+      <h1>meet sam</h1>
+      <p class="sub">he's fine. (he's not fine.)</p>
+    </section>
+
+    <section class="slide split">
+      <div class="half"><img class="logo" src="assets/closedai-logo.png" alt="closedai" /></div>
+      <div class="half">
+        <h2>closedai</h2>
+        <ul class="chaos">
+          <li>send prompt</li>
+          <li>test fail</li>
+          <li>update linear</li>
+          <li>push github</li>
+          <li>repeat until dead</li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="slide full-bleed">
+      <img src="assets/cortisol-high.png" alt="cortisol high" />
+    </section>
+
+    <section class="slide">
+      <h1 class="pink">sam finds creation</h1>
+      <p class="sub">starts one loop. goes to touch grass.</p>
+    </section>
+
+    <section class="slide split">
+      <div class="half">
+        <img class="logo-sm" src="assets/closedai-logo.png" alt="closedai" />
+        <span class="arrow">→</span>
+        <img class="logo" src="assets/manthropic-logo.png" alt="manthropic" />
+      </div>
+      <div class="half">
+        <h2>rebrand time</h2>
+        <ul>
+          <li>had time to market</li>
+          <li>had time to sleep</li>
+          <li>closedai → <strong>manthropic</strong></li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="slide full-bleed">
+      <img src="assets/cortisol-low.png" alt="cortisol low" />
+    </section>
+
+    <section class="slide">
+      <h2>sam loves creation</h2>
+      <p class="sub">cortisol: <span class="green">down bad (good)</span></p>
+    </section>
+
+    <!-- LOOPY EXPLAIN 9-12 -->
+    <section class="slide wide">
+      <h2>what is creation?</h2>
+      <ul class="creation">
+        <li>a <strong>local agent company</strong> on your laptop</li>
+        <li>not one chatbot — a whole loop</li>
+        <li>your keys, your machine, open source</li>
+        <li>idea in → shipped product out</li>
+      </ul>
+    </section>
+
+    <section class="slide wide">
+      <h2>two ways in</h2>
+      <p class="sub" style="margin-bottom:1rem">same loop either way — pick your route</p>
+      <div class="two-routes">
+        <div class="route-box">
+          <h3>🎯 you have an idea</h3>
+          <p class="tag">existing product · side project · "i know what i want"</p>
+          <ul class="creation">
+            <li>type your idea in compose (or pick a tavily suggestion)</li>
+            <li>tavily researches <strong>around your seed</strong></li>
+            <li>nebius writes a plan for <strong>your</strong> product</li>
+            <li>agent iterates on your vision every turn</li>
+            <li>linear tracks YOUR plan issues</li>
+          </ul>
+          <p class="route-arrow">your idea → research → plan → ship</p>
+        </div>
+        <div class="route-box b">
+          <h3>🌱 starting fresh</h3>
+          <p class="tag">greenfield · blank slate · "surprise me overnight"</p>
+          <ul class="creation">
+            <li>empty workdir — agent scaffolds from zero</li>
+            <li>tavily researches markets with no seed</li>
+            <li>nebius <strong>picks</strong> idea, name, repo slug</li>
+            <li>optional SDK templates (stripe, qdrant, cli…)</li>
+            <li>wake up to a brand-new product</li>
+          </ul>
+          <p class="route-arrow">blank → research → idea picked → ship</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="slide wide">
+      <h2>then the loop runs</h2>
+      <p class="sub" style="margin-bottom:0.75rem">whether you brought an idea or started fresh:</p>
+      <ul class="creation" style="max-width:36rem;font-size:1.15rem">
+        <li>researches once at kickoff (tavily + firecrawl — not every turn)</li>
+        <li>plans + brands the product (nebius token factory)</li>
+        <li>writes real code with <strong>43 local coding CLIs</strong> (codex, cursor, openclaw…)</li>
+        <li>runs pytest + browser QA after every turn</li>
+        <li>syncs linear kanban — single source of truth so agents don't drift</li>
+        <li>pushes github + emails you kickoff, progress, and done</li>
+        <li>mem0 recalls past decisions · supercompress squishes context</li>
+        <li>nebius reads linear + QA → picks next step or stops</li>
+        <li>loops until MVP done — up to <strong>~9 hours</strong> unattended</li>
+        <li><strong>manual takeover</strong> — steer mid-run if you need to</li>
+      </ul>
+    </section>
+
+    <section class="slide wide">
+      <h2>how it works — setup</h2>
+      <ul class="creation">
+        <li>tavily + firecrawl research the market</li>
+        <li>nebius writes the build plan</li>
+        <li>composio creates linear + github + kickoff email</li>
+        <li>mem0 + supercompress prep long-run memory</li>
+      </ul>
+    </section>
+
+    <section class="slide wide">
+      <h2>how it works — every turn</h2>
+      <ul class="creation">
+        <li>mem0 recalls → supercompress trims context</li>
+        <li>coding agent builds (optional parallel agents)</li>
+        <li>pytest + browser QA</li>
+        <li>nebius reads linear → picks next step or stops</li>
+        <li>you can <strong>take over</strong> mid-run anytime</li>
+      </ul>
+    </section>
+
+    <!-- SPONSORS 13-14 -->
+    <section class="slide wide">
+      <h2>the stack (pt 1)</h2>
+      <div class="sponsor-grid">
+        <div class="sponsor-row">
+          <div class="logo-col"><img src="logos/tavily.svg" alt="Tavily" /></div>
+          <p>researches the idea at kickoff</p>
+        </div>
+        <div class="sponsor-row">
+          <div class="logo-col"><img src="logos/firecrawl.svg" alt="Firecrawl" /></div>
+          <p>deep-scrapes competitor pages</p>
+        </div>
+        <div class="sponsor-row">
+          <div class="logo-col"><img src="logos/mem0.svg" alt="Mem0" /></div>
+          <p>remembers stuff across 9-hour runs</p>
+        </div>
+        <div class="sponsor-row">
+          <div class="logo-col"><img src="logos/supercompress.svg" alt="SuperCompress" /></div>
+          <p>squishes context before the agent sees it</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="slide wide">
+      <h2>the stack (pt 2)</h2>
+      <div class="sponsor-grid">
+        <div class="sponsor-row">
+          <div class="logo-col"><img src="logos/nebius.svg" alt="Nebius" /></div>
+          <p>plans, brands, routes every turn from linear</p>
+        </div>
+        <div class="sponsor-row">
+          <div class="logo-col"><img src="logos/composio.svg" alt="Composio" /></div>
+          <p>runs github, linear, gmail, firecrawl — every turn</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- LINKS 15 -->
+    <section class="slide">
+      <h1>creation</h1>
+      <p class="sub">start loop → go bed → wake up shipped</p>
+      <div class="links">
+        <a href="https://creation.dev" target="_blank">creation.dev</a>
+        <a href="https://github.com/arjunkshah/creation" target="_blank">github</a>
+        <a href="https://www.loom.com/share/0ceb255a609c49d3a9f813e6f6f5a718" target="_blank">demo</a>
+        <a href="https://ship.builders/showcase" target="_blank">showcase</a>
+      </div>
+    </section>
+
+  </div>
+  <div class="footer" id="n">1/16 · space</div>
+  <script>
+    const slides = [...document.querySelectorAll(".slide")];
+    const n = document.getElementById("n");
+    let i = 0;
+    function go(x) {
+      if (x < 0 || x >= slides.length) return;
+      slides[i].classList.remove("active");
+      i = x;
+      slides[i].classList.add("active");
+      n.textContent = `${i + 1}/${slides.length} · space`;
+    }
+    document.addEventListener("keydown", e => {
+      if (["ArrowRight"," ","PageDown"].includes(e.key)) { e.preventDefault(); go(i+1); }
+      if (["ArrowLeft","PageUp"].includes(e.key)) { e.preventDefault(); go(i-1); }
+    });
+    document.addEventListener("click", e => {
+      if (e.target.closest("a")) return;
+      go(e.clientX / innerWidth > 0.5 ? i+1 : i-1);
+    });
+  </script>
+</body>
+</html>
