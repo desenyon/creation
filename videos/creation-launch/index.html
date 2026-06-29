@@ -1,0 +1,469 @@
+<!doctype html>
+<html lang="en" data-resolution="landscape">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1920, height=1080" />
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
+    <style>
+      /* Creation brand: warm cream + pink, editorial serif + techy grotesk */
+      @font-face {
+        font-family: "Fraunces";
+        src: url("fonts/fraunces.woff2") format("woff2");
+        font-weight: 100 900;
+        font-style: normal;
+        font-display: block;
+      }
+      @font-face {
+        font-family: "Space Grotesk";
+        src: url("fonts/space-grotesk.woff2") format("woff2");
+        font-weight: 300 700;
+        font-style: normal;
+        font-display: block;
+      }
+      :root {
+        --cream: #fbfbf8;
+        --cream-2: #f4f2ec;
+        --ink: #14110f;
+        --ink-soft: #6b665f;
+        --pink: #e48fb6;
+        --pink-deep: #c9789e;
+        --pink-soft: #fbe9f1;
+        --line: rgba(20, 17, 15, 0.1);
+        --line-2: rgba(20, 17, 15, 0.16);
+        --green: #2f7a3f;
+        --red: #b4232a;
+        --amber: #a5680f;
+        --serif: "Fraunces", Georgia, serif;
+        --sans: "Space Grotesk", system-ui, sans-serif;
+        --mono: "Space Mono", ui-monospace, monospace;
+      }
+      * { margin: 0; padding: 0; box-sizing: border-box; }
+      html, body {
+        width: 1920px; height: 1080px; overflow: hidden;
+        background: var(--cream); font-family: "Space Grotesk", system-ui, sans-serif; color: var(--ink);
+      }
+      .scene {
+        position: absolute; top: 0; left: 0; width: 1920px; height: 1080px;
+        overflow: hidden; background: var(--cream);
+      }
+      #scene2,#scene3,#scene4,#scene5,#scene6,#scene7,#scene8 { opacity: 0; }
+
+      /* shared decoratives */
+      .glow {
+        position: absolute; border-radius: 50%; filter: blur(8px);
+        background: radial-gradient(circle, rgba(228,143,182,0.40) 0%, rgba(228,143,182,0) 70%);
+        pointer-events: none;
+      }
+      .grid-lines {
+        position: absolute; inset: 0; opacity: 0.5;
+        background-image: linear-gradient(var(--line) 1px, transparent 1px),
+          linear-gradient(90deg, var(--line) 1px, transparent 1px);
+        background-size: 96px 96px;
+        -webkit-mask-image: radial-gradient(circle at 50% 45%, #000 0%, transparent 75%);
+        mask-image: radial-gradient(circle at 50% 45%, #000 0%, transparent 75%);
+      }
+      .ghost {
+        position: absolute; font-family: "Fraunces", Georgia, serif; font-weight: 900;
+        color: rgba(20,17,15,0.035); white-space: nowrap; letter-spacing: -0.04em;
+        pointer-events: none;
+      }
+      .eyebrow {
+        font-family: "Space Mono", ui-monospace, monospace; font-size: 22px; letter-spacing: 0.42em;
+        text-transform: uppercase; color: var(--pink-deep);
+      }
+      .center {
+        position: absolute; inset: 0; display: flex; flex-direction: column;
+        align-items: center; justify-content: center; gap: 26px; padding: 120px;
+      }
+
+      /* ---------- S1 hook ---------- */
+      #s1-count { font-family: "Fraunces", Georgia, serif; font-weight: 900; font-size: 360px;
+        line-height: 0.86; letter-spacing: -0.04em; font-variant-numeric: tabular-nums; }
+      #s1-label { font-size: 40px; font-weight: 500; color: var(--ink-soft); letter-spacing: -0.01em; }
+      .s1-stamp { font-family: "Fraunces", Georgia, serif; font-style: italic; font-size: 64px; font-weight: 600;
+        color: var(--pink-deep); }
+
+      /* ---------- S2 turn ---------- */
+      .turn { font-family: "Fraunces", Georgia, serif; font-weight: 600; font-size: 132px; line-height: 1.02;
+        letter-spacing: -0.03em; text-align: center; max-width: 1500px; }
+      .turn em { font-style: italic; color: var(--pink-deep); }
+
+      /* ---------- S3 hero ---------- */
+      .hero-wrap { gap: 14px; }
+      .loop { width: 168px; height: 168px; overflow: visible; }
+      .loop path { stroke-width: 2.1; }
+      #s3-word { font-family: "Fraunces", Georgia, serif; font-weight: 900; font-size: 280px; letter-spacing: -0.05em; line-height: 1; }
+      #s3-tag { font-size: 46px; font-weight: 500; color: var(--ink-soft); letter-spacing: 0.02em; }
+      #s3-tag b { color: var(--ink); font-weight: 700; }
+
+      /* ---------- board (S4/S5) ---------- */
+      .board-head { position: absolute; top: 96px; left: 140px; right: 140px;
+        display: flex; align-items: baseline; gap: 22px; }
+      .board-title { font-family: "Fraunces", Georgia, serif; font-weight: 700; font-size: 58px; letter-spacing: -0.02em; }
+      .board-sub { font-size: 28px; color: var(--ink-soft); }
+      .cols { position: absolute; top: 232px; left: 140px; right: 140px; bottom: 150px;
+        display: grid; grid-template-columns: repeat(4, 1fr); gap: 28px; }
+      .col { background: var(--cream-2); border: 1px solid var(--line); border-radius: 22px; padding: 20px; }
+      .col-h { display: flex; align-items: center; justify-content: space-between;
+        font-size: 22px; font-weight: 600; color: var(--ink-soft); margin-bottom: 14px; letter-spacing: 0.01em; }
+      .col-dot { width: 11px; height: 11px; border-radius: 50%; margin-right: 9px; display: inline-block; }
+      .col-h .n { font-family: "Space Mono", ui-monospace, monospace; font-size: 18px; background: rgba(20,17,15,0.06);
+        border-radius: 999px; padding: 2px 11px; }
+      .card { background: var(--cream); border: 1px solid var(--line-2); border-radius: 16px;
+        padding: 18px 18px 16px; box-shadow: 0 2px 6px rgba(20,17,15,0.05); }
+      .card .top { display: flex; align-items: center; justify-content: space-between; margin-bottom: 12px; }
+      .pill { font-size: 16px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em;
+        padding: 3px 11px; border-radius: 999px; }
+      .pill.high { background: #fce4e4; color: var(--red); }
+      .pill.med { background: #fdf0dc; color: var(--amber); }
+      .pill.low { background: #e6f0e6; color: var(--green); }
+      .cid { font-family: "Space Mono", ui-monospace, monospace; font-size: 17px; color: var(--ink-soft); }
+      .ctitle { font-size: 26px; font-weight: 600; line-height: 1.28; letter-spacing: -0.01em; }
+      .cmeta { display: flex; align-items: center; gap: 9px; font-size: 20px; color: var(--ink-soft); margin-top: 13px; }
+      .agent-dot { width: 9px; height: 9px; border-radius: 50%; background: var(--pink-deep); }
+      .spin { width: 17px; height: 17px; border: 2.4px solid var(--pink-soft);
+        border-top-color: var(--pink-deep); border-radius: 50%; }
+      .approve { margin-top: 14px; display: flex; gap: 10px; }
+      .approve button { flex: 1; font-family: "Space Grotesk", system-ui, sans-serif; font-size: 19px; font-weight: 700;
+        padding: 9px 0; border-radius: 10px; border: 0; }
+      .approve .ok { background: var(--pink); color: #4a1f33; }
+      .approve .no { background: transparent; border: 1px solid var(--line-2); color: var(--ink-soft); }
+      .check { color: var(--green); font-weight: 800; }
+
+      /* floating card that travels across columns */
+      #fly { position: absolute; width: 366px; z-index: 30; }
+
+      /* ---------- S5 always-on ---------- */
+      .trigs { position: absolute; left: 140px; top: 360px; display: flex; flex-direction: column; gap: 20px; }
+      .trig { display: flex; align-items: center; gap: 16px; font-family: "Space Mono", ui-monospace, monospace;
+        font-size: 30px; background: var(--cream-2); border: 1px solid var(--line);
+        border-radius: 16px; padding: 18px 26px; }
+      .trig .ic { width: 14px; height: 14px; border-radius: 4px; background: var(--pink-deep); }
+      .s5-head { position: absolute; right: 140px; top: 330px; width: 720px; text-align: right; }
+      .s5-head .k { font-family: "Fraunces", Georgia, serif; font-weight: 700; font-size: 92px; line-height: 1.02; letter-spacing: -0.03em; }
+      .s5-head .k em { font-style: italic; color: var(--pink-deep); }
+
+      /* ---------- S6 evidence ---------- */
+      .ev-card { position: absolute; left: 140px; top: 250px; width: 900px;
+        background: var(--cream-2); border: 1px solid var(--line); border-radius: 24px; padding: 34px; }
+      .ev-card h4 { font-family: "Space Mono", ui-monospace, monospace; font-size: 22px; color: var(--ink-soft); margin-bottom: 20px; letter-spacing: 0.04em; }
+      .diff { font-family: "Space Mono", ui-monospace, monospace; font-size: 24px; line-height: 1.85; }
+      .diff .add { color: var(--green); } .diff .del { color: var(--red); }
+      .ev-foot { display: flex; align-items: center; gap: 18px; margin-top: 24px; font-size: 24px; }
+      .tests-ok { color: var(--green); font-weight: 700; }
+      .ev-side { position: absolute; right: 140px; top: 300px; width: 640px; }
+      .ev-side .k { font-family: "Fraunces", Georgia, serif; font-weight: 700; font-size: 78px; line-height: 1.04; letter-spacing: -0.03em; }
+      .ev-side .k em { font-style: italic; color: var(--pink-deep); }
+      .chips { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 30px; }
+      .chip { font-family: "Space Mono", ui-monospace, monospace; font-size: 22px; padding: 9px 18px; border-radius: 999px;
+        border: 1px solid var(--line-2); color: var(--ink-soft); }
+
+      /* ---------- S7 scale ---------- */
+      .s7-k { font-family: "Fraunces", Georgia, serif; font-weight: 700; font-size: 108px; line-height: 1.04;
+        letter-spacing: -0.03em; text-align: center; max-width: 1500px; }
+      .s7-k em { font-style: italic; color: var(--pink-deep); }
+      .logos { display: flex; align-items: center; gap: 42px; margin-top: 18px; }
+      .logos img { height: 52px; width: auto; opacity: 0.92; }
+      .s7-foot { font-family: "Space Mono", ui-monospace, monospace; font-size: 26px; color: var(--ink-soft); letter-spacing: 0.06em; margin-top: 8px; }
+      .s7-foot b { color: var(--pink-deep); }
+
+      /* ---------- S8 CTA ---------- */
+      #s8-k { font-family: "Fraunces", Georgia, serif; font-weight: 800; font-size: 150px; line-height: 1.0;
+        letter-spacing: -0.04em; text-align: center; max-width: 1560px; }
+      .cta-mark { display: flex; align-items: center; gap: 20px; }
+      .cta-mark .w { font-family: "Fraunces", Georgia, serif; font-weight: 900; font-size: 100px; letter-spacing: -0.05em; }
+      .cta-mark .loop { width: 96px; height: 96px; }
+      .cmd { font-family: "Space Mono", ui-monospace, monospace; font-size: 30px; background: var(--ink); color: var(--cream);
+        padding: 16px 28px; border-radius: 14px; letter-spacing: 0.01em; }
+      .cmd .c { color: var(--pink); }
+      #s8-url { font-family: "Space Mono", ui-monospace, monospace; font-size: 30px; color: var(--pink-deep); letter-spacing: 0.1em; }
+    </style>
+  </head>
+  <body>
+    <div id="root" data-composition-id="main" data-start="0" data-duration="34.84" data-width="1920" data-height="1080">
+
+      <!-- ============ S1 — HOOK ============ -->
+      <div id="scene1" class="scene">
+        <div class="grid-lines"></div>
+        <div class="glow" id="s1-glow" style="width:900px;height:900px;left:510px;top:90px;"></div>
+        <div class="ghost" id="s1-ghost" style="font-size:520px;left:-40px;top:300px;">backlog</div>
+        <div class="center">
+          <div class="eyebrow" id="s1-eye">every engineering team · right now</div>
+          <div id="s1-count">0</div>
+          <div id="s1-label">open tickets in the backlog</div>
+          <div class="s1-stamp" id="s1-stamp">and nobody’s working them.</div>
+        </div>
+      </div>
+
+      <!-- ============ S2 — TURN ============ -->
+      <div id="scene2" class="scene">
+        <div class="glow" style="width:1000px;height:1000px;left:460px;top:40px;"></div>
+        <div class="center">
+          <div class="turn" id="s2-line">What if the work<br /><em>worked itself?</em></div>
+        </div>
+      </div>
+
+      <!-- ============ S3 — HERO REVEAL ============ -->
+      <div id="scene3" class="scene">
+        <div class="grid-lines"></div>
+        <div class="glow" style="width:1200px;height:1200px;left:360px;top:-60px;"></div>
+        <div class="ghost" style="font-size:420px;left:50%;top:340px;transform:translateX(-50%);">loop</div>
+        <div class="center hero-wrap">
+          <svg class="loop" id="s3-loop" viewBox="0 0 24 24" fill="none">
+            <path class="loop-a" d="M6 12a6 6 0 0 1 12 0" stroke="#c9789e" stroke-linecap="round" />
+            <path class="loop-b" d="M18 12a6 6 0 0 1-12 0" stroke="#f0a8c8" stroke-linecap="round" />
+          </svg>
+          <div id="s3-word">creation</div>
+          <div id="s3-tag">the <b>agent operating system</b></div>
+        </div>
+      </div>
+
+      <!-- ============ S4 — THE BOARD ============ -->
+      <div id="scene4" class="scene">
+        <div class="board-head">
+          <span class="board-title" id="s4-title">Put work on the board.</span>
+          <span class="board-sub" id="s4-sub">an agent claims it · works it · ships evidence</span>
+        </div>
+        <div class="cols" id="s4-cols">
+          <div class="col"><div class="col-h"><span><span class="col-dot" style="background:#9aa0a6"></span>Backlog</span><span class="n">7</span></div></div>
+          <div class="col"><div class="col-h"><span><span class="col-dot" style="background:var(--pink-deep)"></span>In progress</span><span class="n">2</span></div></div>
+          <div class="col"><div class="col-h"><span><span class="col-dot" style="background:#7c5bd6"></span>In review</span><span class="n">1</span></div></div>
+          <div class="col"><div class="col-h"><span><span class="col-dot" style="background:var(--green)"></span>Done</span><span class="n">9</span></div></div>
+        </div>
+        <!-- floating card -->
+        <div id="fly">
+          <div class="card">
+            <div class="top"><span class="pill high">high</span><span class="cid">LPY-114</span></div>
+            <div class="ctitle">Fix N+1 query on dashboard</div>
+            <div class="cmeta" id="fly-meta"><span class="agent-dot"></span><span id="fly-meta-txt">unassigned</span></div>
+            <div class="approve" id="fly-approve" style="display:none"><button class="ok">Approve</button><button class="no">Reject</button></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ============ S5 — ALWAYS ON ============ -->
+      <div id="scene5" class="scene">
+        <div class="glow" style="width:900px;height:900px;left:-160px;top:240px;"></div>
+        <div class="trigs">
+          <div class="trig" id="t1"><span class="ic"></span>cron · nightly</div>
+          <div class="trig" id="t2"><span class="ic"></span>webhook · PR opened</div>
+          <div class="trig" id="t3"><span class="ic"></span>status · needs-triage</div>
+        </div>
+        <div class="s5-head">
+          <div class="k" id="s5-k">Triggers open tickets.<br /><em>Agents never stop.</em></div>
+        </div>
+      </div>
+
+      <!-- ============ S6 — EVIDENCE ============ -->
+      <div id="scene6" class="scene">
+        <div class="grid-lines"></div>
+        <div class="ev-card" id="s6-card">
+          <h4>EVIDENCE · LPY-114</h4>
+          <div class="diff">
+            <div class="del">- rows.forEach(r =&gt; db.query(r.id))</div>
+            <div class="add">+ db.queryMany(rows.map(r =&gt; r.id))</div>
+            <div class="add">+ added index on orders(user_id)</div>
+          </div>
+          <div class="ev-foot"><span class="tests-ok" id="s6-tests">✓ 128 tests passed</span><span class="cid">3 files · +84 −19</span></div>
+        </div>
+        <div class="ev-side">
+          <div class="k" id="s6-k">Reviewable<br /><em>by design.</em></div>
+          <div class="chips" id="s6-chips">
+            <span class="chip">risk tier</span><span class="chip">policy</span>
+            <span class="chip">approval gate</span><span class="chip">audit log</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- ============ S7 — SCALE ============ -->
+      <div id="scene7" class="scene">
+        <div class="glow" style="width:1100px;height:1100px;left:410px;top:-40px;"></div>
+        <div class="center">
+          <div class="s7-k" id="s7-line">From a personal bench<br />to <em>company-wide missions.</em></div>
+          <div class="logos" id="s7-logos">
+            <img src="assets/logos/github.svg" alt="" />
+            <img src="assets/logos/linear.svg" alt="" />
+            <img src="assets/logos/openai.svg" alt="" />
+            <img src="assets/logos/anthropic.svg" alt="" />
+            <img src="assets/logos/cursor.svg" alt="" />
+            <img src="assets/logos/composio.svg" alt="" />
+            <img src="assets/logos/gmail.svg" alt="" />
+          </div>
+          <div class="s7-foot" id="s7-foot"><b>43 coding CLIs</b> · local-first · on your machine</div>
+        </div>
+      </div>
+
+      <!-- ============ S8 — CTA ============ -->
+      <div id="scene8" class="scene">
+        <div class="grid-lines"></div>
+        <div class="glow" style="width:1200px;height:1200px;left:360px;top:-80px;"></div>
+        <div class="center" id="s8-group">
+          <div id="s8-k">A board your agents<br />never stop working.</div>
+          <div class="cta-mark" id="s8-mark">
+            <svg class="loop" viewBox="0 0 24 24" fill="none">
+              <path d="M6 12a6 6 0 0 1 12 0" stroke="#c9789e" stroke-linecap="round" />
+              <path d="M18 12a6 6 0 0 1-12 0" stroke="#f0a8c8" stroke-linecap="round" />
+            </svg>
+            <span class="w">creation</span>
+          </div>
+          <div class="cmd" id="s8-cmd"><span class="c">git clone</span> github.com/arjunkshah/creation</div>
+          <div id="s8-url">creation.dev</div>
+        </div>
+      </div>
+
+      <!-- music bed (separate audio track, unaffected by scene visuals) -->
+      <audio id="bgm" data-start="0" data-duration="34.84" data-track-index="9" src="assets/music.mp3" data-volume="0.82"></audio>
+    </div>
+
+    <script>
+      window.__timelines = window.__timelines || {};
+      var tl = gsap.timeline({ paused: true });
+
+      var BEAT = 60 / 124;          // 0.48387
+      var BAR = BEAT * 4;           // 1.93548
+      var TD = 0.3;                 // transition duration
+
+      // scene boundaries (bar-locked)
+      var B = {
+        s1: 0,
+        s2: 2 * BAR,   // 3.871
+        s3: 3 * BAR,   // 5.806
+        s4: 5 * BAR,   // 9.677
+        s5: 8 * BAR,   // 15.484
+        s6: 10 * BAR,  // 19.355
+        s7: 12 * BAR,  // 23.226
+        s8: 14 * BAR   // 27.097
+      };
+
+      // ---- transition helpers (start slightly early so incoming lands on the beat) ----
+      function pushIn(outSel, inSel, T) {
+        var t0 = T - TD;
+        tl.set(inSel, { opacity: 1, zIndex: 5 }, t0);
+        tl.set(outSel, { zIndex: 4 }, t0);
+        tl.to(outSel, { xPercent: -100, duration: TD, ease: "power3.inOut", overwrite: "auto" }, t0);
+        tl.fromTo(inSel, { xPercent: 100 }, { xPercent: 0, duration: TD, ease: "power3.inOut", overwrite: "auto" }, t0);
+      }
+      function zoomIn(outSel, inSel, T) {
+        var t0 = T - TD;
+        tl.set(inSel, { opacity: 0, zIndex: 5, scale: 1.35 }, t0);
+        tl.set(outSel, { zIndex: 4 }, t0);
+        tl.to(outSel, { scale: 1.7, opacity: 0, duration: TD, ease: "power2.in" }, t0);
+        tl.to(inSel, { opacity: 1, duration: TD * 0.55, ease: "power1.out" }, t0);
+        tl.fromTo(inSel, { scale: 1.35 }, { scale: 1, duration: TD + 0.15, ease: "power3.out" }, t0);
+      }
+
+      // ================= S1 — HOOK =================
+      tl.from("#s1-eye", { y: 24, opacity: 0, duration: 0.4, ease: "power2.out" }, 0.15);
+      var counter = { v: 0 };
+      tl.to(counter, {
+        v: 247, duration: 1.0, ease: "power2.out", snap: { v: 1 },
+        onUpdate: function () { document.getElementById("s1-count").textContent = Math.round(counter.v); }
+      }, 0.35);
+      tl.from("#s1-count", { y: 50, opacity: 0, scale: 0.9, duration: 0.5, ease: "back.out(1.6)" }, 0.35);
+      tl.from("#s1-label", { y: 24, opacity: 0, duration: 0.4, ease: "power2.out" }, 0.9);
+      tl.from("#s1-stamp", { y: 30, opacity: 0, rotation: -2, duration: 0.5, ease: "back.out(2)" }, 1.55);
+      tl.to("#s1-glow", { scale: 1.12, duration: 2.0, ease: "sine.inOut" }, 0);
+
+      // S1 -> S2  push
+      pushIn("#scene1", "#scene2", B.s2);
+
+      // ================= S2 — TURN =================
+      tl.from("#s2-line", { y: 60, opacity: 0, duration: 0.5, ease: "power3.out" }, B.s2 + 0.05);
+      tl.from("#s2-line em", { color: "#14110f", duration: 0.5, ease: "power1.inOut" }, B.s2 + 0.5);
+
+      // S2 -> S3  zoom-through hero reveal
+      zoomIn("#scene2", "#scene3", B.s3);
+
+      // ================= S3 — HERO =================
+      tl.set("#s3-loop .loop-a", { strokeDasharray: 19, strokeDashoffset: 19 }, B.s3);
+      tl.set("#s3-loop .loop-b", { strokeDasharray: 19, strokeDashoffset: 19 }, B.s3);
+      tl.to("#s3-loop .loop-a", { strokeDashoffset: 0, duration: 0.5, ease: "power2.inOut" }, B.s3 + 0.05);
+      tl.to("#s3-loop .loop-b", { strokeDashoffset: 0, duration: 0.5, ease: "power2.inOut" }, B.s3 + 0.22);
+      tl.from("#s3-loop", { scale: 0.6, opacity: 0, duration: 0.4, ease: "back.out(1.8)" }, B.s3 + 0.05);
+      tl.from("#s3-word", { y: 40, opacity: 0, scale: 0.95, duration: 0.55, ease: "power3.out" }, B.s3 + 0.5);
+      tl.from("#s3-tag", { y: 24, opacity: 0, duration: 0.45, ease: "power2.out" }, B.s3 + 0.85);
+      tl.to("#s3-loop", { rotation: 360, duration: 3.0, ease: "none", transformOrigin: "50% 50%" }, B.s3 + 0.7);
+
+      // S3 -> S4  push
+      pushIn("#scene3", "#scene4", B.s4);
+
+      // ================= S4 — THE BOARD =================
+      tl.from("#s4-title", { y: 30, opacity: 0, duration: 0.45, ease: "power3.out" }, B.s4 + 0.05);
+      tl.from("#s4-sub", { y: 20, opacity: 0, duration: 0.4, ease: "power2.out" }, B.s4 + 0.25);
+      tl.from("#s4-cols .col", { y: 40, opacity: 0, duration: 0.45, stagger: 0.08, ease: "power3.out" }, B.s4 + 0.2);
+
+      // floating card column anchors (px). cols start left:140, width grid of 4, gap 28 => col width 389
+      var COL = [154, 571, 988, 1405];
+      var CARD_Y = 320;
+      tl.set("#fly", { left: COL[0], top: CARD_Y, opacity: 0 }, B.s4);
+      tl.from("#fly", { y: 26, opacity: 0, duration: 0.45, ease: "back.out(1.5)", overwrite: "auto" }, B.s4 + 0.6);
+      tl.set("#fly", { opacity: 1 }, B.s4 + 0.6);
+      // assign agent
+      tl.to("#fly-meta-txt", { duration: 0.01, onComplete: function () { document.getElementById("fly-meta-txt").textContent = "Codex · assigned"; } }, B.s4 + 1.15);
+      tl.from("#fly-meta", { scale: 0.85, opacity: 0.4, duration: 0.3, ease: "back.out(2)", transformOrigin: "left center" }, B.s4 + 1.15);
+      // -> In progress
+      tl.to("#fly", { left: COL[1], duration: 0.55, ease: "power3.inOut" }, B.s4 + 1.6);
+      tl.to("#fly-meta-txt", { duration: 0.01, onComplete: function () {
+        var m = document.getElementById("fly-meta"); m.innerHTML = '<span class="spin" id="fly-spin"></span><span>Codex · working</span>'; } }, B.s4 + 2.18);
+      tl.to("#fly-spin", { rotation: 360, duration: 0.6, ease: "none", repeat: 2, transformOrigin: "50% 50%" }, B.s4 + 2.2);
+      // -> In review
+      tl.to("#fly", { left: COL[2], duration: 0.55, ease: "power3.inOut" }, B.s4 + 3.0);
+      tl.to("#fly-meta-txt", { duration: 0.01, onComplete: function () {
+        document.getElementById("fly-meta").innerHTML = '<span class="cid">3 files · +84 −19</span>';
+        document.getElementById("fly-approve").style.display = "flex"; } }, B.s4 + 3.55);
+      tl.from("#fly-approve", { y: 12, opacity: 0, duration: 0.3, ease: "power2.out" }, B.s4 + 3.58);
+      tl.to("#fly-approve .ok", { scale: 1.06, duration: 0.22, yoyo: true, repeat: 3, ease: "sine.inOut", transformOrigin: "50% 50%" }, B.s4 + 3.9);
+      // approve -> Done
+      tl.to("#fly-approve .ok", { backgroundColor: "#2f7a3f", color: "#ffffff", duration: 0.2, overwrite: "auto" }, B.s4 + 4.8);
+      tl.to("#fly", { left: COL[3], duration: 0.5, ease: "power3.inOut" }, B.s4 + 4.9);
+      tl.to("#fly-meta-txt", { duration: 0.01, onComplete: function () {
+        document.getElementById("fly-approve").style.display = "none";
+        document.getElementById("fly-meta").innerHTML = '<span class="check">✓</span><span>PR merged</span>'; } }, B.s4 + 5.42);
+
+      // S4 -> S5  push
+      pushIn("#scene4", "#scene5", B.s5);
+
+      // ================= S5 — ALWAYS ON =================
+      tl.from("#s5-k", { x: 50, opacity: 0, duration: 0.5, ease: "power3.out" }, B.s5 + 0.1);
+      tl.from(".trig", { x: -50, opacity: 0, duration: 0.45, stagger: 0.12, ease: "power3.out" }, B.s5 + 0.25);
+      // triggers "fire" — pulse each in turn
+      ["#t1", "#t2", "#t3"].forEach(function (s, i) {
+        tl.to(s + " .ic", { scale: 1.8, backgroundColor: "#e48fb6", duration: 0.18, yoyo: true, repeat: 1, ease: "power2.out", transformOrigin: "50% 50%" }, B.s5 + 1.2 + i * 0.55);
+        tl.fromTo(s, { boxShadow: "0 0 0 0 rgba(228,143,182,0.5)" }, { boxShadow: "0 0 0 14px rgba(228,143,182,0)", duration: 0.6, ease: "power2.out" }, B.s5 + 1.2 + i * 0.55);
+      });
+
+      // S5 -> S6  push
+      pushIn("#scene5", "#scene6", B.s6);
+
+      // ================= S6 — EVIDENCE =================
+      tl.from("#s6-card", { x: -50, opacity: 0, duration: 0.5, ease: "power3.out" }, B.s6 + 0.1);
+      tl.from(".diff > div", { x: -16, opacity: 0, duration: 0.32, stagger: 0.14, ease: "power2.out" }, B.s6 + 0.5);
+      tl.from("#s6-tests", { scale: 0.8, opacity: 0, duration: 0.35, ease: "back.out(2)", transformOrigin: "left center" }, B.s6 + 1.2);
+      tl.from("#s6-k", { y: 40, opacity: 0, duration: 0.5, ease: "power3.out" }, B.s6 + 0.4);
+      tl.from("#s6-chips .chip", { y: 18, opacity: 0, duration: 0.3, stagger: 0.08, ease: "power2.out" }, B.s6 + 1.0);
+
+      // S6 -> S7  push
+      pushIn("#scene6", "#scene7", B.s7);
+
+      // ================= S7 — SCALE =================
+      tl.from("#s7-line", { y: 50, opacity: 0, duration: 0.5, ease: "power3.out" }, B.s7 + 0.1);
+      tl.from("#s7-line em", { color: "#14110f", duration: 0.45, ease: "power1.inOut" }, B.s7 + 0.55);
+      tl.from("#s7-logos img", { y: 24, opacity: 0, scale: 0.8, duration: 0.4, stagger: 0.07, ease: "back.out(1.7)" }, B.s7 + 0.7);
+      tl.from("#s7-foot", { y: 16, opacity: 0, duration: 0.4, ease: "power2.out" }, B.s7 + 1.3);
+
+      // S7 -> S8  zoom-through into the payoff
+      zoomIn("#scene7", "#scene8", B.s8);
+
+      // ================= S8 — CTA =================
+      tl.from("#s8-k", { y: 60, opacity: 0, duration: 0.6, ease: "power3.out" }, B.s8 + 0.1);
+      tl.from("#s8-mark", { y: 30, opacity: 0, scale: 0.9, duration: 0.5, ease: "back.out(1.6)" }, B.s8 + 0.6);
+      tl.from("#s8-cmd", { y: 22, opacity: 0, duration: 0.4, ease: "power2.out" }, B.s8 + 0.95);
+      tl.from("#s8-url", { y: 16, opacity: 0, duration: 0.4, ease: "power2.out" }, B.s8 + 1.2);
+      tl.to("#s8-mark .loop", { rotation: 360, duration: 3.0, ease: "none", transformOrigin: "50% 50%" }, B.s8 + 1.0);
+      // final gentle settle + fade (final scene only — allowed)
+      tl.to("#s8-group", { opacity: 0, duration: 0.6, ease: "power2.in" }, 34.84 - 0.6);
+
+      window.__timelines["main"] = tl;
+    </script>
+  </body>
+</html>
