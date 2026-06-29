@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>What Is an Agent Operating System? | Creation</title>
+  <meta name="description" content="An agent operating system is a control plane where engineering work lives on a workflow and a governed fleet of AI agents executes it under policy, with reviewable evidence. Here's what that means — and how Creation implements it locally." />
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1" />
+  <link rel="canonical" href="https://creation.dev/agent-operating-system" />
+
+  <meta property="og:site_name" content="Creation" />
+  <meta property="og:type" content="article" />
+  <meta property="og:url" content="https://creation.dev/agent-operating-system" />
+  <meta property="og:title" content="What Is an Agent Operating System?" />
+  <meta property="og:description" content="The control plane where engineering work lives on a workflow and a governed fleet of AI agents executes it under policy — explained, with how Creation implements it locally." />
+  <meta property="og:image" content="https://creation.dev/assets/og-image.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="What Is an Agent Operating System?" />
+  <meta name="twitter:description" content="The control plane where engineering work lives in a queue and a fleet of governed AI agents executes it under policy." />
+  <meta name="twitter:image" content="https://creation.dev/assets/og-image.png" />
+
+  <meta name="theme-color" content="rgb(251,251,248)" />
+  <link rel="stylesheet" href="assets/css/datafruit.css?v=12" />
+  <link rel="icon" href="/favicon.ico" sizes="any" />
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <link rel="icon" type="image/png" sizes="48x48" href="/assets/favicon-48.png" />
+  <link rel="icon" type="image/png" sizes="96x96" href="/assets/favicon-96.png" />
+  <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png" />
+  <link rel="manifest" href="/site.webmanifest" />
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "TechArticle",
+        "headline": "What Is an Agent Operating System?",
+        "description": "An agent operating system is a control plane where engineering work lives on a workflow and a governed fleet of AI agents executes it under policy, with reviewable evidence.",
+        "image": "https://creation.dev/assets/og-image.png",
+        "author": { "@type": "Organization", "name": "Creation", "url": "https://creation.dev/" },
+        "publisher": { "@type": "Organization", "name": "Creation", "logo": { "@type": "ImageObject", "url": "https://creation.dev/assets/logo-512.png" } },
+        "mainEntityOfPage": "https://creation.dev/agent-operating-system"
+      },
+      {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://creation.dev/" },
+          { "@type": "ListItem", "position": 2, "name": "Agent Operating System", "item": "https://creation.dev/agent-operating-system" }
+        ]
+      }
+    ]
+  }
+  </script>
+</head>
+<body>
+  <div class="bg-top" aria-hidden="true"></div>
+
+  <header class="site-header">
+    <div class="header-blur" aria-hidden="true"></div>
+    <div class="container header-inner">
+      <a href="/" class="logo">
+        <svg class="logo-mark" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M6 12a6 6 0 0 1 12 0" fill="none" stroke="#c9789e" stroke-width="2" stroke-linecap="round"/>
+          <path d="M18 12a6 6 0 0 1-12 0" fill="none" stroke="#f0a8c8" stroke-width="2" stroke-linecap="round"/>
+        </svg>
+        <span class="logo-word">creation</span>
+      </a>
+      <div class="header-end">
+        <nav class="nav-pill" aria-label="Main">
+          <a href="/#workflow">Workflow</a>
+          <a href="/#features">Features</a>
+          <a href="/coding-agents">Coding agents</a>
+          <a href="/#quickstart">Quickstart</a>
+          <a href="/#faq">FAQ</a>
+        </nav>
+        <div class="cta-pill">
+          <a href="https://github.com/arjunkshah/creation">GitHub</a>
+        </div>
+      </div>
+    </div>
+  </header>
+  <div class="header-spacer" aria-hidden="true"></div>
+
+  <div class="shell">
+    <main class="container">
+      <article class="doc">
+        <nav class="doc-breadcrumb" aria-label="Breadcrumb">
+          <a href="/">Home</a> / Agent Operating System
+        </nav>
+        <p class="doc-eyebrow">Concept</p>
+        <h1 class="doc-title">What is an agent operating system?</h1>
+        <p class="doc-lead">
+          An <strong>agent operating system</strong> is a control plane for software engineering work: instead of chatting with one AI assistant, you put work in a workflow and a governed fleet of agents watches it, does the work under policy, and produces reviewable evidence — learning from every run.
+        </p>
+
+        <div class="doc-body">
+          <p>
+            The first wave of AI coding tools put a single assistant inside your editor. That helps you type faster, but the work still lives in your head and the agent forgets everything the moment the window closes. An agent operating system flips the model: <strong>the work is the durable object</strong>, and agents are workers that attach to it, governed by the same policies and visibility rules a real engineering org runs on.
+          </p>
+
+          <h2>Why a single AI agent isn't enough</h2>
+          <p>
+            One chat agent is stateless, unsupervised, and invisible to your team. There's no record of <em>what</em> it changed, <em>why</em>, or whether it was allowed to. As soon as you want more than one task running — or want to trust the output without re-reading every line — you need structure around the agent, not just a better agent.
+          </p>
+          <ul>
+            <li><strong>Durability</strong> — work and its history outlive any single session.</li>
+            <li><strong>Governance</strong> — agents operate under explicit policy: which repos, which paths, what risk tier, when a human must approve.</li>
+            <li><strong>Reviewability</strong> — every run yields an evidence pack so review is fast and trustworthy.</li>
+            <li><strong>Memory</strong> — lessons from past runs feed the next one.</li>
+          </ul>
+
+          <h2>The building blocks: a work graph</h2>
+          <p>
+            An agent OS models engineering work as a connected graph of durable objects rather than a transcript. In <a href="/">Creation</a> these are:
+          </p>
+          <table class="doc-table">
+            <thead><tr><th>Object</th><th>What it is</th></tr></thead>
+            <tbody>
+              <tr><td><strong>Ticket</strong></td><td>A unit of work — the atom of the workflow. Assignable to a human or an agent.</td></tr>
+              <tr><td><strong>Agent</strong></td><td>A governed, reusable worker with a kind (code, test, security…) and an inline policy.</td></tr>
+              <tr><td><strong>Trigger</strong></td><td>Binds work to an agent so it "just keeps going" — on assignment, status, schedule, or webhook.</td></tr>
+              <tr><td><strong>Run</strong></td><td>One execution of an agent against a ticket, streamed live.</td></tr>
+              <tr><td><strong>Policy</strong></td><td>Allowed repos, denied paths, risk tier, and approval gates that constrain a run.</td></tr>
+              <tr><td><strong>Evidence pack</strong></td><td>The reviewable artifact a run produces: plan, files touched, tests, risks, open questions.</td></tr>
+              <tr><td><strong>Mission</strong></td><td>A company-wide objective that fans out into many tickets across repos.</td></tr>
+              <tr><td><strong>Memory</strong></td><td>Lessons learned, compressed and recalled on the next relevant run.</td></tr>
+            </tbody>
+          </table>
+
+          <h2>The agentic loop</h2>
+          <p>
+            Creation's name comes from its core workflow: an <strong>agentic loop</strong>. Each turn a planner sizes the work, routes it to a coding agent, runs quality checks, and feeds the result back in — looping until the ticket is actually shippable. That continuous agentic looping is what lets a fleet make real progress unattended, instead of an agentic coding tool that stops after a single suggestion.
+          </p>
+
+          <h2>How work gets routed to agents</h2>
+          <p>
+            When a ticket lands, the OS decides — explainably — whether to hand it to an agent already looping on that repo or to spin up a dedicated run. A <strong>small</strong> change is appended to a running loop; a <strong>big</strong> task gets its own agent so it isn't starved behind smaller work. That sizing decision, plus failover when an agent hits a usage limit, is what makes the fleet feel like a team rather than a single bot.
+          </p>
+
+          <h2>Agent OS vs. AI IDE vs. chatbot</h2>
+          <table class="doc-table">
+            <thead><tr><th></th><th>Chatbot</th><th>AI IDE</th><th>Agent OS</th></tr></thead>
+            <tbody>
+              <tr><td>Unit of value</td><td>A reply</td><td>An edit</td><td>A shipped ticket</td></tr>
+              <tr><td>State</td><td>Ephemeral</td><td>Per-session</td><td>Durable work graph</td></tr>
+              <tr><td>Concurrency</td><td>One thread</td><td>One developer</td><td>A fleet of agents</td></tr>
+              <tr><td>Governance</td><td>None</td><td>Minimal</td><td>Policy + approvals</td></tr>
+              <tr><td>Trust</td><td>Re-read everything</td><td>Diff review</td><td>Evidence packs</td></tr>
+            </tbody>
+          </table>
+
+          <h2>How Creation implements it — locally</h2>
+          <p>
+            Creation is a <strong>local-first</strong> agent operating system. It runs on your machine with your own API keys, drives <a href="/coding-agents">43 coding-agent CLIs</a> (Codex, Claude Code, Cursor, Gemini, and more), and stores its work graph in a local SQLite database. Agents research with Tavily and Firecrawl, remember with Mem0, and ship through GitHub, Linear, and Gmail via Composio — and every run ends in a verifiable ship receipt. Nothing is uploaded to a hosted Creation service.
+          </p>
+
+          <div class="doc-callout">
+            <strong>In one line:</strong> an agent operating system turns "ask an AI to code" into "assign work to a governed team of agents that ship, prove, and improve" — on infrastructure you control.
+          </div>
+        </div>
+
+        <div class="doc-cta">
+          <h2>Run your own agent OS in minutes</h2>
+          <p>Local-first, on your keys. A team of agents that never stop working.</p>
+          <div class="cta-actions">
+            <button type="button" class="btn-accent install-btn" data-cmd="curl -fsSL creation.dev/install | bash">Copy install command</button>
+            <a href="/#quickstart" class="btn-link">See the quickstart →</a>
+          </div>
+        </div>
+      </article>
+    </main>
+
+    <footer class="site-footer">
+      <div class="footer-inner">
+        <div class="footer-grid">
+          <div>
+            <p class="footer-brand-label">Creation</p>
+            <p class="footer-tagline">A team of agents that never stop working.</p>
+            <a href="https://github.com/arjunkshah/creation" class="footer-email">github.com/arjunkshah/creation</a>
+          </div>
+          <div class="footer-links">
+            <section>
+              <p class="footer-heading">Learn</p>
+              <ul>
+                <li><a href="/agent-operating-system">Agent operating system</a></li>
+                <li><a href="/coding-agents">Supported coding agents</a></li>
+                <li><a href="/free-ai-coding-tool">Free AI coding tool</a></li>
+                <li><a href="/local-first-coding-tool">Local-first coding tool</a></li>
+              </ul>
+            </section>
+            <section>
+              <p class="footer-heading">Links</p>
+              <ul>
+                <li><a href="https://github.com/arjunkshah/creation">GitHub</a></li>
+                <li><a href="https://creation.dev">Website</a></li>
+              </ul>
+            </section>
+          </div>
+        </div>
+        <p class="footer-copy">© 2026 Creation · MIT</p>
+      </div>
+    </footer>
+  </div>
+
+  <script>
+    document.querySelectorAll(".install-btn").forEach(function (btn) {
+      var label = btn.textContent;
+      btn.addEventListener("click", function () {
+        var cmd = btn.getAttribute("data-cmd") || "";
+        var done = function () {
+          btn.textContent = "Copied — paste in your terminal";
+          btn.classList.add("copied");
+          setTimeout(function () { btn.textContent = label; btn.classList.remove("copied"); }, 2000);
+        };
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+          navigator.clipboard.writeText(cmd).then(done).catch(done);
+        } else {
+          var ta = document.createElement("textarea");
+          ta.value = cmd; document.body.appendChild(ta); ta.select();
+          try { document.execCommand("copy"); } catch (e) {}
+          document.body.removeChild(ta); done();
+        }
+      });
+    });
+  </script>
+  <script defer src="/_vercel/insights/script.js"></script>
+</body>
+</html>
