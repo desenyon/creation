@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 280" role="img" aria-label="Token compression before and after SuperCompress">
+  <rect width="960" height="280" rx="16" fill="#fafafa" stroke="#e5e7eb"/>
+  <text x="40" y="44" font-family="system-ui,sans-serif" font-size="15" font-weight="600" fill="#0f172a">Before · 2,647 tokens</text>
+  <rect x="40" y="60" width="880" height="28" rx="6" fill="#e5e7eb"/>
+  <text x="40" y="120" font-family="system-ui,sans-serif" font-size="15" font-weight="600" fill="#1d4ed8">After SuperCompress · 265 tokens (~90%)</text>
+  <rect x="40" y="136" width="880" height="28" rx="6" fill="#e5e7eb"/>
+  <rect x="40" y="136" width="88" height="28" rx="6" fill="url(#bar)"/>
+  <defs>
+    <linearGradient id="bar" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#93c5fd"/>
+      <stop offset="100%" stop-color="#2563eb"/>
+    </linearGradient>
+  </defs>
+  <g font-family="system-ui,sans-serif" font-size="12" fill="#64748b">
+    <text x="40" y="200">Kept: definitions · entity matches · recent lines</text>
+    <text x="40" y="222">Evicted: duplicate filler · low-signal boilerplate</text>
+    <text x="40" y="256" fill="#1e40af">Policy: SuperCompress · budget_ratio=0.10</text>
+  </g>
+</svg>
