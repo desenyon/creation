@@ -1,0 +1,28 @@
+name: Feature request
+description: Suggest an improvement to Creation
+title: "[Feature]: "
+labels: ["enhancement"]
+body:
+  - type: textarea
+    id: problem
+    attributes:
+      label: Problem or opportunity
+    validations:
+      required: true
+  - type: dropdown
+    id: service
+    attributes:
+      label: Primary service
+      options:
+        - Forge
+        - Lens
+        - Prism
+        - Relay
+        - Pulse
+        - Account
+        - Studio
+        - Agents
+  - type: textarea
+    id: solution
+    attributes:
+      label: Proposed solution
