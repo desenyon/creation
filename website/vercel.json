@@ -1,12 +1,13 @@
 {
   "$schema": "https://openapi.vercel.sh/vercel.json",
-  "installCommand": "npm install",
   "buildCommand": "npm run build",
   "framework": "nextjs",
+  "installCommand": "npm install",
   "headers": [
     {
       "source": "/install.sh",
       "headers": [{ "key": "Content-Type", "value": "text/x-shellscript; charset=utf-8" }]
     }
-  ]
+  ],
+  "rewrites": [{ "source": "/install", "destination": "/install.sh" }]
 }
