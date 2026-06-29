@@ -1,0 +1,138 @@
+/* Creation Studio — distinct dark terminal aesthetic */
+
+:root {
+  --bg: #09090b;
+  --surface: #121214;
+  --surface-2: #1a1a1f;
+  --border: #2a2a32;
+  --text: #f4f4f5;
+  --muted: #a1a1aa;
+  --accent: #f97316;
+  --accent-2: #fb923c;
+  --green: #22c55e;
+  --red: #ef4444;
+  --mono: "IBM Plex Mono", ui-monospace, monospace;
+  --sans: "Inter", system-ui, sans-serif;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html, body { height: 100%; }
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--sans);
+  -webkit-font-smoothing: antialiased;
+}
+
+a { color: var(--accent-2); text-decoration: none; }
+code { font-family: var(--mono); font-size: 0.9em; background: var(--surface-2); padding: 2px 6px; border-radius: 4px; }
+
+.studio-shell { display: grid; grid-template-columns: 260px 1fr; min-height: 100vh; }
+.studio-sidebar {
+  background: var(--surface);
+  border-right: 1px solid var(--border);
+  padding: 20px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+.studio-brand {
+  font-family: var(--mono);
+  font-size: 1.1rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+.studio-nav { display: flex; flex-direction: column; gap: 6px; }
+.studio-nav button {
+  background: transparent;
+  border: 1px solid transparent;
+  color: var(--muted);
+  text-align: left;
+  padding: 10px 12px;
+  border-radius: 8px;
+  cursor: pointer;
+  font: inherit;
+}
+.studio-nav button.active, .studio-nav button:hover {
+  color: var(--text);
+  background: var(--surface-2);
+  border-color: var(--border);
+}
+.studio-main { padding: 24px 28px 40px; overflow: auto; }
+.studio-panel { display: none; }
+.studio-panel.active { display: block; }
+.studio-h1 { font-size: 1.75rem; font-weight: 600; margin-bottom: 8px; }
+.studio-lead { color: var(--muted); margin-bottom: 24px; max-width: 60ch; line-height: 1.5; }
+
+.studio-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 20px;
+  margin-bottom: 16px;
+}
+.studio-input, .studio-textarea, .studio-select {
+  width: 100%;
+  background: var(--bg);
+  border: 1px solid var(--border);
+  color: var(--text);
+  border-radius: 8px;
+  padding: 12px 14px;
+  font: inherit;
+  margin-top: 6px;
+}
+.studio-textarea { min-height: 120px; resize: vertical; font-family: var(--mono); line-height: 1.45; }
+.studio-label { display: block; font-size: 0.85rem; color: var(--muted); margin-top: 14px; }
+.studio-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--accent);
+  color: #111;
+  border: none;
+  border-radius: 8px;
+  padding: 11px 18px;
+  font-weight: 600;
+  cursor: pointer;
+  margin-top: 16px;
+}
+.studio-btn.ghost { background: transparent; color: var(--text); border: 1px solid var(--border); }
+.studio-btn:disabled { opacity: 0.5; cursor: not-allowed; }
+
+.studio-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+@media (max-width: 900px) { .studio-shell { grid-template-columns: 1fr; } .studio-grid { grid-template-columns: 1fr; } }
+
+.studio-log {
+  font-family: var(--mono);
+  font-size: 0.8rem;
+  line-height: 1.5;
+  background: #000;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 14px;
+  height: 360px;
+  overflow: auto;
+  white-space: pre-wrap;
+}
+.studio-stat { font-family: var(--mono); font-size: 0.85rem; color: var(--muted); }
+.studio-stat strong { color: var(--green); }
+.studio-list { list-style: none; display: flex; flex-direction: column; gap: 8px; }
+.studio-list li {
+  padding: 10px 12px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  cursor: pointer;
+  background: var(--surface-2);
+}
+.studio-list li:hover { border-color: var(--accent); }
+.studio-badge {
+  display: inline-block;
+  font-size: 0.7rem;
+  padding: 2px 8px;
+  border-radius: 999px;
+  background: var(--surface-2);
+  color: var(--muted);
+  margin-left: 8px;
+}
+.studio-status { position: fixed; bottom: 12px; right: 16px; font-family: var(--mono); font-size: 0.75rem; color: var(--muted); }
