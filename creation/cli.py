@@ -34,10 +34,34 @@ def _main_tui() -> None:
     run_tui()
 
 
+def _run_setup_wizard(*, force: bool = False) -> Optional[str]:
+    """Run setup TUI when needed. Returns finish action if wizard ran."""
+    import os
+
+    from creation.setup_wizard import needs_setup
+    from creation.setup_tui import run_setup_tui
+
+    if os.environ.get("CREATION_SKIP_SETUP") == "1" and not force:
+        return None
+    if not force and not needs_setup():
+        return None
+    return run_setup_tui()
+
+
+def _handle_setup_finish(action: Optional[str]) -> None:
+    if action == "serve":
+        serve()
+        raise typer.Exit()
+    if action == "demo":
+        build("A minimal todo CLI in Python", demo=True)
+        raise typer.Exit()
+
+
 @app.callback(invoke_without_command=True)
 def main(ctx: typer.Context) -> None:
-    """Default: open terminal UI."""
+    """Default: setup on first run, then open terminal UI."""
     if ctx.invoked_subcommand is None:
+        _handle_setup_finish(_run_setup_wizard())
         _main_tui()
         raise typer.Exit()
 
@@ -59,15 +83,45 @@ def tui(host: str = "127.0.0.1", port: int = 8787) -> None:
 
 
 @app.command()
+def setup(
+    yes: bool = typer.Option(False, "--yes", help="Non-interactive setup with local defaults"),
+    reinstall: bool = typer.Option(False, "--reinstall", help="Run the setup wizard again"),
+) -> None:
+    """Interactive install + configuration shell."""
+    from creation.setup_wizard import mark_setup_complete, needs_setup, run_quick_setup
+
+    if yes:
+        bootstrap = run_quick_setup()
+        for line in bootstrap.lines():
+            console.print(f"  {line}")
+        console.print("[green]Setup complete[/] — run [cyan]creation[/] to open the terminal UI")
+        return
+
+    if reinstall or needs_setup():
+        if reinstall:
+            sec = load_secrets()
+            sec.setup_complete = False
+            save_secrets(sec)
+        action = _run_setup_wizard(force=True)
+        _handle_setup_finish(action)
+        if action is None:
+            mark_setup_complete()
+        console.print("[green]Setup complete[/]")
+        return
+
+    console.print("[dim]Setup already finished. Use --reinstall to run the wizard again.[/]")
+
+
+@app.command()
 def login(email: str = typer.Option(..., prompt=True), password: str = typer.Option(..., prompt=True, hide_input=True)) -> None:
     """Sign in to your Creation account."""
-    from creation.account.auth import login as do_login
+    from creation.setup_wizard import sign_in
 
-    user, _ = do_login(email, password)
-    sec = load_secrets()
-    sec.account_email = user.email
-    sec.account_token = user.api_key
-    save_secrets(sec)
+    try:
+        user = sign_in(email, password)
+    except Exception as exc:
+        console.print(f"[red]{exc}[/]")
+        raise typer.Exit(1)
     console.print(f"[green]Signed in[/] as {user.email}")
     console.print(f"API key: [dim]{user.api_key}[/]")
     console.print(f"Credits: [cyan]{user.credits}[/]")

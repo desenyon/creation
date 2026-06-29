@@ -1,27 +1,13 @@
 {
   "$schema": "https://openapi.vercel.sh/vercel.json",
-  "buildCommand": "cp install.sh web/install.sh",
-  "outputDirectory": "web",
-  "framework": null,
-  "cleanUrls": true,
-  "trailingSlash": false,
-  "rewrites": [{ "source": "/install", "destination": "/install.sh" }],
+  "installCommand": "npm install --prefix website",
+  "buildCommand": "cp install.sh website/public/install.sh && npm run build --prefix website",
+  "outputDirectory": "website/.next",
+  "framework": "nextjs",
   "headers": [
     {
-      "source": "/install(.sh)?",
+      "source": "/install.sh",
       "headers": [{ "key": "Content-Type", "value": "text/x-shellscript; charset=utf-8" }]
-    },
-    {
-      "source": "/sitemap.xml",
-      "headers": [{ "key": "Content-Type", "value": "application/xml; charset=utf-8" }]
-    },
-    {
-      "source": "/site.webmanifest",
-      "headers": [{ "key": "Content-Type", "value": "application/manifest+json; charset=utf-8" }]
-    },
-    {
-      "source": "/(.*).(png|jpg|jpeg|svg|mp4|webp|ico)",
-      "headers": [{ "key": "Cache-Control", "value": "public, max-age=86400, stale-while-revalidate=604800" }]
     }
   ]
 }

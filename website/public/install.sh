@@ -9,7 +9,6 @@ REPO_URL="${CREATION_REPO:-https://github.com/desenyon/creation.git}"
 REF="${CREATION_REF:-main}"
 SPEC="git+${REPO_URL}@${REF}"
 CREATION_HOME="${CREATION_HOME:-$HOME/.creation}"
-export CREATION_CLOUD_URL="${CREATION_CLOUD_URL:-https://creation.dev}"
 
 say()  { printf '\033[36m→\033[0m %s\n' "$1"; }
 ok()   { printf '\033[32m✓\033[0m %s\n' "$1"; }
@@ -60,8 +59,8 @@ if [ "${CREATION_SKIP_SETUP:-}" = "1" ]; then
   warn "Skipping setup wizard (CREATION_SKIP_SETUP=1)."
   echo "  creation setup    # run the setup shell later"
 else
-  say "Launching setup wizard (cloud: $CREATION_CLOUD_URL)…"
-  CREATION_CLOUD_URL="$CREATION_CLOUD_URL" "$CREATION_BIN" setup || warn "Run 'creation setup' to finish configuration."
+  say "Launching setup wizard…"
+  "$CREATION_BIN" setup || warn "Run 'creation setup' to finish configuration."
 fi
 
 echo ""

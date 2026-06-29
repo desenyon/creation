@@ -18,6 +18,19 @@ def register(email: str, password: str) -> AccountUser:
 def resolve_api_key(api_key: str) -> Optional[AccountUser]:
     if not api_key.strip():
         return None
+    try:
+        from creation.cloud.client import cloud_enabled, cloud_me
+
+        if cloud_enabled():
+            profile = cloud_me(api_key.strip())
+            return AccountUser(
+                id="cloud",
+                email=profile["email"],
+                api_key=profile["api_key"],
+                credits=int(profile.get("credits", 0)),
+            )
+    except Exception:
+        pass
     return AccountStore().get_by_api_key(api_key)
 
 

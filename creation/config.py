@@ -25,6 +25,7 @@ class UserSecrets(BaseModel):
 
     account_email: str = ""
     account_token: str = ""
+    cloud_api_url: str = ""
 
     forge_api_key: str = ""
     forge_base_url: str = ""
@@ -54,6 +55,9 @@ class UserSecrets(BaseModel):
     subagents_enabled: bool = False
     max_subagents: int = 3
     max_concurrent_runs: int = 3
+
+    setup_complete: bool = False
+    setup_version: int = 0
 
     work_graph_enabled: bool = False
     work_auto_dispatch: bool = False
@@ -200,16 +204,23 @@ def load_secrets() -> UserSecrets:
     ensure_dirs()
     data = _read_config_raw()
     if data:
-        return UserSecrets.model_validate(data)
-    secrets = UserSecrets()
-    try:
-        from creation.account.store import AccountStore
+        secrets = UserSecrets.model_validate(data)
+    else:
+        secrets = UserSecrets()
+        try:
+            from creation.account.store import AccountStore
 
-        acct = AccountStore().ensure_local_account()
-        secrets.account_email = acct.email
-        secrets.account_token = acct.api_key
-    except Exception:
-        pass
+            acct = AccountStore().ensure_local_account()
+            secrets.account_email = acct.email
+            secrets.account_token = acct.api_key
+        except Exception:
+            pass
+    import os
+
+    if not secrets.cloud_api_url.strip():
+        secrets.cloud_api_url = os.environ.get("CREATION_CLOUD_URL", "").strip()
+    if not secrets.forge_base_url.strip() and secrets.cloud_api_url.strip():
+        secrets.forge_base_url = secrets.cloud_api_url.strip()
     return secrets
 
 

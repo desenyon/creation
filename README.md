@@ -12,7 +12,7 @@
   <a href="LICENSE"><img src="https://img.shields.io/badge/License-MIT-orange?style=flat-square" alt="MIT License" /></a>
   <a href="https://github.com/desenyon/creation/actions/workflows/ci.yml"><img src="https://github.com/desenyon/creation/actions/workflows/ci.yml/badge.svg" alt="CI" /></a>
   <a href="https://www.python.org/"><img src="https://img.shields.io/badge/python-3.10+-blue?style=flat-square" alt="Python 3.10+" /></a>
-  <img src="https://img.shields.io/badge/tests-241%20passing-brightgreen?style=flat-square" alt="241 tests passing" />
+  <img src="https://img.shields.io/badge/tests-245%20passing-brightgreen?style=flat-square" alt="245 tests passing" />
   <img src="https://img.shields.io/badge/agents-43%20CLIs-blueviolet?style=flat-square" alt="43 coding CLIs" />
 </p>
 
@@ -20,9 +20,9 @@
 
 **Creation** is a local-first agent operating system. You describe what you want built — a new product, a feature in an existing repo, a fix, a launch — and Creation runs a full autonomous loop: research the problem, plan the work, write code with the terminal agent you already use, test it, sync to GitHub and Linear, and notify you when it ships.
 
-Everything runs on your hardware. Your Codex, Claude Code, Cursor, or Gemini CLI stays on your PATH. Your credentials live in `~/.creation/`. No hosted dashboard required. No patchwork of third-party API keys.
+Everything runs on your hardware for builds. Your Codex, Claude Code, Cursor, or Gemini CLI stays on your PATH. **Creation Cloud** ([creation.dev](https://creation.dev)) hosts your account, API key, credits, and Forge planning — so you sign in once and the CLI syncs automatically.
 
-Open **Creation Studio** in the browser, or drive everything from the terminal UI. One account covers planning, research, memory, and metering — so you can focus on the product, not the plumbing.
+Open **Creation Studio** locally, or drive everything from the terminal UI.
 
 ---
 
@@ -65,13 +65,25 @@ The loop is built for long runs (up to 200 turns) with token-aware context compr
 
 ## Quick start
 
-### Install
+### One-command install
+
+```bash
+curl -fsSL https://creation.dev/install | bash
+```
+
+This installs Creation, points the CLI at **Creation Cloud** (`CREATION_CLOUD_URL`), and launches the setup wizard.
+
+Or create an account at [creation.dev/account](https://creation.dev/account) first, then install.
+
+### Manual install
 
 ```bash
 pip install git+https://github.com/desenyon/creation.git
-# or from a checkout:
-pip install -e .
+export CREATION_CLOUD_URL=https://creation.dev
+creation setup
 ```
+
+Use `creation setup --yes` for non-interactive defaults, or `creation setup --reinstall` to run the wizard again.
 
 ### Sign in and open Studio
 
@@ -103,7 +115,8 @@ creation          # or: creation tui — in another tab
 
 | Command | Description |
 |---------|-------------|
-| `creation` | Open terminal UI (default) |
+| `creation setup` | Interactive install + configuration shell |
+| `creation` | Open terminal UI (runs setup on first launch) |
 | `creation serve` | Start Creation Studio |
 | `creation login` | Sign in / create account |
 | `creation build "…"` | Run full autonomous build loop |
@@ -130,6 +143,39 @@ These are selling points, not dependencies you wire up yourself. They are mainta
 
 ---
 
+## Creation Cloud (Vercel)
+
+The marketing site and hosted APIs live at **[creation.dev](https://creation.dev)** — deployed from the `website/` Next.js app.
+
+| Hosted on Cloud | Runs locally |
+|-----------------|--------------|
+| Account register / login / API keys | Build orchestrator & agents |
+| Credits & Forge `/api/forge/v1` | Prism memory, Lens research |
+| Web dashboard at `/account` | Studio UI (`creation serve`) |
+| Tester feedback API | Relay, git, Playwright QA |
+
+**Cloud API endpoints**
+
+| Endpoint | Purpose |
+|----------|---------|
+| `POST /api/account/register` | Create account + `crt_live_…` key |
+| `POST /api/account/login` | Sign in |
+| `GET /api/account/me` | Profile (Bearer API key) |
+| `PUT /api/account/credentials` | Relay tokens |
+| `POST /api/forge/v1/chat/completions` | Forge planning |
+| `GET /api/health` | Service status |
+
+**Deploy the website**
+
+```bash
+cd website && npm install && npm run build
+vercel --prod   # link repo root; uses vercel.json
+```
+
+Link **Vercel KV** in the project dashboard for persistent accounts. Set `OPENAI_API_KEY` on Vercel for stronger Forge responses.
+
+---
+
 ## Configuration
 
 All state lives under `~/.creation/`:
@@ -145,8 +191,9 @@ All state lives under `~/.creation/`:
 
 | Variable | Purpose |
 |----------|---------|
-| `CREATION_DEMO=1` | Demo mode — no live Relay/Forge calls |
-| `OPENAI_API_KEY` | Optional stronger Forge backend |
+| `CREATION_CLOUD_URL` | Cloud API base (default in install: `https://creation.dev`) |
+| `CREATION_DEMO=1` | Demo mode — no live Relay calls |
+| `OPENAI_API_KEY` | Optional Forge backend (cloud or local) |
 | `CREATION_FORGE_URL` | Override Forge endpoint |
 
 ---
@@ -189,12 +236,13 @@ creation serve
 
 ```
 creation/
-├── account/           # Auth, credits, usage
+├── website/           # Next.js site + Vercel API routes
+├── cloud/             # Python client for Creation Cloud
+├── account/           # Auth, credits (local fallback)
 ├── services/          # Forge, Lens, Prism, Relay, Pulse
 ├── agents/            # Coding CLI adapters
 ├── orchestrator.py    # Multi-turn build loop
-├── server.py          # FastAPI + Studio
-├── tui.py             # Textual terminal UI
+├── server.py          # FastAPI + Studio (local)
 └── app/               # Studio static assets
 ```
 
@@ -219,5 +267,5 @@ MIT — see [LICENSE](LICENSE).
 ---
 
 <p align="center">
-  <sub>Creation · Local-first · Your machine · Your agents</sub>
+  <sub>Creation · Cloud account · Local builds · Your agents</sub>
 </p>
